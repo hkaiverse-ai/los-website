@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&family=Jost:wght@200;300;400&display=swap');
+
 :root{
   /* ground — the logo's black, warmed very slightly */
   --ground:#08080B;
@@ -97,19 +99,22 @@ a:hover{color:var(--gold-lit)}
   opacity:.85;
 }
 .top .wrap{display:flex;align-items:center;gap:2rem;min-height:5.1rem}
-.brand{display:flex;align-items:center;gap:.95rem;text-decoration:none;color:var(--ink)}
+.brand,.brand:hover{display:flex;align-items:center;gap:.95rem;color:var(--ink);text-decoration:none}
 /* boxed emblem: infinity mark over the LOS monogram */
 /* The logo file exactly as supplied — full mark, wordmark and strapline.
    Not cropped, not recoloured. mix-blend-mode: screen drops its black field
-   into the header so no rectangle shows; needs a dark background to sit on. */
+   into the header so no rectangle shows; needs a dark background to sit on.
+   In practice the field is #08070C rather than pure black, so screen reduces
+   the rectangle rather than erasing it entirely — a faint edge remains.
+   No drop-shadow: the JPEG has no alpha, so the filter traced the image's
+   rectangle — the very box the blend mode is there to hide. */
 .brand__logo{
   flex:none;display:block;height:3.6rem;width:auto;
   mix-blend-mode:screen;
-  filter:drop-shadow(0 0 10px rgba(255,244,214,.16));
 }
 .brand__rule{width:1px;align-self:stretch;flex:none;margin-block:.35rem;
   background:linear-gradient(180deg,transparent,var(--hair-gold),transparent)}
-.brand__text{display:flex;flex-direction:column;gap:.18rem;min-width:0}
+.brand__text,.brand__text:hover{display:flex;flex-direction:column;gap:.18rem;min-width:0;text-decoration:none;color:var(--ink)}
 .brand__name{
   font-family:var(--display);font-weight:300;font-size:1.06rem;letter-spacing:.2em;
   text-transform:uppercase;white-space:nowrap;line-height:1.1;color:var(--ink);
@@ -124,6 +129,11 @@ a:hover{color:var(--gold-lit)}
   .brand__name{font-size:.85rem;letter-spacing:.15em}
   .brand__tag{font-size:.55rem;letter-spacing:.1em;white-space:normal}
 }
+/* Narrow viewports only: the strapline is wider than the room left for it, so
+   let it wrap anywhere. Kept at 62rem, independent of the nav breakpoint below —
+   once the nav drops to its own row the lockup has the full width and the
+   strapline sits on one line comfortably. */
+@media(max-width:62rem){.brand__tag{white-space:normal}}
 nav.main{margin-left:auto;display:flex;gap:1.65rem;align-items:center}
 nav.main a:not(.btn){font-family:var(--body);font-size:.9125rem;font-weight:400;color:var(--dim);text-decoration:none;padding:.4rem 0;border-bottom:1px solid transparent;letter-spacing:.012em}
 nav.main a:not(.btn):hover{color:var(--ink);border-bottom-color:var(--hair-gold)}
@@ -139,7 +149,12 @@ nav.main a:not(.btn)[aria-current="page"]{color:var(--gold);border-bottom-color:
 .btn--lg{font-size:.975rem;padding:.82rem 1.7rem}
 .btn--quiet{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--hair);}
 .btn--quiet:hover{background:rgba(255,255,255,.03);color:var(--gold-lit);box-shadow:inset 0 0 0 1px var(--hair-gold);filter:none}
-@media(max-width:62rem){
+/* Nav wrap breakpoint. The lockup, the 2rem gap and the nav need 1144.7px of
+   row, landing the nav's right edge at 1192.7px — so below ~1193px the header
+   overflowed horizontally while the nav was still inline. 75rem (1200px) is
+   the nearest round value that clears it; measured clean at 1200, 2px over
+   at 1190. Raise this if the lockup or the nav gains an item. */
+@media(max-width:75rem){
   .top{position:static}
   .top .wrap{flex-wrap:wrap;gap:.5rem 1.1rem;padding-block:.85rem;min-height:0}
   nav.main{margin-left:0;width:100%;flex-wrap:wrap;gap:.3rem 1.1rem}
