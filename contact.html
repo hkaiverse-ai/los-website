@@ -12,6 +12,9 @@
 <meta property="og:image" content="https://leanovaopexsolutions.com/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="canonical" href="https://leanovaopexsolutions.com/contact.html">
+<meta property="og:url" content="https://leanovaopexsolutions.com/contact.html">
+<script src="assets/site.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -26,18 +29,21 @@
         <span class="brand__tag">Transforming Operations. Enabling Excellence. Accelerating Growth.</span>
       </a>
     </div>
-    <nav class="main">
+    <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" hidden>Menu <span aria-hidden="true">+</span></button>
+    <nav class="main" id="primary-navigation" aria-label="Main navigation">
+      <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="services.html">Services</a>
       <a href="asf.html">ASF&trade;</a>
       <a href="industries.html">Industries</a>
+      <a href="case-studies.html">Our Work</a>
       <a href="training.html">Training</a>
       <a class="btn" href="contact.html" aria-current="page">Contact Us</a>
     </nav>
   </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
 
   <section class="band" id="contact">
     <div class="wrap">
@@ -52,7 +58,7 @@
       <div class="panel" style="margin-top:2.25rem">
         <div class="cols cols--media">
           <div>
-            <h2>Talk to Leanova</h2>
+            <h2>Talk to Leanova</h2><p>Email us with your business challenge, company context and preferred way to get in touch. You can also call directly.</p>
             <p style="margin-top:.9rem"><strong>Leanova OPEX Solutions</strong></p>
             <p class="small">
               Operational Excellence | Lean Transformation | Digital Transformation |
@@ -90,18 +96,12 @@
           <h2 style="margin-top:.8rem">Frequently Asked Questions</h2>
         </div>
         <div class="panel">
-          <h3 style="margin-top:0">What is Operational Excellence?</h3>
-          <p style="margin-top:.6rem">Operational Excellence is a systematic approach to achieving superior performance by continuously improving processes, people, technology and management systems.</p>
-          <h3 style="margin-top:1.9rem">How is Leanova different from a traditional Lean consultancy?</h3>
-          <p style="margin-top:.6rem">Leanova integrates Lean, Six Sigma, Systems Thinking, Digital Transformation and AI rather than treating these as isolated disciplines.</p>
-          <h3 style="margin-top:1.9rem">Do you work with MSMEs?</h3>
-          <p style="margin-top:.6rem">Yes. Our solutions can be scaled according to the size, maturity and resources of an organization.</p>
-          <h3 style="margin-top:1.9rem">Do you provide training?</h3>
-          <p style="margin-top:.6rem">Yes. We provide customized corporate training and capability-development programs.</p>
-          <h3 style="margin-top:1.9rem">Can Leanova help with digital transformation?</h3>
-          <p style="margin-top:.6rem">Yes. We help organizations identify which processes should be digitized, automated or enhanced using AI.</p>
-          <h3 style="margin-top:1.9rem">Do you provide implementation support?</h3>
-          <p style="margin-top:.6rem">Yes. Depending on the engagement, Leanova can support organizations from diagnosis through implementation and sustainability.</p>
+          <details class="faq"><summary>What is Operational Excellence?</summary><p>Operational Excellence is a systematic approach to achieving superior performance by continuously improving processes, people, technology and management systems.</p></details>
+          <details class="faq"><summary>How is Leanova different from a traditional Lean consultancy?</summary><p>Leanova integrates Lean, Six Sigma, Systems Thinking, Digital Transformation and AI rather than treating these as isolated disciplines.</p></details>
+          <details class="faq"><summary>Do you work with MSMEs?</summary><p>Yes. Our solutions can be scaled according to the size, maturity and resources of an organization.</p></details>
+          <details class="faq"><summary>Do you provide training?</summary><p>Yes. We provide customized corporate training and capability-development programs.</p></details>
+          <details class="faq"><summary>Can Leanova help with digital transformation?</summary><p>Yes. We help organizations identify which processes should be digitized, automated or enhanced using AI.</p></details>
+          <details class="faq"><summary>Do you provide implementation support?</summary><p>Yes. Depending on the engagement, Leanova can support organizations from diagnosis through implementation and sustainability.</p></details>
         </div>
       </div>
     </div>
@@ -113,15 +113,62 @@
   <div class="wrap">
     <div class="cols cols--3">
       <div>
-        <h4>Services</h4>
-        <ul><li><a href="services.html#lean">Lean Transformation</a></li><li><a href="services.html">Operational Excellence</a></li><li><a href="services.html#productivity">Productivity Improvement</a></li><li><a href="services.html#quality">Quality Excellence</a></li><li><a href="services.html#digital">Digital Transformation</a></li><li><a href="services.html#ai">AI-enabled Operations</a></li><li><a href="training.html">Training &amp; Capability Development</a></li><li><a href="asf.html">ASF&trade;</a></li></ul>
+        <h2 class="foot__heading">Services</h2>
+        <ul>
+<li>
+<a href="services.html#lean">Lean Transformation</a>
+</li>
+<li>
+<a href="services.html">Operational Excellence</a>
+</li>
+<li>
+<a href="services.html#productivity">Productivity Improvement</a>
+</li>
+<li>
+<a href="services.html#quality">Quality Excellence</a>
+</li>
+<li>
+<a href="services.html#digital">Digital Transformation</a>
+</li>
+<li>
+<a href="services.html#ai">AI-enabled Operations</a>
+</li>
+<li>
+<a href="training.html">Training &amp; Capability Development</a>
+</li>
+<li>
+<a href="asf.html">ASF&trade;</a>
+</li>
+</ul>
       </div>
       <div>
-        <h4>Company</h4>
-        <ul><li><a href="about.html">About Us</a></li><li><a href="asf.html#approach">Our Approach</a></li><li><a href="industries.html">Industries</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="insights.html">Knowledge Centre</a></li><li><a href="contact.html#faq">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul>
+        <h2 class="foot__heading">Company</h2>
+        <ul>
+<li>
+<a href="about.html">About Us</a>
+</li>
+<li>
+<a href="asf.html#approach">Our Approach</a>
+</li>
+<li>
+<a href="industries.html">Industries</a>
+</li>
+<li>
+<a href="case-studies.html">Case Studies</a>
+</li>
+<li>
+<a href="insights.html">Knowledge Centre</a>
+</li>
+<li>
+<a href="contact.html#faq">FAQ</a>
+</li>
+<li>
+<a href="contact.html">Contact</a>
+</li>
+</ul>
       </div>
       <div>
-        <h4>Connect With Us</h4>
+        <h2 class="foot__heading">Connect With Us</h2>
         <ul><li>5-12/424, Road No. 02, Narendranagar Colony,<br>Ameenpur, Sangareddy District,<br>Hyderabad, Telangana 502032, India</li><li><a href="tel:+919491887419">+91 94918 87419</a></li><li><a href="mailto:info@leanovaopexsolutions.com">info@leanovaopexsolutions.com</a></li></ul>
       </div>
     </div>
