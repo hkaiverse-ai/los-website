@@ -5,7 +5,7 @@
   const categories = {
     operations: ['Improve Our Operations', 'Tell us which process needs attention, the current challenge and the outcome you want.'],
     'digital-ai': ['Explore Digital & AI Solutions', 'Describe the task, information or workflow you want to improve. Solution scope and readiness will be confirmed during enquiry.'],
-    asf: ['Understand ASF™', 'Tell us about your business context, constraints and the improvement decisions you want to explore.'],
+    asf: ['Understand ASF™ and its analysis application', 'Tell us about your business context, improvement decisions, or access questions for the separate ASF Analysis application. Do not include an API key.'],
   };
   const services = {
     lean: ['operations', 'Lean Transformation'],

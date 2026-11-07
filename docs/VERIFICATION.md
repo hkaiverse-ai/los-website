@@ -44,3 +44,17 @@ Main content: `index.html`, `services.html`, `asf.html`, `about.html`, `contact.
 Shared navigation paths/footer/asset cache versions: also `industries.html`, `training.html`, `case-studies.html`, `insights.html`.
 Behavior/design/checks: `assets/site.css`, new `assets/enquiry.js`, `scripts/check_site.py`.
 Handoff: `README.md`, `docs/OFFERING-STATUS.md`, `docs/VERIFICATION.md` and audit update.
+
+## Related-venture and ASF Analysis clarification
+
+The owner confirmed HKAIVERSE Capability Studio as a related venture and supplied the ASF Analysis application URL. This supersedes earlier uncertainty about the relationship and the existence of an application surface; it does not establish backend/model performance or a client case study.
+
+- Added a distinctive HKAIVERSE homepage feature after the AI introduction, using the existing logo, plus a standalone related-venture section on Our Work. About and the Company footer provide discovery links. It is not a seventh capability, consulting service category or client engagement.
+- The verified HKAIVERSE CTA is `https://app.hkaiverse.ai/practice`, from the official repository's `app/product-links.ts`. Browser inspection confirmed its public Practice Studio page after loading. No account, paid session or practice analysis was started.
+- Added separate `Open ASF™ Analysis` CTAs on Home and ASF to the owner-approved `https://api.leanovaopexsolutions.com/asf`. The browser showed the intended application and its API-key requirement. Links use new tabs and noopener/noreferrer. No key, upload, analysis or export was exercised.
+- Retained all five Services groups, eight AI offering disclosures, six homepage capabilities and existing ASF terminology. The generic category label now reads Guiding principle; it is not another service group.
+- Updated the third enquiry label to Understand ASF™ and its analysis application, preserving the `asf` value and local email-preparation behavior.
+
+Current local checks: PASS — nine pages and 347 local links/assets/anchors; verified external destinations/new-tab attributes; related venture placement outside Services; JavaScript syntax; whitespace. Browser sweep: 45 page/width checks at 1440/1024/768/375/320px, with no horizontal overflow, broken completed images, duplicate h1 or enquiry initialization failure. No console warnings/errors captured. The reused HKAIVERSE logo was visually checked at natural aspect ratio. Empty enquiry validation, valid ASF email preparation, and mobile menu/Escape/focus restoration were rechecked without sending a message.
+
+Source evidence, naming distinctions, live-link scope and remaining stage/readiness confirmation are recorded in `docs/VENTURE-AND-ANALYSIS-SOURCES.md`. HKAIVERSE's related-venture relationship and official destination are confirmed; no additional approval is needed to link the verified public landing page. Product access and analysis permissions remain with each application's owner.

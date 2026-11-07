@@ -75,6 +75,22 @@ for offering in ['agents', 'multi-agent', 'llm', 'assistants', 'voice', 'workflo
     if offering not in pages['services.html'].ids or expected not in pages['services.html'].links:
         errors.append(f'services.html: missing categorized enquiry for {offering}')
 
+for page_name in ['index.html', 'case-studies.html']:
+    page = pages[page_name]
+    if page.ids.count('hkaiverse') != 1:
+        errors.append(f'{page_name}: expected one dedicated related-venture feature')
+    if not any(t == 'a' and a.get('href') == 'https://app.hkaiverse.ai/practice'
+               and a.get('target') == '_blank' and 'noopener' in a.get('rel', '')
+               for t, a in page.attrs):
+        errors.append(f'{page_name}: verified HKAIVERSE handoff missing')
+if 'hkaiverse' in pages['services.html'].ids:
+    errors.append('services.html: HKAIVERSE must not become a consulting service category')
+for page_name in ['index.html', 'asf.html']:
+    if not any(t == 'a' and a.get('href') == 'https://api.leanovaopexsolutions.com/asf'
+               and a.get('target') == '_blank' and 'noopener' in a.get('rel', '')
+               for t, a in pages[page_name].attrs):
+        errors.append(f'{page_name}: separate approved ASF Analysis handoff missing')
+
 ET.parse(ROOT / 'sitemap.xml')
 if errors:
     raise SystemExit('\n'.join(errors))

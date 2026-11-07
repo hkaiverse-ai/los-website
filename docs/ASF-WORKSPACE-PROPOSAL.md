@@ -1,5 +1,7 @@
 # Proposed ASF workspace — not an implemented product
 
+Update, 7 November 2026: the owner has now supplied the existing ASF Analysis application URL, `https://api.leanovaopexsolutions.com/asf`. Its API-key-protected application surface was verified in the browser and is linked from the marketing website. The new-workspace design below remains a proposal; it is not a description of that application's verified functionality. No key was entered or analysis run. HKAIVERSE Capability Studio is a separate related venture, not this application or an asserted integration. See `VENTURE-AND-ANALYSIS-SOURCES.md` for current evidence.
+
 This proposal is a handoff for the backend owner. The public website explains the methodology and routes enquiries to Contact. It does not collect documents, store credentials or simulate analysis. No new official ASF stages are asserted. The brief's eight-stage visualization (business context → observe → diagnose gaps → prioritize → design improvements → implement → measure → adapt) remains proposed; the public diagram retains the existing site's Understand → Diagnose → Prioritize → Design → Implement → Measure → Adapt sequence until the business owner confirms wording.
 
 ## Evidence and integration boundary
