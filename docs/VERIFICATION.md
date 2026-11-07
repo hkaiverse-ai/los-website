@@ -73,3 +73,7 @@ Tests actually rerun for this revision: nine-page/347-link static validation; Ja
 The external ASF Analysis surface and official HKAIVERSE Practice Studio landing page were inspected again. This verifies the destinations and visible access/availability notices, not authenticated backend execution, exports, paid use or feedback quality. The static project needs no compilation; publication packages its existing HTML/CSS/JS directly.
 
 Files in this refinement: `asf.html`, `services.html`, `about.html`, `contact.html`, `assets/enquiry.js`, `docs/OFFERING-STATUS.md`, `docs/VERIFICATION.md`. Production configuration, assets and all nine routes are retained.
+
+## Email-handler-independent enquiry fallback
+
+The contact page now provides Copy enquiry text, a visible recipient and manual-compose instructions. Mailto recipient/subject/body encoding and CRLF were verified, including special characters and multiline text. The browser clipboard contents matched the prepared enquiry exactly. Denied/missing clipboard and legacy/manual selection paths pass the real-script test in `scripts/check_enquiry.cjs`. Native mailto navigation was attempted but blocked by the test browser's security policy; an external compose window is not claimed as verified. No workaround, send action or fake delivery confirmation was used. See `docs/EMAIL-ENQUIRY-VERIFICATION.md` for precise results and limits.

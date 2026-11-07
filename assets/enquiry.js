@@ -32,6 +32,9 @@
   const initialInterest = has(categories, requestedInterest) ? requestedInterest : selectedService?.[0];
   const radios = [...form.querySelectorAll('input[name="interest"]')];
   const result = document.getElementById('prepared-enquiry');
+  const copyText = document.getElementById('enquiry-copy');
+  const copyStatus = document.getElementById('enquiry-copy-status');
+  const openStatus = document.getElementById('enquiry-open-status');
   const context = document.getElementById('enquiry-context');
   const serviceLabel = document.getElementById('selected-service');
   const fields = ['name', 'email', 'company', 'challenge'].map((name) => form.elements.namedItem(name));
@@ -47,6 +50,8 @@
     result.hidden = true;
     document.getElementById('compose-enquiry').setAttribute('href', 'mailto:info@leanovaopexsolutions.com');
     document.getElementById('enquiry-copy').value = '';
+    copyStatus.textContent = '';
+    openStatus.textContent = '';
   };
 
   radios.forEach((radio) => {
@@ -69,22 +74,50 @@
     const category = currentInterest();
     if (!has(categories, category)) return;
     const values = Object.fromEntries(fields.map((field) => [field.name, field.value.trim()]));
-    // Strip line breaks from the subject; all values are URI-encoded and rendered as text.
+    // The subject is selected from trusted labels. Encode each mailto header separately.
     const subject = `Leanova enquiry: ${categories[category][0]}`;
-    const body = [
+    const headers = [
       `Enquiry: ${categories[category][0]}`,
       matchingService() ? `Area of interest: ${matchingService()}` : '',
       `Name: ${values.name}`,
       `Reply email: ${values.email}`,
       values.company ? `Organization: ${values.company}` : '',
-      '',
-      'Challenge or idea:',
-      values.challenge,
-    ].filter((line) => line !== '').join('\n');
-    document.getElementById('enquiry-copy').value = `To: info@leanovaopexsolutions.com\nSubject: ${subject}\n\n${body}`;
+    ].filter(Boolean).join('\r\n');
+    // RFC 6068 mailto bodies use CRLF; preserve the visitor's multiline message.
+    const body = `${headers}\r\n\r\nChallenge or idea:\r\n${values.challenge.replace(/\r\n|\r|\n/g, '\r\n')}`;
+    copyText.value = `To: info@leanovaopexsolutions.com\nSubject: ${subject}\n\n${body.replace(/\r\n/g, '\n')}`;
     document.getElementById('compose-enquiry').setAttribute('href', `mailto:info@leanovaopexsolutions.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
     result.hidden = false;
+    copyStatus.textContent = '';
+    openStatus.textContent = '';
     document.getElementById('prepared-heading').focus();
+  });
+
+  document.getElementById('compose-enquiry').addEventListener('click', () => {
+    // Do not cancel the native mailto action or claim that a handler opened/sent mail.
+    openStatus.textContent = 'Your browser was asked to open an email application. If no compose window appears, use Copy enquiry text and compose the message manually. No email has been sent by this website.';
+  });
+
+  document.getElementById('copy-enquiry').addEventListener('click', async () => {
+    const text = copyText.value;
+    if (!text || result.hidden) return;
+    let copied = false;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      }
+    } catch { /* Fall back to a user-selected text field below. */ }
+    if (!copied) {
+      copyText.focus();
+      copyText.select();
+      copyText.setSelectionRange(0, text.length);
+      try { copied = document.execCommand('copy'); } catch { /* Manual selection remains. */ }
+    }
+    if (copyText.value !== text || result.hidden) return;
+    copyStatus.textContent = copied
+      ? 'Enquiry text copied. Paste it into a new email and review it before sending. No email has been sent.'
+      : 'Automatic copying is unavailable. The text is selected: press Ctrl+C (Windows), Command+C (Mac), or use your device’s Copy command. Then paste it into a new email. No email has been sent.';
   });
 
   form.hidden = false;

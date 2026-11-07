@@ -18,6 +18,7 @@ Open `http://127.0.0.1:8765/`. No package installation or compilation is needed.
 python scripts/check_site.py
 node --check assets/site.js
 node --check assets/enquiry.js
+node scripts/check_enquiry.cjs
 git diff --check
 ```
 

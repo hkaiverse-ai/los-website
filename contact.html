@@ -13,11 +13,11 @@
 <meta content="Choose an operational improvement, digital and AI, or ASF enquiry. Prepare an email for review or contact Leanova directly." property="og:description"/>
 <meta property="og:image" content="https://leanovaopexsolutions.com/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/site.css?v=20261107-venture1">
+<link rel="stylesheet" href="assets/site.css?v=20261107-email1">
 <link rel="canonical" href="https://leanovaopexsolutions.com/contact.html">
 <meta property="og:url" content="https://leanovaopexsolutions.com/contact.html">
 <script src="assets/site.js?v=20261107-venture1" defer></script>
-<script src="assets/enquiry.js?v=20261107-final1" defer></script>
+<script src="assets/enquiry.js?v=20261107-email1" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -194,19 +194,22 @@
 <p id="prepared-state" role="status">
        No message has been sent. Open your email application to review and send it, or copy the text below into an email.
       </p>
+<div class="actions">
 <a class="btn" href="mailto:info@leanovaopexsolutions.com" id="compose-enquiry">
        Open email application ↗
       </a>
+<button class="btn btn--quiet" type="button" id="copy-enquiry">Copy enquiry text</button>
+</div>
+<p id="enquiry-open-status" class="small" role="status" aria-live="polite"></p>
+<p id="enquiry-copy-status" class="small" role="status" aria-live="polite"></p>
+<p style="margin-top:1rem"><strong>Recipient:</strong> <a href="mailto:info@leanovaopexsolutions.com">info@leanovaopexsolutions.com</a></p>
+<p class="small">If your email application does not open, choose <strong>Copy enquiry text</strong>. Open your usual email or webmail, start a new message to the recipient above, copy the Subject line into the subject field, and paste the message below it into the email body. Review it, then send it yourself.</p>
 <label for="enquiry-copy">
        Prepared enquiry text
       </label>
-<textarea id="enquiry-copy" readonly="" rows="9"></textarea>
+<textarea id="enquiry-copy" readonly="" rows="9" aria-describedby="enquiry-copy-status"></textarea>
 <p class="small">
-       Send to
-       <a href="mailto:info@leanovaopexsolutions.com">
-        info@leanovaopexsolutions.com
-       </a>
-       . If no email application is configured, use your webmail or call
+       Prefer to call? Contact
        <a href="tel:+919491887419">
         +91 94918 87419
        </a>
