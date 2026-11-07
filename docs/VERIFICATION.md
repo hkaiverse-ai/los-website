@@ -1,5 +1,7 @@
 # Verification and review handoff
 
+Latest enquiry update: primary Gmail/Outlook HTTPS draft actions, optional Microsoft 365/default app, and existing copy/manual fallback. Real-script provider encoding, stale-link reset and no-send status tests pass. Gmail sign-in and signed-out Outlook's landing-page redirect were observed; authenticated compose and sending remain untested. See EMAIL-ENQUIRY-VERIFICATION.md for exact limits.
+
 Updated 7 November 2026 for the Operational Excellence / ASF™ / Intelligent AI revision of Draft PR #1.
 
 ## Implemented

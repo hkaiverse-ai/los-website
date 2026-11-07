@@ -40,6 +40,13 @@
   const fields = ['name', 'email', 'company', 'challenge'].map((name) => form.elements.namedItem(name));
   const currentInterest = () => radios.find((radio) => radio.checked)?.value;
   const matchingService = () => selectedService && selectedService[0] === currentInterest() ? selectedService[1] : '';
+  const providerLinks = {
+    'compose-gmail': 'https://mail.google.com/mail/',
+    'compose-outlook': 'https://outlook.live.com/mail/0/deeplink/compose',
+    'compose-m365': 'https://outlook.office.com/mail/deeplink/compose',
+  };
+  const encodeQuery = (values) => Object.entries(values)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`).join('&');
 
   const updateChoice = () => {
     const category = currentInterest();
@@ -49,6 +56,7 @@
     serviceLabel.hidden = !service;
     result.hidden = true;
     document.getElementById('compose-enquiry').setAttribute('href', 'mailto:info@leanovaopexsolutions.com');
+    Object.entries(providerLinks).forEach(([id, url]) => document.getElementById(id).setAttribute('href', url));
     document.getElementById('enquiry-copy').value = '';
     copyStatus.textContent = '';
     openStatus.textContent = '';
@@ -87,10 +95,21 @@
     const body = `${headers}\r\n\r\nChallenge or idea:\r\n${values.challenge.replace(/\r\n|\r|\n/g, '\r\n')}`;
     copyText.value = `To: info@leanovaopexsolutions.com\nSubject: ${subject}\n\n${body.replace(/\r\n/g, '\n')}`;
     document.getElementById('compose-enquiry').setAttribute('href', `mailto:info@leanovaopexsolutions.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    const to = 'info@leanovaopexsolutions.com';
+    document.getElementById('compose-gmail').setAttribute('href', `${providerLinks['compose-gmail']}?${encodeQuery({ view: 'cm', fs: '1', to, su: subject, body })}`);
+    const outlookQuery = encodeQuery({ to, subject, body });
+    document.getElementById('compose-outlook').setAttribute('href', `${providerLinks['compose-outlook']}?${outlookQuery}`);
+    document.getElementById('compose-m365').setAttribute('href', `${providerLinks['compose-m365']}?${outlookQuery}`);
     result.hidden = false;
     copyStatus.textContent = '';
     openStatus.textContent = '';
     document.getElementById('prepared-heading').focus();
+  });
+
+  Object.keys(providerLinks).forEach((id) => {
+    document.getElementById(id).addEventListener('click', () => {
+      openStatus.textContent = 'A draft was requested in your chosen email provider. Sign in if asked, review the recipient and message, then click Send there. If the draft is not filled in, use Copy enquiry text. This website has not sent the email.';
+    });
   });
 
   document.getElementById('compose-enquiry').addEventListener('click', () => {

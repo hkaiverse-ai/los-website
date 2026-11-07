@@ -1,5 +1,13 @@
 # Email enquiry fallback verification
 
+## Webmail draft update
+
+At the owner's request, the primary actions now open HTTPS Gmail and Outlook compose links in a new tab, with a separate Microsoft 365 option for work/school accounts. The visitor chooses the sending account, reviews the recipient, subject and body, and clicks Send inside their provider. No website-side send or success claim exists. The default email application is an optional disclosure; Copy enquiry text and the visible recipient remain available.
+
+Real-script checks verify each provider's encoded recipient, subject and multiline body (including special characters), stale-link reset behavior and honest draft-request messaging. Gmail reached its sign-in screen with the compose destination preserved. Signed-out Outlook redirected to Microsoft's Outlook landing page with its deeplink preserved. Authenticated compose rendering and sending were not tested: no mailbox login or Send action was performed. If a provider loses the draft after sign-in, the page explicitly instructs visitors to copy the prepared text into a new message.
+
+The prior native-protocol test limitation below still applies; it was not retried or bypassed.
+
 Reviewed 7 November 2026. The contact page does not have a form-delivery backend. It prepares an email locally for the visitor to review and send.
 
 ## Implementation findings

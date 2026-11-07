@@ -53,6 +53,19 @@ function fixture({ clipboard, legacyCopy = false } = {}) {
   assert.ok(body.includes('Organization: R&D + QA #1 50%'));
   assert.ok(body.endsWith(values[3].replace(/\n/g, '\r\n')));
   assert.ok(!body.replace(/\r\n/g, '').includes('\n'));
+  const gmail = new URL(success.element('compose-gmail').attributes.href);
+  assert.equal(gmail.origin, 'https://mail.google.com');
+  assert.equal(gmail.searchParams.get('view'), 'cm');
+  assert.equal(gmail.searchParams.get('to'), uri.pathname);
+  assert.equal(gmail.searchParams.get('su'), uri.searchParams.get('subject'));
+  assert.equal(gmail.searchParams.get('body'), body);
+  for (const [id, origin] of [['compose-outlook', 'https://outlook.live.com'], ['compose-m365', 'https://outlook.office.com']]) {
+    const draft = new URL(success.element(id).attributes.href);
+    assert.equal(draft.origin, origin);
+    assert.equal(draft.searchParams.get('to'), uri.pathname);
+    assert.equal(draft.searchParams.get('subject'), uri.searchParams.get('subject'));
+    assert.equal(draft.searchParams.get('body'), body);
+  }
   await success.element('copy-enquiry').listeners.click();
   assert.equal(success.getCopied(), success.element('enquiry-copy').value);
   assert.match(success.element('enquiry-copy-status').textContent, /^Enquiry text copied/);
@@ -74,5 +87,11 @@ function fixture({ clipboard, legacyCopy = false } = {}) {
   success.element('compose-enquiry').listeners.click();
   assert.match(success.element('enquiry-open-status').textContent, /If no compose window appears/);
   assert.match(success.element('enquiry-open-status').textContent, /No email has been sent/);
-  console.log('PASS: mailto recipient/subject/body encoding, CRLF, clipboard success, denied/missing clipboard, legacy copy and honest manual fallback.');
+  success.element('compose-gmail').listeners.click();
+  assert.match(success.element('enquiry-open-status').textContent, /click Send/);
+  assert.match(success.element('enquiry-open-status').textContent, /has not sent/);
+  success.element('challenge').listeners.input();
+  assert.equal(success.element('prepared-enquiry').hidden, true);
+  assert.equal(success.element('compose-gmail').attributes.href, 'https://mail.google.com/mail/');
+  console.log('PASS: Gmail/Outlook/Microsoft 365 and mailto encoding, CRLF, clipboard success and manual fallbacks, stale-link reset and no-send status.');
 })().catch((error) => { console.error(error); process.exitCode = 1; });
