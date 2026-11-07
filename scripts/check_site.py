@@ -2,6 +2,7 @@
 from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
+import re
 from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 
@@ -51,6 +52,28 @@ for name, page in pages.items():
         if url.fragment and dest in pages:
             require(unquote(url.fragment) in pages[dest].ids, f'missing anchor {dest}#{url.fragment}')
     require(any(t == 'a' and a.get('href') == '#main' for t, a in page.attrs), 'missing skip link')
+
+# Guard the agreed product structure and enquiry routes.
+expected_capabilities = ['Lean Transformation', 'Operational Excellence', 'Digital Transformation', 'AI-Enabled Operations', 'Process Excellence', 'Capability Development']
+home_text = (ROOT / 'index.html').read_text(encoding='utf-8')
+capabilities = [text.strip() for text in re.findall(r'<article class="card capability">.*?<h3>(.*?)</h3>', home_text, re.S)]
+if capabilities != expected_capabilities:
+    errors.append('index.html: core capabilities changed or duplicated')
+for anchor in ['operations', 'digital', 'ai', 'intelligent-automation', 'capability-development']:
+    if anchor not in pages['services.html'].ids:
+        errors.append(f'services.html: missing service group {anchor}')
+contact = pages['contact.html']
+radio_values = [a.get('value') for t, a in contact.attrs if t == 'input' and a.get('name') == 'interest']
+if radio_values != ['operations', 'digital-ai', 'asf']:
+    errors.append('contact.html: enquiry options changed or duplicated')
+if not any(t == 'input' and a.get('type') == 'email' and 'required' in a for t, a in contact.attrs):
+    errors.append('contact.html: required email validation missing')
+if any(t == 'form' and a.get('method', '').lower() == 'post' for t, a in contact.attrs):
+    errors.append('contact.html: unexpected submission mechanism; delivery backend is not configured')
+for offering in ['agents', 'multi-agent', 'llm', 'assistants', 'voice', 'workflows', 'rag', 'reporting']:
+    expected = f'contact.html?interest=digital-ai&service={offering}#enquiry'
+    if offering not in pages['services.html'].ids or expected not in pages['services.html'].links:
+        errors.append(f'services.html: missing categorized enquiry for {offering}')
 
 ET.parse(ROOT / 'sitemap.xml')
 if errors:

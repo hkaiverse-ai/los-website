@@ -3,18 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact &mdash; Leanova OPEX Solutions</title>
-<meta name="description" content="Every organization has opportunities hidden within its processes. Let's identify them.">
+<title>
+   Discuss Operations, Digital AI or ASF™ | Leanova
+  </title>
+<meta content="Choose an operational improvement, digital and AI, or ASF enquiry. Prepare an email for review or contact Leanova directly." name="description"/>
 <link rel="icon" href="assets/favicon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Contact &mdash; Leanova OPEX Solutions">
-<meta property="og:description" content="Every organization has opportunities hidden within its processes. Let's identify them.">
+<meta content="Discuss Operations, Digital AI or ASF™ | Leanova" property="og:title"/>
+<meta content="Choose an operational improvement, digital and AI, or ASF enquiry. Prepare an email for review or contact Leanova directly." property="og:description"/>
 <meta property="og:image" content="https://leanovaopexsolutions.com/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=20261107-ai3">
 <link rel="canonical" href="https://leanovaopexsolutions.com/contact.html">
 <meta property="og:url" content="https://leanovaopexsolutions.com/contact.html">
-<script src="assets/site.js" defer></script>
+<script src="assets/site.js?v=20261107-ai3" defer></script>
+<script src="assets/enquiry.js?v=20261107-ai3" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -38,75 +41,337 @@
       <a href="industries.html">Industries</a>
       <a href="case-studies.html">Our Work</a>
       <a href="training.html">Training</a>
-      <a class="btn" href="contact.html" aria-current="page">Contact Us</a>
+      <a class="btn" href="contact.html#enquiry" aria-current="page">Contact Us</a>
     </nav>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
-
-  <section class="band" id="contact">
-    <div class="wrap">
-      <div class="narrow">
-        <div class="kick">Contact</div>
-        <h1 style="margin-top:.9rem">Let's Transform Your Business</h1>
-        <p class="lede" style="margin-top:1.1rem">
-          Every organization has opportunities hidden within its processes.
+<section class="band hero">
+<div class="wrap">
+<div class="narrow">
+<div class="kick">
+       Contact Leanova
+      </div>
+<h1>
+       Start with the business need.
+      </h1>
+<p class="lede">
+       Choose a direction and tell us what you want to improve. We can help discuss the next step.
+      </p>
+</div>
+</div>
+</section>
+<section class="band" id="enquiry">
+<div class="wrap">
+<div class="section-intro">
+<div class="kick">
+       Your enquiry
+      </div>
+<h2>
+       What would you like to explore?
+      </h2>
+</div>
+<div id="email-fallback">
+<p>
+       Choose an email topic, or call us directly. Your email application opens so you can review and send the message.
+      </p>
+<ul class="rows">
+<li>
+<a href="mailto:info@leanovaopexsolutions.com?subject=Improve%20Our%20Operations">
+         Improve Our Operations
+        </a>
+</li>
+<li>
+<a href="mailto:info@leanovaopexsolutions.com?subject=Explore%20Digital%20%26%20AI%20Solutions">
+         Explore Digital &amp; AI Solutions
+        </a>
+</li>
+<li>
+<a href="mailto:info@leanovaopexsolutions.com?subject=Understand%20ASF%E2%84%A2">
+         Understand ASF™
+        </a>
+</li>
+</ul>
+</div>
+<form hidden="" id="enquiry-form">
+<fieldset>
+<legend>
+        What would you like to discuss?
+       </legend>
+<div class="enquiry-choices">
+<label class="enquiry-choice">
+<input name="interest" required="" type="radio" value="operations"/>
+<span>
+<strong>
+           Improve Our Operations
+          </strong>
+<span>
+           Lean, productivity, quality and operational excellence.
+          </span>
+</span>
+</label>
+<label class="enquiry-choice">
+<input name="interest" required="" type="radio" value="digital-ai"/>
+<span>
+<strong>
+           Explore Digital &amp; AI Solutions
+          </strong>
+<span>
+           Digital transformation, AI agents, LLMs and automation.
+          </span>
+</span>
+</label>
+<label class="enquiry-choice">
+<input name="interest" required="" type="radio" value="asf"/>
+<span>
+<strong>
+           Understand ASF™
+          </strong>
+<span>
+           Explore the framework and its relevance to your business.
+          </span>
+</span>
+</label>
+</div>
+</fieldset>
+<p aria-live="polite" class="enquiry-context" id="enquiry-context">
+</p>
+<p class="small" id="selected-service">
+</p>
+<div class="form-grid">
+<div>
+<label for="enquiry-name">
+         Your name
+         <span>
+          (required)
+         </span>
+</label>
+<input autocomplete="name" id="enquiry-name" maxlength="100" name="name" required=""/>
+</div>
+<div>
+<label for="enquiry-email">
+         Work email
+         <span>
+          (required)
+         </span>
+</label>
+<input autocomplete="email" id="enquiry-email" maxlength="254" name="email" required="" type="email"/>
+</div>
+<div class="form-grid__full">
+<label for="enquiry-company">
+         Organization
+         <span>
+          (optional)
+         </span>
+</label>
+<input autocomplete="organization" id="enquiry-company" maxlength="120" name="company"/>
+</div>
+<div class="form-grid__full">
+<label for="enquiry-challenge">
+         Your challenge or idea
+         <span>
+          (required)
+         </span>
+</label>
+<textarea aria-describedby="enquiry-help" id="enquiry-challenge" maxlength="1200" name="challenge" required="" rows="5"></textarea>
+</div>
+</div>
+<p class="small" id="enquiry-help">
+       Describe the problem and the outcome you want. Do not include confidential documents or sensitive business data.
+      </p>
+<button class="btn btn--lg" type="submit">
+       Prepare enquiry email →
+      </button>
+<p class="small">
+       This prepares an email on your device. Nothing is submitted to Leanova here; you review and send it in your email application.
+      </p>
+</form>
+<section aria-labelledby="prepared-heading" class="prepared-enquiry" hidden="" id="prepared-enquiry">
+<h3 id="prepared-heading" tabindex="-1">
+       Your email is ready to review
+      </h3>
+<p id="prepared-state" role="status">
+       No message has been sent. Open your email application to review and send it, or copy the text below into an email.
+      </p>
+<a class="btn" href="mailto:info@leanovaopexsolutions.com" id="compose-enquiry">
+       Open email application ↗
+      </a>
+<label for="enquiry-copy">
+       Prepared enquiry text
+      </label>
+<textarea id="enquiry-copy" readonly="" rows="9"></textarea>
+<p class="small">
+       Send to
+       <a href="mailto:info@leanovaopexsolutions.com">
+        info@leanovaopexsolutions.com
+       </a>
+       . If no email application is configured, use your webmail or call
+       <a href="tel:+919491887419">
+        +91 94918 87419
+       </a>
+       .
+      </p>
+</section>
+</div>
+</section>
+<section class="band" id="contact">
+<div class="wrap">
+<div class="section-intro">
+<div class="kick">
+       Direct contact
+      </div>
+<h2>
+       Talk to Leanova.
+      </h2>
+</div>
+<div class="panel" style="margin-top:2.25rem">
+<div class="cols cols--media">
+<div>
+<h2>
+         Talk to Leanova
+        </h2>
+<p>
+         Email us with your business challenge, company context and preferred way to get in touch. You can also call directly.
         </p>
-        <p class="lede">Let's identify them.</p>
-      </div>
-      <div class="panel" style="margin-top:2.25rem">
-        <div class="cols cols--media">
-          <div>
-            <h2>Talk to Leanova</h2><p>Email us with your business challenge, company context and preferred way to get in touch. You can also call directly.</p>
-            <p style="margin-top:.9rem"><strong>Leanova OPEX Solutions</strong></p>
-            <p class="small">
-              Operational Excellence | Lean Transformation | Digital Transformation |
+<p style="margin-top:.9rem">
+<strong>
+          Leanova OPEX Solutions
+         </strong>
+</p>
+<p class="small">
+         Operational Excellence | Lean Transformation | Digital Transformation |
               AI-enabled Business Improvement
-            </p>
-            <dl style="margin-top:1.6rem">
-              <div class="detail"><dt>Email</dt><dd><a href="mailto:info@leanovaopexsolutions.com">info@leanovaopexsolutions.com</a></dd></div>
-              <div class="detail"><dt>Phone</dt><dd><a href="tel:+919491887419">+91 94918 87419</a></dd></div>
-              <div class="detail"><dt>Location</dt><dd style="font-weight:400;line-height:1.6">5-12/424, Road No. 02<br>Narendranagar Colony, Ameenpur<br>Sangareddy District<br>Hyderabad, Telangana 502032<br>India</dd></div>
-              <div class="detail"><dt>Hours</dt><dd style="font-weight:400">Mon&ndash;Fri, 10:00&ndash;19:00 IST</dd></div>
-            </dl>
-            <p style="margin-top:1.5rem"><a class="btn btn--lg" href="mailto:info@leanovaopexsolutions.com">Send Us an Email</a></p>
-          </div>
-          <figure class="map">
-            <iframe
-              src="https://www.google.com/maps?q=5-12/424%2C%20Road%20No.%2002%2C%20Narendranagar%20Colony%2C%20Ameenpur%2C%20Sangareddy%20District%2C%20Hyderabad%2C%20Telangana%20502032%2C%20India&output=embed"
-              title="Leanova OPEX Solutions office location"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              allowfullscreen></iframe>
-            <figcaption>
-              <a href="https://www.google.com/maps/search/?api=1&query=5-12/424%2C%20Road%20No.%2002%2C%20Narendranagar%20Colony%2C%20Ameenpur%2C%20Sangareddy%20District%2C%20Hyderabad%2C%20Telangana%20502032%2C%20India" target="_blank" rel="noopener">Open in Google Maps</a>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="faq" style="padding-top:0">
-    <div class="wrap">
-      <div class="cols cols--split">
-        <div>
-          <div class="kick">FAQ</div>
-          <h2 style="margin-top:.8rem">Frequently Asked Questions</h2>
-        </div>
-        <div class="panel">
-          <details class="faq"><summary>What is Operational Excellence?</summary><p>Operational Excellence is a systematic approach to achieving superior performance by continuously improving processes, people, technology and management systems.</p></details>
-          <details class="faq"><summary>How is Leanova different from a traditional Lean consultancy?</summary><p>Leanova integrates Lean, Six Sigma, Systems Thinking, Digital Transformation and AI rather than treating these as isolated disciplines.</p></details>
-          <details class="faq"><summary>Do you work with MSMEs?</summary><p>Yes. Our solutions can be scaled according to the size, maturity and resources of an organization.</p></details>
-          <details class="faq"><summary>Do you provide training?</summary><p>Yes. We provide customized corporate training and capability-development programs.</p></details>
-          <details class="faq"><summary>Can Leanova help with digital transformation?</summary><p>Yes. We help organizations identify which processes should be digitized, automated or enhanced using AI.</p></details>
-          <details class="faq"><summary>Do you provide implementation support?</summary><p>Yes. Depending on the engagement, Leanova can support organizations from diagnosis through implementation and sustainability.</p></details>
-        </div>
-      </div>
-    </div>
-  </section>
-
+        </p>
+<dl style="margin-top:1.6rem">
+<div class="detail">
+<dt>
+           Email
+          </dt>
+<dd>
+<a href="mailto:info@leanovaopexsolutions.com">
+            info@leanovaopexsolutions.com
+           </a>
+</dd>
+</div>
+<div class="detail">
+<dt>
+           Phone
+          </dt>
+<dd>
+<a href="tel:+919491887419">
+            +91 94918 87419
+           </a>
+</dd>
+</div>
+<div class="detail">
+<dt>
+           Location
+          </dt>
+<dd style="font-weight:400;line-height:1.6">
+           5-12/424, Road No. 02
+           <br/>
+           Narendranagar Colony, Ameenpur
+           <br/>
+           Sangareddy District
+           <br/>
+           Hyderabad, Telangana 502032
+           <br/>
+           India
+          </dd>
+</div>
+<div class="detail">
+<dt>
+           Hours
+          </dt>
+<dd style="font-weight:400">
+           Mon–Fri, 10:00–19:00 IST
+          </dd>
+</div>
+</dl>
+<p style="margin-top:1.5rem">
+<a class="btn btn--lg" href="mailto:info@leanovaopexsolutions.com">
+          Send Us an Email
+         </a>
+</p>
+</div>
+<figure class="map">
+<iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=5-12/424%2C%20Road%20No.%2002%2C%20Narendranagar%20Colony%2C%20Ameenpur%2C%20Sangareddy%20District%2C%20Hyderabad%2C%20Telangana%20502032%2C%20India&amp;output=embed" title="Leanova OPEX Solutions office location">
+</iframe>
+<figcaption>
+<a href="https://www.google.com/maps/search/?api=1&amp;query=5-12/424%2C%20Road%20No.%2002%2C%20Narendranagar%20Colony%2C%20Ameenpur%2C%20Sangareddy%20District%2C%20Hyderabad%2C%20Telangana%20502032%2C%20India" rel="noopener" target="_blank">
+          Open in Google Maps
+         </a>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="band" id="faq" style="padding-top:0">
+<div class="wrap">
+<div class="cols cols--split">
+<div>
+<div class="kick">
+        FAQ
+       </div>
+<h2 style="margin-top:.8rem">
+        Frequently Asked Questions
+       </h2>
+</div>
+<div class="panel">
+<details class="faq">
+<summary>
+         What is Operational Excellence?
+        </summary>
+<p>
+         Operational Excellence is a systematic approach to achieving superior performance by continuously improving processes, people, technology and management systems.
+        </p>
+</details>
+<details class="faq">
+<summary>
+         How is Leanova different from a traditional Lean consultancy?
+        </summary>
+<p>
+         Leanova integrates Lean, Six Sigma, Systems Thinking, Digital Transformation and AI rather than treating these as isolated disciplines.
+        </p>
+</details>
+<details class="faq">
+<summary>
+         Do you work with MSMEs?
+        </summary>
+<p>
+         Yes. Our solutions can be scaled according to the size, maturity and resources of an organization.
+        </p>
+</details>
+<details class="faq">
+<summary>
+         Do you provide training?
+        </summary>
+<p>
+         Yes. We provide customized corporate training and capability-development programs.
+        </p>
+</details>
+<details class="faq">
+<summary>
+         Can Leanova help with digital transformation?
+        </summary>
+<p>
+         Yes. We help organizations identify which processes should be digitized, automated or enhanced using AI.
+        </p>
+</details>
+<details class="faq">
+<summary>
+         Do you provide implementation support?
+        </summary>
+<p>
+         Yes. Depending on the engagement, Leanova can support organizations from diagnosis through implementation and sustainability.
+        </p>
+</details>
+</div>
+</div>
+</div>
+</section>
 </main>
 
 <footer class="foot">
@@ -139,6 +404,7 @@
 <li>
 <a href="asf.html">ASF&trade;</a>
 </li>
+<li><a href="services.html#intelligent-automation">AI &amp; Intelligent Automation</a></li>
 </ul>
       </div>
       <div>
