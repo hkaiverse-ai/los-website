@@ -58,3 +58,18 @@ The owner confirmed HKAIVERSE Capability Studio as a related venture and supplie
 Current local checks: PASS — nine pages and 347 local links/assets/anchors; verified external destinations/new-tab attributes; related venture placement outside Services; JavaScript syntax; whitespace. Browser sweep: 45 page/width checks at 1440/1024/768/375/320px, with no horizontal overflow, broken completed images, duplicate h1 or enquiry initialization failure. No console warnings/errors captured. The reused HKAIVERSE logo was visually checked at natural aspect ratio. Empty enquiry validation, valid ASF email preparation, and mobile menu/Escape/focus restoration were rechecked without sending a message.
 
 Source evidence, naming distinctions, live-link scope and remaining stage/readiness confirmation are recorded in `docs/VENTURE-AND-ANALYSIS-SOURCES.md`. HKAIVERSE's related-venture relationship and official destination are confirmed; no additional approval is needed to link the verified public landing page. Product access and analysis permissions remain with each application's owner.
+
+## Final owner-review refinements
+
+The final review preserves the homepage, six capability cards, ASF feature, AI introduction, HKAIVERSE feature, design system and distinct Explore Our Services / Talk to Our Experts actions. It adds no new section or application.
+
+- ASF's seven-stage overview now explicitly describes decision logic; the separately labelled eight-step consulting disclosure describes engagement delivery. All stage/step names remain unchanged. Definitive official terminology is still an owner-confirmation item, not inferred from the website's current copy.
+- Services retains exactly the five service groups. Its repeated standalone guiding-principle section is now a compact callout beside the service navigation, with the existing `technology` anchor retained. The final Services-page CTA now points to ASF rather than linking back to Services itself. RAG is labelled Proposed — owner confirmation because an approved commercial roadmap was not verified.
+- About loses one redundant sentence; its identity, differentiation, philosophy, mission, vision and related-venture link remain.
+- Contact has the short third label Understand ASF™; supporting text still explains analysis-application access. No form-delivery backend, sent-message claim or booking was added.
+
+Tests actually rerun for this revision: nine-page/347-link static validation; JavaScript syntax and whitespace; all nine pages at 1440/1024/768/375/320px (45 checks), no horizontal overflow, broken completed images, wrong h1 count or enquiry initialization failure. Final browser logs contained no warnings/errors. All three category choices generated encoded reviewable emails; empty, whitespace-only and malformed email inputs were rejected. All eight AI service links preselected Digital & AI and a service label. Mobile menu Escape/focus restoration passed. No email was sent.
+
+The external ASF Analysis surface and official HKAIVERSE Practice Studio landing page were inspected again. This verifies the destinations and visible access/availability notices, not authenticated backend execution, exports, paid use or feedback quality. The static project needs no compilation; publication packages its existing HTML/CSS/JS directly.
+
+Files in this refinement: `asf.html`, `services.html`, `about.html`, `contact.html`, `assets/enquiry.js`, `docs/OFFERING-STATUS.md`, `docs/VERIFICATION.md`. Production configuration, assets and all nine routes are retained.
