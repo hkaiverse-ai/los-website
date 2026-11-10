@@ -38,7 +38,7 @@
   const openStatus = document.getElementById('enquiry-open-status');
   const context = document.getElementById('enquiry-context');
   const serviceLabel = document.getElementById('selected-service');
-  const fields = ['name', 'email', 'company', 'challenge'].map((name) => form.elements.namedItem(name));
+  const fields = ['name', 'email', 'company', 'industry', 'location', 'challenge'].map((name) => form.elements.namedItem(name));
   const currentInterest = () => radios.find((radio) => radio.checked)?.value;
   const matchingService = () => selectedService && selectedService[0] === currentInterest() ? selectedService[1] : '';
   const providerLinks = {
@@ -91,6 +91,8 @@
       `Name: ${values.name}`,
       `Reply email: ${values.email}`,
       values.company ? `Organization: ${values.company}` : '',
+      values.industry ? `Industry: ${values.industry}` : '',
+      values.location ? `Location: ${values.location}` : '',
     ].filter(Boolean).join('\r\n');
     // RFC 6068 mailto bodies use CRLF; preserve the visitor's multiline message.
     const body = `${headers}\r\n\r\nChallenge or idea:\r\n${values.challenge.replace(/\r\n|\r|\n/g, '\r\n')}`;

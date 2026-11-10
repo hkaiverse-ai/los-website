@@ -73,8 +73,30 @@ if any(t == 'form' and a.get('method', '').lower() == 'post' for t, a in contact
     errors.append('contact.html: unexpected submission mechanism; delivery backend is not configured')
 for offering in ['agents', 'multi-agent', 'llm', 'assistants', 'voice', 'workflows', 'rag', 'reporting']:
     expected = f'contact.html?interest=digital-ai&service={offering}#enquiry'
-    if offering not in pages['services.html'].ids or expected not in pages['services.html'].links:
-        errors.append(f'services.html: missing categorized enquiry for {offering}')
+    if offering not in pages['capabilities.html'].ids or expected not in pages['capabilities.html'].links:
+        errors.append(f'capabilities.html: missing categorized enquiry for {offering}')
+# Services describe offerings; capabilities describe what the team can build. Keep them separate.
+for anchor in ['operational', 'ai', 'intelligent-automation', 'hk-ai-works', 'proof']:
+    if anchor not in pages['capabilities.html'].ids:
+        errors.append(f'capabilities.html: missing capability area {anchor}')
+if 'class="offering"' in (ROOT / 'services.html').read_text(encoding='utf-8'):
+    errors.append('services.html: AI offering detail duplicated from capabilities.html')
+nav_expected = ['index.html', 'about.html', 'services.html', 'capabilities.html', 'industries.html', 'asf.html', 'case-studies.html', 'insights.html', 'contact.html#enquiry']
+for name in pages:
+    nav = (ROOT / name).read_text(encoding='utf-8').split('aria-label="Main navigation">', 1)[1].split('</nav>', 1)[0]
+    import re as _re
+    if _re.findall(r'href="([^"]+)"', nav) != nav_expected:
+        errors.append(f'{name}: main navigation differs from agreed structure')
+asf_text = (ROOT / 'asf.html').read_text(encoding='utf-8')
+if 'id="asf-sample"' not in asf_text or 'Sample data only.' not in asf_text:
+    errors.append('asf.html: sample demo must exist and be labelled as sample data')
+sample_js = (ROOT / 'assets/asf-sample.js').read_text(encoding='utf-8')
+if any(token in sample_js for token in ['fetch(', 'XMLHttpRequest', 'innerHTML', 'api.leanovaopexsolutions.com']):
+    errors.append('assets/asf-sample.js: sample demo must stay offline and render text safely')
+for name in pages:
+    text = (ROOT / name).read_text(encoding='utf-8')
+    if 'PLACEHOLDER' in text.upper().replace('PLACEHOLDER="', ''):
+        errors.append(f'{name}: placeholder copy visible')
 
 for page_name in ['index.html', 'case-studies.html']:
     page = pages[page_name]

@@ -19,8 +19,8 @@ function fixture({ clipboard, legacyCopy = false } = {}) {
     });
     return nodes.get(id);
   }
-  const fields = ['name', 'email', 'company', 'challenge'].map((name) => Object.assign(element(name), {
-    name, required: name !== 'company',
+  const fields = ['name', 'email', 'company', 'industry', 'location', 'challenge'].map((name) => Object.assign(element(name), {
+    name, required: ['name', 'email', 'challenge'].includes(name),
   }));
   const radios = ['operations', 'digital-ai', 'asf'].map((value) => Object.assign(element(value), { value }));
   const form = element('enquiry-form');
@@ -41,7 +41,7 @@ function fixture({ clipboard, legacyCopy = false } = {}) {
 
 (async () => {
   const success = fixture({ clipboard: 'success' });
-  const values = ['QA & Review – ₹', 'reviewer+test@example.com', 'R&D + QA #1 50%', 'First: A&B + 50%? #1\nSecond: café and "quotes".'];
+  const values = ['QA & Review – ₹', 'reviewer+test@example.com', 'R&D + QA #1 50%', 'Engineering & fabrication', 'Pune, MH', 'First: A&B + 50%? #1\nSecond: café and "quotes".'];
   success.fields.forEach((field, index) => { field.value = values[index]; });
   success.form.listeners.submit({ preventDefault() {} });
   const uri = new URL(success.element('compose-enquiry').attributes.href);
@@ -51,7 +51,9 @@ function fixture({ clipboard, legacyCopy = false } = {}) {
   const body = uri.searchParams.get('body');
   assert.ok(body.includes('Reply email: reviewer+test@example.com'));
   assert.ok(body.includes('Organization: R&D + QA #1 50%'));
-  assert.ok(body.endsWith(values[3].replace(/\n/g, '\r\n')));
+  assert.ok(body.includes('Industry: Engineering & fabrication'));
+  assert.ok(body.includes('Location: Pune, MH'));
+  assert.ok(body.endsWith(values[5].replace(/\n/g, '\r\n')));
   assert.ok(!body.replace(/\r\n/g, '').includes('\n'));
   const gmail = new URL(success.element('compose-gmail').attributes.href);
   assert.equal(gmail.origin, 'https://mail.google.com');

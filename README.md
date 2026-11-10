@@ -22,7 +22,7 @@ node scripts/check_enquiry.cjs
 git diff --check
 ```
 
-There is no framework build or existing CI. Browser checks are documented in `docs/VERIFICATION.md`. Shared CSS is in `assets/site.css`; the mobile navigation enhancement is in `assets/site.js`. Header/footer markup is repeated in each page so navigation works even without JavaScript.
+There is no framework build or existing CI. Latest review: `docs/WEBSITE-REVIEW-2026-11-10.md` and `docs/QA-2026-11-10.md`. Browser checks are documented in `docs/VERIFICATION.md`. Shared CSS is in `assets/site.css`; the mobile navigation enhancement is in `assets/site.js`. Header/footer markup is repeated in each page so navigation works even without JavaScript.
 
 See `docs/AUDIT.md` for architecture, page inventory and roadmap, `docs/DESIGN-SYSTEM.md` for interface conventions, and `docs/ASF-WORKSPACE-PROPOSAL.md` for future integration boundaries. Do not expose backend API keys in this repository or replace illustrative applications with client results without publication approval and evidence.
 
