@@ -3,6 +3,7 @@ from collections import Counter
 from html.parser import HTMLParser
 from pathlib import Path
 import re
+import json
 from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 
@@ -21,7 +22,7 @@ class Page(HTMLParser):
         self.attrs.append((tag, attrs))
         if 'id' in attrs:
             self.ids.append(attrs['id'])
-        if tag in ('a', 'link', 'script', 'img', 'iframe'):
+        if tag in ('a', 'link', 'img', 'iframe') or (tag == 'script' and 'src' in attrs):
             self.links.append(attrs.get('href', attrs.get('src', '')))
 
 
@@ -92,6 +93,44 @@ for page_name in ['index.html', 'asf.html']:
         errors.append(f'{page_name}: separate approved ASF Analysis handoff missing')
 
 ET.parse(ROOT / 'sitemap.xml')
+
+# Search metadata should describe each real page, and structured data must parse.
+titles, descriptions = [], []
+sitemap_urls = {el.text for el in ET.parse(ROOT / 'sitemap.xml').findall('.//{*}loc')}
+for name in pages:
+    source = (ROOT / name).read_text(encoding='utf-8')
+    titles.append(re.search(r'<title>(.*?)</title>', source, re.S).group(1).strip())
+    descriptions.extend(a['content'] for t, a in pages[name].attrs if t == 'meta' and a.get('name') == 'description')
+    canonical = next(a['href'] for t, a in pages[name].attrs if t == 'link' and a.get('rel') == 'canonical')
+    if canonical not in sitemap_urls:
+        errors.append(f'{name}: canonical missing from sitemap')
+    for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', source, re.S):
+        try:
+            data = json.loads(block)
+            if data.get('@context') != 'https://schema.org' or not data.get('@type'):
+                errors.append(f'{name}: invalid structured data identity')
+        except json.JSONDecodeError:
+            errors.append(f'{name}: malformed structured data')
+if len(titles) != len(set(titles)) or len(descriptions) != len(set(descriptions)):
+    errors.append('duplicate page title or description')
+
+# Business identity must agree across every route, including legal pages.
+for name in pages:
+    text = (ROOT / name).read_text(encoding='utf-8')
+    footer = text.split('<footer', 1)[-1]
+    for required in ['Leanova Opex Solutions Private Limited', '5-12/424 B',
+                     'Near Sai Baba Temple, Ramachandrapuram', 'contact@leanovaopexsolutions.com',
+                     'tel:+919491887419', 'privacy-policy.html', 'terms.html',
+                     'https://www.linkedin.com/company/leanova-opex-solutions-pvt-ltd/']:
+        if required not in footer:
+            errors.append(f'{name}: footer missing business detail {required}')
+    if any(stale in text for stale in ['info@leanovaopexsolutions.com', 'Narendranagar', 'Road No. 02', '502032']):
+        errors.append(f'{name}: superseded business contact detail')
+for legal_page in ['privacy-policy.html', 'terms.html']:
+    if legal_page not in pages or legal_page not in (ROOT / 'sitemap.xml').read_text(encoding='utf-8'):
+        errors.append(f'{legal_page}: legal page or sitemap entry missing')
+if 'google.com/maps?q=' in (ROOT / 'contact.html').read_text(encoding='utf-8'):
+    errors.append('contact.html: automatic map embed must not return without privacy review')
 if errors:
     raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(pages)} pages, {link_count} local links/assets/anchors, unique IDs, landmarks, metadata and sitemap XML.')

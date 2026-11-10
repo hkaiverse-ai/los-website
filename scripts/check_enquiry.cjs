@@ -46,7 +46,7 @@ function fixture({ clipboard, legacyCopy = false } = {}) {
   success.form.listeners.submit({ preventDefault() {} });
   const uri = new URL(success.element('compose-enquiry').attributes.href);
   assert.equal(uri.protocol, 'mailto:');
-  assert.equal(uri.pathname, 'info@leanovaopexsolutions.com');
+  assert.equal(uri.pathname, 'contact@leanovaopexsolutions.com');
   assert.equal(uri.searchParams.get('subject'), 'Leanova enquiry: Explore Digital & AI Solutions');
   const body = uri.searchParams.get('body');
   assert.ok(body.includes('Reply email: reviewer+test@example.com'));

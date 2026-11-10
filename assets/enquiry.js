@@ -8,6 +8,7 @@
     asf: ['Understand ASF™', 'Tell us about your business context, improvement decisions, or access questions for the separate ASF Analysis application. Do not include an API key.'],
   };
   const services = {
+    operations: ['operations', 'Operational Excellence'],
     lean: ['operations', 'Lean Transformation'],
     productivity: ['operations', 'Productivity Improvement'],
     quality: ['operations', 'Quality & Process Excellence'],
@@ -55,7 +56,7 @@
     serviceLabel.textContent = service ? `Your area of interest: ${service}` : '';
     serviceLabel.hidden = !service;
     result.hidden = true;
-    document.getElementById('compose-enquiry').setAttribute('href', 'mailto:info@leanovaopexsolutions.com');
+    document.getElementById('compose-enquiry').setAttribute('href', 'mailto:contact@leanovaopexsolutions.com');
     Object.entries(providerLinks).forEach(([id, url]) => document.getElementById(id).setAttribute('href', url));
     document.getElementById('enquiry-copy').value = '';
     copyStatus.textContent = '';
@@ -93,9 +94,9 @@
     ].filter(Boolean).join('\r\n');
     // RFC 6068 mailto bodies use CRLF; preserve the visitor's multiline message.
     const body = `${headers}\r\n\r\nChallenge or idea:\r\n${values.challenge.replace(/\r\n|\r|\n/g, '\r\n')}`;
-    copyText.value = `To: info@leanovaopexsolutions.com\nSubject: ${subject}\n\n${body.replace(/\r\n/g, '\n')}`;
-    document.getElementById('compose-enquiry').setAttribute('href', `mailto:info@leanovaopexsolutions.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
-    const to = 'info@leanovaopexsolutions.com';
+    copyText.value = `To: contact@leanovaopexsolutions.com\nSubject: ${subject}\n\n${body.replace(/\r\n/g, '\n')}`;
+    document.getElementById('compose-enquiry').setAttribute('href', `mailto:contact@leanovaopexsolutions.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+    const to = 'contact@leanovaopexsolutions.com';
     document.getElementById('compose-gmail').setAttribute('href', `${providerLinks['compose-gmail']}?${encodeQuery({ view: 'cm', fs: '1', to, su: subject, body })}`);
     const outlookQuery = encodeQuery({ to, subject, body });
     document.getElementById('compose-outlook').setAttribute('href', `${providerLinks['compose-outlook']}?${outlookQuery}`);
