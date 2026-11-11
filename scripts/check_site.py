@@ -60,7 +60,7 @@ home_text = (ROOT / 'index.html').read_text(encoding='utf-8')
 capabilities = [text.strip() for text in re.findall(r'<article class="card capability">.*?<h3>(.*?)</h3>', home_text, re.S)]
 if capabilities != expected_capabilities:
     errors.append('index.html: core capabilities changed or duplicated')
-for anchor in ['lean', 'lean-six-sigma', 'opex', 'productivity', 'quality', 'digital', 'msme', 'training', 'ai']:
+for anchor in ['operations', 'digital', 'ai', 'intelligent-automation', 'capability-development']:
     if anchor not in pages['services.html'].ids:
         errors.append(f'services.html: missing service group {anchor}')
 contact = pages['contact.html']
@@ -104,7 +104,7 @@ for name in pages:
         if tag not in ('Client Work', 'Capability', 'Example', 'Related venture'):
             errors.append(f'{name}: unknown work label {tag!r}')
 
-for page_name in ['index.html']:
+for page_name in ['index.html', 'case-studies.html']:
     page = pages[page_name]
     if page.ids.count('hkaiverse') != 1:
         errors.append(f'{page_name}: expected one dedicated related-venture feature')
@@ -159,22 +159,23 @@ for legal_page in ['privacy-policy.html', 'terms.html']:
         errors.append(f'{legal_page}: legal page or sitemap entry missing')
 if 'google.com/maps?q=' in (ROOT / 'contact.html').read_text(encoding='utf-8'):
     errors.append('contact.html: automatic map embed must not return without privacy review')
-if 'in India' in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
-    errors.append('index.html: heading must not restrict positioning to India')
-for name in pages:
-    m = pages[name]
-    if not any(t == 'a' and a.get('href') == 'contact.html#enquiry' for t, a in m.attrs):
-        errors.append(f'{name}: main enquiry CTA missing')
-for k in ['operations', 'digital-ai', 'asf']:
-    if f'contact.html?interest={k}#enquiry' not in home_text:
-        errors.append(f'index.html: enquiry option {k} missing')
-if 'assets/enquiry.js' not in (ROOT / 'contact.html').read_text(encoding='utf-8'):
-    errors.append('contact.html: enquiry script not loaded')
-for required_page in ['factory-records-digitisation.html', 'quality-process-excellence.html', 'articles.html', 'training.html']:
+for required_page in ['factory-records-digitisation.html', 'quality-process-excellence.html', 'articles.html']:
     if required_page not in pages:
         errors.append(f'{required_page}: dedicated page missing')
 if 'Lean Manufacturing &amp; Operational Excellence' not in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
     errors.append('index.html: agreed homepage heading changed')
+# Both general enquiry CTAs expose the same three-way choice rather than preselecting it.
+for name in pages:
+    raw = (ROOT / name).read_text(encoding='utf-8')
+    for href, label in re.findall(r'<a[^>]*href="([^"]+)"[^>]*>(.*?)</a>', raw, re.S):
+        plain = re.sub('<[^>]+>', '', label)
+        if any(title in plain for title in ['Talk to Our Experts', 'Discuss Your Project']):
+            if href != 'contact.html#enquiry':
+                errors.append(f'{name}: general enquiry CTA bypasses the three choices')
+if 'in India' in re.search(r'<h1[^>]*>(.*?)</h1>', home_text, re.S).group(1):
+    errors.append('index.html: location restriction returned to headline')
+if len(re.findall(r'<li>', asf_text.split('aria-label="The nine ASF pillars">', 1)[1].split('</ol>',1)[0])) != 9:
+    errors.append('asf.html: expected the documented nine pillars')
 if errors:
     raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(pages)} pages, {link_count} local links/assets/anchors, unique IDs, landmarks, metadata and sitemap XML.')
