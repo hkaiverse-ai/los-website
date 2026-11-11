@@ -12,6 +12,16 @@ python -m http.server 8765 --bind 127.0.0.1
 
 Open `http://127.0.0.1:8765/`. No package installation or compilation is needed.
 
+## Shared header, footer and company details
+
+Company details (phone, WhatsApp, email, address, CIN, LinkedIn) live in `COMPANY` in `scripts/layout.py`. After changing them, or after adding a page, run:
+
+```sh
+python scripts/layout.py
+```
+
+This rewrites every page's header and footer and regenerates `sitemap.xml` (pages marked `noindex` are left out). WhatsApp buttons appear only when `whatsapp` is set.
+
 ## Check
 
 ```sh
@@ -22,7 +32,7 @@ node scripts/check_enquiry.cjs
 git diff --check
 ```
 
-There is no framework build or existing CI. Latest review: `docs/WEBSITE-REVIEW-2026-11-10.md` and `docs/QA-2026-11-10.md`. Browser checks are documented in `docs/VERIFICATION.md`. Shared CSS is in `assets/site.css`; the mobile navigation enhancement is in `assets/site.js`. Header/footer markup is repeated in each page so navigation works even without JavaScript.
+There is no framework build or existing CI. Latest owner approvals list: `docs/OWNER-APPROVALS-2026-11-11.md`. Earlier review: `docs/WEBSITE-REVIEW-2026-11-10.md` and `docs/QA-2026-11-10.md`. Browser checks are documented in `docs/VERIFICATION.md`. Shared CSS is in `assets/site.css`; the mobile navigation enhancement is in `assets/site.js`. Header/footer markup is repeated in each page so navigation works even without JavaScript.
 
 See `docs/AUDIT.md` for architecture, page inventory and roadmap, `docs/DESIGN-SYSTEM.md` for interface conventions, and `docs/ASF-WORKSPACE-PROPOSAL.md` for future integration boundaries. Do not expose backend API keys in this repository or replace illustrative applications with client results without publication approval and evidence.
 

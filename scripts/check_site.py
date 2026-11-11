@@ -55,7 +55,7 @@ for name, page in pages.items():
     require(any(t == 'a' and a.get('href') == '#main' for t, a in page.attrs), 'missing skip link')
 
 # Guard the agreed product structure and enquiry routes.
-expected_capabilities = ['Lean Transformation', 'Operational Excellence', 'Digital Transformation', 'AI-Enabled Operations', 'Process Excellence', 'Capability Development']
+expected_capabilities = ['Lean Manufacturing', 'Lean Six Sigma', 'Operational Excellence', 'Productivity Improvement', 'Quality &amp; Process Excellence', 'Digitalisation &amp; Automation']
 home_text = (ROOT / 'index.html').read_text(encoding='utf-8')
 capabilities = [text.strip() for text in re.findall(r'<article class="card capability">.*?<h3>(.*?)</h3>', home_text, re.S)]
 if capabilities != expected_capabilities:
@@ -97,6 +97,12 @@ for name in pages:
     text = (ROOT / name).read_text(encoding='utf-8')
     if 'PLACEHOLDER' in text.upper().replace('PLACEHOLDER="', ''):
         errors.append(f'{name}: placeholder copy visible')
+    if re.search(r'__[A-Z_]+__', text) or 'lorem ipsum' in text.lower():
+        errors.append(f'{name}: unfilled template token or lorem ipsum')
+    # Every engagement shown must carry one of the three agreed labels.
+    for tag in re.findall(r'<span class="work-tag[^"]*">(.*?)</span>', text):
+        if tag not in ('Client Work', 'Capability', 'Example', 'Related venture'):
+            errors.append(f'{name}: unknown work label {tag!r}')
 
 for page_name in ['index.html', 'case-studies.html']:
     page = pages[page_name]
@@ -124,7 +130,7 @@ for name in pages:
     titles.append(re.search(r'<title>(.*?)</title>', source, re.S).group(1).strip())
     descriptions.extend(a['content'] for t, a in pages[name].attrs if t == 'meta' and a.get('name') == 'description')
     canonical = next(a['href'] for t, a in pages[name].attrs if t == 'link' and a.get('rel') == 'canonical')
-    if canonical not in sitemap_urls:
+    if canonical not in sitemap_urls and 'content="noindex' not in source:
         errors.append(f'{name}: canonical missing from sitemap')
     for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', source, re.S):
         try:
@@ -141,18 +147,23 @@ for name in pages:
     text = (ROOT / name).read_text(encoding='utf-8')
     footer = text.split('<footer', 1)[-1]
     for required in ['Leanova Opex Solutions Private Limited', '5-12/424 B',
-                     'Near Sai Baba Temple, Ramachandrapuram', 'contact@leanovaopexsolutions.com',
-                     'tel:+919491887419', 'privacy-policy.html', 'terms.html',
+                     'Near Sai Baba Temple, Ameenpur', 'Medak &ndash; 502032, Telangana', 'U62099TS2026PTC221079', 'contact@leanovaopexsolutions.com',
+                     'tel:+919491887419', 'privacy-policy.html', 'terms.html', 'Terms &amp; Conditions',
                      'https://www.linkedin.com/company/leanova-opex-solutions-pvt-ltd/']:
         if required not in footer:
             errors.append(f'{name}: footer missing business detail {required}')
-    if any(stale in text for stale in ['info@leanovaopexsolutions.com', 'Narendranagar', 'Road No. 02', '502032']):
+    if any(stale in text for stale in ['info@leanovaopexsolutions.com', 'Narendranagar', 'Road No. 02', 'Miyapur', 'leanovaopex.com/']):
         errors.append(f'{name}: superseded business contact detail')
 for legal_page in ['privacy-policy.html', 'terms.html']:
     if legal_page not in pages or legal_page not in (ROOT / 'sitemap.xml').read_text(encoding='utf-8'):
         errors.append(f'{legal_page}: legal page or sitemap entry missing')
 if 'google.com/maps?q=' in (ROOT / 'contact.html').read_text(encoding='utf-8'):
     errors.append('contact.html: automatic map embed must not return without privacy review')
+for required_page in ['factory-records-digitisation.html', 'quality-process-excellence.html', 'articles.html']:
+    if required_page not in pages:
+        errors.append(f'{required_page}: dedicated page missing')
+if 'Lean Manufacturing &amp; Operational Excellence' not in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
+    errors.append('index.html: agreed homepage heading changed')
 if errors:
     raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(pages)} pages, {link_count} local links/assets/anchors, unique IDs, landmarks, metadata and sitemap XML.')

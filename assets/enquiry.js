@@ -38,7 +38,7 @@
   const openStatus = document.getElementById('enquiry-open-status');
   const context = document.getElementById('enquiry-context');
   const serviceLabel = document.getElementById('selected-service');
-  const fields = ['name', 'email', 'company', 'industry', 'location', 'challenge'].map((name) => form.elements.namedItem(name));
+  const fields = ['name', 'email', 'phone', 'company', 'industry', 'location', 'challenge'].map((name) => form.elements.namedItem(name));
   const currentInterest = () => radios.find((radio) => radio.checked)?.value;
   const matchingService = () => selectedService && selectedService[0] === currentInterest() ? selectedService[1] : '';
   const providerLinks = {
@@ -46,6 +46,8 @@
     'compose-outlook': 'https://outlook.live.com/mail/0/deeplink/compose',
     'compose-m365': 'https://outlook.office.com/mail/deeplink/compose',
   };
+  const whatsapp = (form.getAttribute && form.getAttribute('data-whatsapp')) || '';
+  const waLink = document.getElementById('compose-whatsapp');
   const encodeQuery = (values) => Object.entries(values)
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`).join('&');
 
@@ -56,6 +58,7 @@
     serviceLabel.textContent = service ? `Your area of interest: ${service}` : '';
     serviceLabel.hidden = !service;
     result.hidden = true;
+    if (waLink) waLink.hidden = true;
     document.getElementById('compose-enquiry').setAttribute('href', 'mailto:contact@leanovaopexsolutions.com');
     Object.entries(providerLinks).forEach(([id, url]) => document.getElementById(id).setAttribute('href', url));
     document.getElementById('enquiry-copy').value = '';
@@ -90,12 +93,13 @@
       matchingService() ? `Area of interest: ${matchingService()}` : '',
       `Name: ${values.name}`,
       `Reply email: ${values.email}`,
-      values.company ? `Organization: ${values.company}` : '',
+      values.phone ? `Phone: ${values.phone}` : '',
+      values.company ? `Company: ${values.company}` : '',
       values.industry ? `Industry: ${values.industry}` : '',
-      values.location ? `Location: ${values.location}` : '',
+      values.location ? `Plant location: ${values.location}` : '',
     ].filter(Boolean).join('\r\n');
     // RFC 6068 mailto bodies use CRLF; preserve the visitor's multiline message.
-    const body = `${headers}\r\n\r\nChallenge or idea:\r\n${values.challenge.replace(/\r\n|\r|\n/g, '\r\n')}`;
+    const body = `${headers}\r\n\r\nRequirement / business challenge:\r\n${values.challenge.replace(/\r\n|\r|\n/g, '\r\n')}`;
     copyText.value = `To: contact@leanovaopexsolutions.com\nSubject: ${subject}\n\n${body.replace(/\r\n/g, '\n')}`;
     document.getElementById('compose-enquiry').setAttribute('href', `mailto:contact@leanovaopexsolutions.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
     const to = 'contact@leanovaopexsolutions.com';
@@ -103,6 +107,10 @@
     const outlookQuery = encodeQuery({ to, subject, body });
     document.getElementById('compose-outlook').setAttribute('href', `${providerLinks['compose-outlook']}?${outlookQuery}`);
     document.getElementById('compose-m365').setAttribute('href', `${providerLinks['compose-m365']}?${outlookQuery}`);
+    if (waLink && /^\d{10,15}$/.test(whatsapp)) {
+      waLink.setAttribute('href', `https://wa.me/${whatsapp}?text=${encodeURIComponent(`${subject}\n\n${body.replace(/\r\n/g, '\n')}`)}`);
+      waLink.hidden = false;
+    }
     result.hidden = false;
     copyStatus.textContent = '';
     openStatus.textContent = '';
