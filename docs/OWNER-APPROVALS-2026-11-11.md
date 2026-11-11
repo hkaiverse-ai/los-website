@@ -50,3 +50,13 @@ Website v3 (Draft PR #1). Everything below is either **missing**, **conflicting 
 ## E. External actions not taken
 
 No Google Business Profile, Search Console, LinkedIn, IndiaMART, Justdial or ads changes. No production deployment and no merge. The production site (`main` → GitHub Pages) is unchanged.
+
+## F. Simplification pass (12 November 2026)
+
+Changes made on request: the homepage heading no longer says "in India". Navigation is now Home · About Us · Services · ASF™ · Training · Case Studies · Contact, plus **Talk to Our Experts**. The three enquiry options appear on the homepage and as Step 1 of the Contact form. `lean-training.html` was merged into `training.html`, and `insights.html` into `articles.html`. Removed: the homepage problem grid, industries, "why us" and work sections; About vision/mission/philosophy and team placeholder; the Contact FAQ, guidance block and assessment proposal; Case Studies statistics and testimonials sections; and the per-service deliverables, industry and long tool lists.
+
+Still needed in addition to section B:
+- **WhatsApp number**: still not verified, so no WhatsApp button is shown. Set it in `scripts/layout.py` to enable the button everywhere.
+- **Other social profiles** (Facebook, Instagram, YouTube, X): only LinkedIn is verified, so only LinkedIn appears in the footer. Send any other official URLs.
+- **Initial Plant Walk / Adaptation Diagnostic**: removed from Contact until the offer is confirmed.
+- **Digital & AI Capabilities page** (`capabilities.html`) was not shortened in this pass; it is linked from the footer and Services. Recommend a separate trim once AI offering status is confirmed.

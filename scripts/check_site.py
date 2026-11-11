@@ -60,7 +60,7 @@ home_text = (ROOT / 'index.html').read_text(encoding='utf-8')
 capabilities = [text.strip() for text in re.findall(r'<article class="card capability">.*?<h3>(.*?)</h3>', home_text, re.S)]
 if capabilities != expected_capabilities:
     errors.append('index.html: core capabilities changed or duplicated')
-for anchor in ['operations', 'digital', 'ai', 'intelligent-automation', 'capability-development']:
+for anchor in ['lean', 'lean-six-sigma', 'opex', 'productivity', 'quality', 'digital', 'msme', 'training', 'ai']:
     if anchor not in pages['services.html'].ids:
         errors.append(f'services.html: missing service group {anchor}')
 contact = pages['contact.html']
@@ -81,7 +81,7 @@ for anchor in ['operational', 'ai', 'intelligent-automation', 'hk-ai-works', 'pr
         errors.append(f'capabilities.html: missing capability area {anchor}')
 if 'class="offering"' in (ROOT / 'services.html').read_text(encoding='utf-8'):
     errors.append('services.html: AI offering detail duplicated from capabilities.html')
-nav_expected = ['index.html', 'about.html', 'services.html', 'capabilities.html', 'industries.html', 'asf.html', 'case-studies.html', 'insights.html', 'contact.html#enquiry']
+nav_expected = ['index.html', 'about.html', 'services.html', 'asf.html', 'training.html', 'case-studies.html', 'contact.html', 'contact.html#enquiry']
 for name in pages:
     nav = (ROOT / name).read_text(encoding='utf-8').split('aria-label="Main navigation">', 1)[1].split('</nav>', 1)[0]
     import re as _re
@@ -104,7 +104,7 @@ for name in pages:
         if tag not in ('Client Work', 'Capability', 'Example', 'Related venture'):
             errors.append(f'{name}: unknown work label {tag!r}')
 
-for page_name in ['index.html', 'case-studies.html']:
+for page_name in ['index.html']:
     page = pages[page_name]
     if page.ids.count('hkaiverse') != 1:
         errors.append(f'{page_name}: expected one dedicated related-venture feature')
@@ -159,7 +159,18 @@ for legal_page in ['privacy-policy.html', 'terms.html']:
         errors.append(f'{legal_page}: legal page or sitemap entry missing')
 if 'google.com/maps?q=' in (ROOT / 'contact.html').read_text(encoding='utf-8'):
     errors.append('contact.html: automatic map embed must not return without privacy review')
-for required_page in ['factory-records-digitisation.html', 'quality-process-excellence.html', 'articles.html']:
+if 'in India' in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
+    errors.append('index.html: heading must not restrict positioning to India')
+for name in pages:
+    m = pages[name]
+    if not any(t == 'a' and a.get('href') == 'contact.html#enquiry' for t, a in m.attrs):
+        errors.append(f'{name}: main enquiry CTA missing')
+for k in ['operations', 'digital-ai', 'asf']:
+    if f'contact.html?interest={k}#enquiry' not in home_text:
+        errors.append(f'index.html: enquiry option {k} missing')
+if 'assets/enquiry.js' not in (ROOT / 'contact.html').read_text(encoding='utf-8'):
+    errors.append('contact.html: enquiry script not loaded')
+for required_page in ['factory-records-digitisation.html', 'quality-process-excellence.html', 'articles.html', 'training.html']:
     if required_page not in pages:
         errors.append(f'{required_page}: dedicated page missing')
 if 'Lean Manufacturing &amp; Operational Excellence' not in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
