@@ -55,7 +55,7 @@ for name, page in pages.items():
     require(any(t == 'a' and a.get('href') == '#main' for t, a in page.attrs), 'missing skip link')
 
 # Guard the agreed product structure and enquiry routes.
-expected_capabilities = ['Lean Transformation', 'Operational Excellence', 'Digital Transformation', 'AI-Enabled Operations', 'Process Excellence', 'Capability Development']
+expected_capabilities = ['Lean Transformation', 'Operational Excellence', 'Digital Transformation', 'AI-Enabled Operations', 'Quality &amp; Process Excellence', 'Capability Development']
 home_text = (ROOT / 'index.html').read_text(encoding='utf-8')
 capabilities = [text.strip() for text in re.findall(r'<article class="card capability">.*?<h3>(.*?)</h3>', home_text, re.S)]
 if capabilities != expected_capabilities:
