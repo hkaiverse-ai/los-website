@@ -60,3 +60,14 @@ Still needed in addition to section B:
 - **Other social profiles** (Facebook, Instagram, YouTube, X): only LinkedIn is verified, so only LinkedIn appears in the footer. Send any other official URLs.
 - **Initial Plant Walk / Adaptation Diagnostic**: removed from Contact until the offer is confirmed.
 - **Digital & AI Capabilities page** (`capabilities.html`) was not shortened in this pass; it is linked from the footer and Services. Recommend a separate trim once AI offering status is confirmed.
+
+## G. Repositioned as an IT company (12 November 2026)
+
+On the owner's instruction, the website now presents Leanova as an **IT services and AI solutions company**, with Operational Excellence as its process-first method. The CIN activity code (62099, other IT and computer service activities) is consistent with this. Manufacturing service pages, the three manufacturing industry pages and the separate capabilities page were removed (they remain in git history). New service pages: AI Solutions & AI Agents, Intelligent Automation, Digital Transformation, Data Dashboards & Reporting, Software & Web Applications, and Process & Operational Excellence.
+
+Please confirm:
+- **Software & Web Applications**: is custom software/web development an offered service? It is shown as "Scope confirmed per project" until you confirm.
+- **AI offering statuses** still match reality (agents, multi-agent, LLM apps, reporting: in development; knowledge assistants and RAG: proposed; voice: internal pilot).
+- **Workflow automation**: is it offered today? It is currently shown as "Scope confirmed per project".
+- **Training topics** now lead with digital, AI and data. Lean/Six Sigma topics come from the existing company training list.
+- Any **IT client work** that can be published with permission.

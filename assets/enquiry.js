@@ -96,7 +96,7 @@
       values.phone ? `Phone: ${values.phone}` : '',
       values.company ? `Company: ${values.company}` : '',
       values.industry ? `Industry: ${values.industry}` : '',
-      values.location ? `Plant location: ${values.location}` : '',
+      values.location ? `Location: ${values.location}` : '',
     ].filter(Boolean).join('\r\n');
     // RFC 6068 mailto bodies use CRLF; preserve the visitor's multiline message.
     const body = `${headers}\r\n\r\nRequirement / business challenge:\r\n${values.challenge.replace(/\r\n|\r|\n/g, '\r\n')}`;

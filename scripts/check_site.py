@@ -55,12 +55,12 @@ for name, page in pages.items():
     require(any(t == 'a' and a.get('href') == '#main' for t, a in page.attrs), 'missing skip link')
 
 # Guard the agreed product structure and enquiry routes.
-expected_capabilities = ['Lean Manufacturing', 'Lean Six Sigma', 'Operational Excellence', 'Productivity Improvement', 'Quality &amp; Process Excellence', 'Digitalisation &amp; Automation']
+expected_capabilities = ['AI Solutions &amp; AI Agents', 'Intelligent Automation', 'Digital Transformation', 'Data, Dashboards &amp; Reporting', 'Software &amp; Web Applications', 'Process &amp; Operational Excellence']
 home_text = (ROOT / 'index.html').read_text(encoding='utf-8')
 capabilities = [text.strip() for text in re.findall(r'<article class="card capability">.*?<h3>(.*?)</h3>', home_text, re.S)]
 if capabilities != expected_capabilities:
     errors.append('index.html: core capabilities changed or duplicated')
-for anchor in ['operations', 'digital', 'ai', 'intelligent-automation', 'capability-development']:
+for anchor in ['ai', 'automation', 'digital', 'data', 'software', 'opex', 'training']:
     if anchor not in pages['services.html'].ids:
         errors.append(f'services.html: missing service group {anchor}')
 contact = pages['contact.html']
@@ -71,16 +71,10 @@ if not any(t == 'input' and a.get('type') == 'email' and 'required' in a for t, 
     errors.append('contact.html: required email validation missing')
 if any(t == 'form' and a.get('method', '').lower() == 'post' for t, a in contact.attrs):
     errors.append('contact.html: unexpected submission mechanism; delivery backend is not configured')
-for offering in ['agents', 'multi-agent', 'llm', 'assistants', 'voice', 'workflows', 'rag', 'reporting']:
+for offering in ['agents', 'multi-agent', 'llm', 'assistants', 'voice', 'rag', 'reporting']:
     expected = f'contact.html?interest=digital-ai&service={offering}#enquiry'
-    if offering not in pages['capabilities.html'].ids or expected not in pages['capabilities.html'].links:
-        errors.append(f'capabilities.html: missing categorized enquiry for {offering}')
-# Services describe offerings; capabilities describe what the team can build. Keep them separate.
-for anchor in ['operational', 'ai', 'intelligent-automation', 'hk-ai-works', 'proof']:
-    if anchor not in pages['capabilities.html'].ids:
-        errors.append(f'capabilities.html: missing capability area {anchor}')
-if 'class="offering"' in (ROOT / 'services.html').read_text(encoding='utf-8'):
-    errors.append('services.html: AI offering detail duplicated from capabilities.html')
+    if offering not in pages['ai-solutions.html'].ids or expected not in pages['ai-solutions.html'].links:
+        errors.append(f'ai-solutions.html: missing categorized enquiry for {offering}')
 nav_expected = ['index.html', 'about.html', 'services.html', 'asf.html', 'training.html', 'case-studies.html', 'contact.html', 'contact.html#enquiry']
 for name in pages:
     nav = (ROOT / name).read_text(encoding='utf-8').split('aria-label="Main navigation">', 1)[1].split('</nav>', 1)[0]
@@ -104,7 +98,7 @@ for name in pages:
         if tag not in ('Client Work', 'Capability', 'Example', 'Related venture'):
             errors.append(f'{name}: unknown work label {tag!r}')
 
-for page_name in ['index.html', 'case-studies.html']:
+for page_name in ['index.html']:
     page = pages[page_name]
     if page.ids.count('hkaiverse') != 1:
         errors.append(f'{page_name}: expected one dedicated related-venture feature')
@@ -159,10 +153,12 @@ for legal_page in ['privacy-policy.html', 'terms.html']:
         errors.append(f'{legal_page}: legal page or sitemap entry missing')
 if 'google.com/maps?q=' in (ROOT / 'contact.html').read_text(encoding='utf-8'):
     errors.append('contact.html: automatic map embed must not return without privacy review')
-for required_page in ['factory-records-digitisation.html', 'quality-process-excellence.html', 'articles.html']:
+if 'assets/enquiry.js' not in (ROOT / 'contact.html').read_text(encoding='utf-8'):
+    errors.append('contact.html: enquiry script not loaded')
+for required_page in ['ai-solutions.html', 'intelligent-automation.html', 'digital-transformation.html', 'data-analytics.html', 'software-development.html', 'process-excellence.html', 'training.html', 'articles.html']:
     if required_page not in pages:
         errors.append(f'{required_page}: dedicated page missing')
-if 'Lean Manufacturing &amp; Operational Excellence' not in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
+if 'IT Services' not in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
     errors.append('index.html: agreed homepage heading changed')
 # Both general enquiry CTAs expose the same three-way choice rather than preselecting it.
 for name in pages:

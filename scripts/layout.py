@@ -13,7 +13,7 @@ import re
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
-CSS_VERSION = '20261111-clear'
+CSS_VERSION = '20261112-it'
 
 COMPANY = {
     'legal_name': 'Leanova Opex Solutions Private Limited',
@@ -41,19 +41,21 @@ NAV = [
 ]
 
 # Which top-level nav item a page belongs to.
-SECTION = {
-    'index.html': 'index.html', 'about.html': 'about.html', 'capabilities.html': 'capabilities.html',
-    'asf.html': 'asf.html', 'case-studies.html': 'case-studies.html', 'insights.html': 'insights.html',
-    'industries.html': 'industries.html', 'services.html': 'services.html', 'training.html': 'training.html',
-}
-for _p in ['lean-manufacturing-consulting', 'lean-six-sigma-consulting', 'operational-excellence',
-           'msme-lean-consulting', 'productivity-improvement', 'lean-training',
-           'factory-records-digitisation', 'quality-process-excellence']:
-    SECTION[f'{_p}.html'] = 'services.html'
-for _p in ['industry-auto-engineering', 'industry-pharma-process', 'industry-msme-manufacturing']:
-    SECTION[f'{_p}.html'] = 'industries.html'
-for _p in ['articles', 'author-vijay-sekhar-danaboyina', 'article-process-before-automation']:
-    SECTION[f'{_p}.html'] = 'insights.html'
+SERVICE_PAGES = [
+    ('ai-solutions.html', 'AI Solutions &amp; AI Agents'),
+    ('intelligent-automation.html', 'Intelligent Automation'),
+    ('digital-transformation.html', 'Digital Transformation'),
+    ('data-analytics.html', 'Data, Dashboards &amp; Reporting'),
+    ('software-development.html', 'Software &amp; Web Applications'),
+    ('process-excellence.html', 'Process &amp; Operational Excellence'),
+]
+SECTION = {'index.html': 'index.html', 'about.html': 'about.html', 'asf.html': 'asf.html',
+           'case-studies.html': 'case-studies.html', 'services.html': 'services.html',
+           'training.html': 'training.html', 'contact.html': 'contact.html'}
+for _p, _n in SERVICE_PAGES:
+    SECTION[_p] = 'services.html'
+
+LINKEDIN_ICON = ('<svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.2 1.5-2.2 2.9V21H9z"/></svg>')
 
 
 def wa_link():
@@ -99,11 +101,38 @@ def header(page):
 
 def footer():
     c = COMPANY
-    return f'''<footer class="foot"><div class="wrap"><div class="cols cols--3">
-<div><h2 class="foot__heading">Leanova</h2><p><strong>{c['legal_name']}</strong></p><p class="small">Registered office:<br>{'<br>'.join(c['address_lines'])}<br>CIN {c['cin']}</p></div>
-<nav aria-label="Footer"><h2 class="foot__heading">Explore</h2><ul><li><a href="services.html">Services</a> · <a href="training.html">Training</a></li><li><a href="capabilities.html">Technology capabilities</a></li><li><a href="industries.html">Industries</a> · <a href="articles.html">Articles</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms.html">Terms &amp; Conditions</a></li></ul></nav>
-<div><h2 class="foot__heading">Contact</h2><p><a href="mailto:{c['email']}">{c['email']}</a><br><a href="tel:{c['phone_tel']}">{c['phone_display']}</a></p><a class="social-link" href="{c['linkedin']}" target="_blank" rel="noopener noreferrer"><svg class="linkedin-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.2 1.5-2.2 2.9V21H9z"/></svg> LinkedIn company page ↗</a></div>
-</div></div><div class="foot__base"><span>&copy; 2026 {c['legal_name']}</span><a href="contact.html#enquiry">Discuss Your Project →</a></div></footer>'''
+    wa = wa_link()
+    wa_item = (f'<li><a href="{wa}" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span><span class="sr-only"> (opens WhatsApp)</span></a></li>') if wa else ''
+    float_btn = (f'\n<a class="wa-float" href="{wa}" target="_blank" rel="noopener noreferrer">{WA_ICON}'
+                 '<span class="wa-float__text">WhatsApp</span><span class="sr-only"> Leanova on WhatsApp (opens WhatsApp)</span></a>') if wa else ''
+    services = ''.join(f'<li><a href="{h}">{n}</a></li>' for h, n in SERVICE_PAGES)
+    return f'''<footer class="foot">
+  <div class="wrap">
+    <div class="cols cols--4">
+      <div>
+        <h2 class="foot__heading">Leanova</h2>
+        <p class="foot__about">IT services and AI solutions company. We make the business process clear, then digitise, automate and apply AI.</p>
+        <div class="foot__social"><a href="{c["linkedin"]}" target="_blank" rel="noopener noreferrer" aria-label="Leanova on LinkedIn (opens in a new tab)">{LINKEDIN_ICON}</a></div>
+      </div>
+      <div>
+        <h2 class="foot__heading">Services</h2>
+        <ul>{services}<li><a href="training.html">Training</a></li></ul>
+      </div>
+      <div>
+        <h2 class="foot__heading">Company</h2>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="asf.html">ASF&trade;</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="industries.html">Industries</a></li><li><a href="articles.html">Articles</a></li><li><a href="contact.html">Contact</a></li></ul>
+      </div>
+      <div>
+        <h2 class="foot__heading">Contact</h2>
+        <ul><li><a href="tel:{c["phone_tel"]}">{c["phone_display"]}</a></li>{wa_item}<li><a href="mailto:{c["email"]}">{c["email"]}</a></li><li><strong>{c["legal_name"]}</strong><br>Registered office: {"<br>".join(c["address_lines"])}<br><span class="small">CIN {c["cin"]}</span></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot__base">
+    <span>&copy; 2026 {c["legal_name"]}. All rights reserved.</span>
+    <span><a href="privacy-policy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms &amp; Conditions</a></span>
+  </div>
+</footer>{float_btn}'''
 
 
 def head(page, title, description, jsonld=None, og_type='website'):

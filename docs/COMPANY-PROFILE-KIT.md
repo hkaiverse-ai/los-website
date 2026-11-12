@@ -20,19 +20,19 @@ Prepared 11 November 2026. Use **exactly** these details everywhere so search en
 
 ## Category suggestions
 
-- Primary: *Business management consultant* (Google) / *Management Consultants* (Justdial) / *Lean Manufacturing Consultancy Services* (IndiaMART)
+- Primary: *Software company* / *IT services* (Google) / *IT Consultants* (Justdial) / *IT Consulting & Software Services* (IndiaMART)
 - Secondary: *Industrial consultant*, *Training centre* (only if training is delivered at the premises), *Software company* only if the owner wants the digital work listed.
 
 ## Descriptions
 
 **Short (≤150 characters)**
-> Lean manufacturing, Lean Six Sigma and Operational Excellence consultants helping Indian manufacturers and MSMEs improve productivity and quality.
+> IT services and AI solutions company: AI agents, automation, digital transformation, dashboards and software, built on clear business processes.
 
 **Medium (≤750 characters — Google Business Profile / LinkedIn About)**
-> Leanova Opex Solutions Private Limited is a Lean manufacturing and Operational Excellence consulting company. We help manufacturing businesses and MSMEs improve factory processes, eliminate waste and raise productivity and quality. Once a process is stable, we help digitise factory records and workflows, and apply automation and AI where the data supports it. Our approach: first improve the process, then digitise it, then automate it, then make it intelligent. Services include Lean Manufacturing, Lean Six Sigma, Operational Excellence, Productivity Improvement, Quality & Process Excellence, MSME Lean consulting, Lean training and factory records digitisation.
+> Leanova Opex Solutions Private Limited is an IT services company. We build AI solutions, workflow automation, software, dashboards and digital systems for businesses, and we start by making the business process clear so the technology delivers results. Our approach: improve the process, digitise it, automate it, then make it intelligent with AI. Services: AI Solutions & AI Agents, Intelligent Automation, Digital Transformation, Data Dashboards & Reporting, Software & Web Applications, Process & Operational Excellence, and Training.
 
 **Services list (IndiaMART / Justdial "products & services")**
-Lean Manufacturing Consulting · Lean Six Sigma Consulting · Operational Excellence Consulting · Productivity Improvement · Quality & Process Excellence · MSME Lean Consulting · Corporate Lean Training · Factory Records Digitisation
+AI Solutions & AI Agents · Intelligent Automation · Digital Transformation · Data, Dashboards & Reporting · Software & Web Applications · Process & Operational Excellence · Training
 
 Do **not** list: certifications, client names, savings figures, government empanelment, or "No. 1 / best" claims unless verified.
 
