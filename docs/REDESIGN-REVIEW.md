@@ -65,3 +65,11 @@ Publication of the incomplete-form design review is awaiting the owner's choice.
 ## Logo follow-up
 
 Added the original repository asset `assets/leanova-logo.png` to the header and footer on all 12 pages. Preserved its aspect ratio and added meaningful alt text. Browser verification confirmed both instances load and no horizontal overflow occurs at desktop and mobile widths.
+
+## Simple improvements after reference review
+
+Before edits, saved and integrity-checked `outputs/Leanova-before-simple-improvements-2026-11-12.zip`, copied from the clean hosting checkout at published source commit f7246b713b213551da406bf665897451304472dc. Hosted Version 1 also remains saved for rollback.
+
+Replaced the generic technology homepage section with one clearly labelled illustrative factory-records example; changed the existing principles into a concise four-step process; added four native expandable FAQs and a WhatsApp link beside the closing CTA. Kept the company positioning, official logo and other pages. No maintenance service, outcome statistics or new commercial availability claim was added.
+
+Validation: static check passed with 309 internal links/assets; FAQ controls opened all four answers; homepage had no horizontal overflow at 390px, 768px and 1440px; four process steps and correct WhatsApp destination confirmed; no console warnings/errors observed. Direct enquiry delivery remains unconfigured and honestly labelled. The user authorised updating the same review URL after preserving a copy.
