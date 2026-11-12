@@ -41,7 +41,7 @@ function fixture({ clipboard, legacyCopy = false } = {}) {
 
 (async () => {
   const success = fixture({ clipboard: 'success' });
-  const values = ['QA & Review – ₹', 'reviewer+test@example.com', '+91 90000 00000', 'R&D + QA #1 50%', 'Engineering & fabrication', 'Pune, MH', 'First: A&B + 50%? #1\nSecond: café and "quotes".'];
+  const values = ['QA & Review – ₹', 'reviewer+test@example.com', '+91 90000 00000', 'R&D + QA #1 50%', 'IT services & consulting', 'Pune, MH', 'First: A&B + 50%? #1\nSecond: café and "quotes".'];
   success.fields.forEach((field, index) => { field.value = values[index]; });
   success.form.listeners.submit({ preventDefault() {} });
   const uri = new URL(success.element('compose-enquiry').attributes.href);
@@ -52,8 +52,8 @@ function fixture({ clipboard, legacyCopy = false } = {}) {
   assert.ok(body.includes('Reply email: reviewer+test@example.com'));
   assert.ok(body.includes('Phone: +91 90000 00000'));
   assert.ok(body.includes('Company: R&D + QA #1 50%'));
-  assert.ok(body.includes('Industry: Engineering & fabrication'));
-  assert.ok(body.includes('Plant location: Pune, MH'));
+  assert.ok(body.includes('Industry: IT services & consulting'));
+  assert.ok(body.includes('Office / team location: Pune, MH'));
   assert.ok(body.endsWith(values[6].replace(/\n/g, '\r\n')));
   assert.ok(!body.replace(/\r\n/g, '').includes('\n'));
   const gmail = new URL(success.element('compose-gmail').attributes.href);

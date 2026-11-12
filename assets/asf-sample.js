@@ -9,56 +9,119 @@
   if (!output || !buttons.length) return;
 
   const SAMPLES = {
-    plant: {
-      title: 'Sample A — Fictional component manufacturer: delivery reliability',
-      context: 'Business context (fictional): a two-line machining unit is missing customer delivery dates. Objective: find the main causes and the first improvements to make.',
-      sources: ['shift_production_log_Q3.xlsx (fictional)', 'customer_complaints_2026.csv (fictional)', 'maintenance_register.pdf (fictional)'],
-      synopsis: 'In the sample evidence, Line 2 is the constraint. Unplanned stoppages and long changeovers account for most of its lost time, and late orders cluster on products routed through Line 2. Complaint data points to dimensional defects on one product family. Maintenance records are incomplete for six weeks, so the downtime picture is partial.',
-      metrics: [
-        ['Line 2 availability', '71%', 'shift log, Jul–Sep'],
-        ['Average changeover', '96 min', 'shift log, 212 changeovers'],
-        ['On-time delivery', '78%', 'complaints file, dispatch dates'],
-        ['Rejection rate, family B', '4.2%', 'complaints file'],
+  "delivery": {
+    "title": "Sample A — Fictional IT delivery team: review delays",
+    "context": "Fictional example only: a software delivery team has work waiting for reviews. The aim is to understand handoffs before choosing a tool.",
+    "sources": [
+      "delivery_workflow_notes.txt (fictional)"
+    ],
+    "synopsis": "In this illustrative scenario, requests wait for review because ownership and acceptance criteria are unclear. The first step is to agree responsibilities and make waiting work visible. This is not an actual client finding or output from ASF Analysis.",
+    "metrics": [
+      [
+        "Review waiting time",
+        "Measure first",
+        "Compare the starting point with the agreed change"
       ],
-      findings: [
-        { s: 'Late orders are concentrated on products routed through Line 2.', basis: 'evidence', c: 0.86, q: 'Line 2 — 41 of 53 late orders', src: 'customer_complaints_2026.csv, rows 2–54' },
-        { s: 'Changeovers on Line 2 take about twice as long as on Line 1.', basis: 'evidence', c: 0.81, q: 'Avg changeover L1 48 min / L2 96 min', src: 'shift_production_log_Q3.xlsx, sheet "Summary"' },
-        { s: 'Dimensional defects on product family B are the most frequent complaint type.', basis: 'evidence', c: 0.77, q: 'Dimension out of tolerance (Family B) — 19', src: 'customer_complaints_2026.csv' },
+      [
+        "Repeat work",
+        "Measure first",
+        "Track returned items and reasons"
+      ]
+    ],
+    "findings": [
+      {
+        "s": "Review ownership is not defined consistently in the fictional workflow.",
+        "basis": "fictional example",
+        "q": "Review owner: to be agreed",
+        "src": "delivery_workflow_notes.txt (fictional)"
+      }
+    ],
+    "risks": [
+      {
+        "s": "Adding automation before responsibilities are clear may preserve the delay.",
+        "basis": "illustrative reasoning"
+      }
+    ],
+    "opportunities": [
+      {
+        "s": "Clearer handoffs and acceptance criteria may reduce repeat requests.",
+        "basis": "illustrative reasoning"
+      }
+    ],
+    "unknowns": [
+      {
+        "s": "No measured baseline or verified client outcome is provided.",
+        "basis": "fictional example"
+      }
+    ],
+    "actions": [
+      {
+        "s": "Agree review ownership and acceptance criteria.",
+        "p": "First"
+      },
+      {
+        "s": "Record waiting time and review the effect of the changes.",
+        "p": "Next"
+      }
+    ]
+  },
+  "support": {
+    "title": "Sample B — Fictional IT support team: recurring requests",
+    "context": "Fictional example only: a support team answers similar questions repeatedly while guidance is spread across documents.",
+    "sources": [
+      "support_workflow_notes.txt (fictional)"
+    ],
+    "synopsis": "This scenario illustrates a knowledge and workflow gap. Start by reviewing repeated request types and agreeing who maintains the guidance. A knowledge assistant could be explored later, once reliable information and access rules are in place.",
+    "metrics": [
+      [
+        "Repeat requests",
+        "Measure first",
+        "Track request type and reason"
       ],
-      risks: [{ s: 'If Line 2 stays the constraint, adding demand will increase late deliveries.', basis: 'inference', c: 0.64 }],
-      opportunities: [{ s: 'A SMED workshop on the top three Line 2 changeovers could recover capacity without capital spend.', basis: 'inference', c: 0.6 }],
-      unknowns: [{ s: 'Maintenance entries are missing for weeks 31–36, so the share of downtime from breakdowns cannot be confirmed.', basis: 'evidence', c: 0.9 }],
-      actions: [
-        { s: 'Confirm the Line 2 constraint with a two-week time study.', p: 'High' },
-        { s: 'Run a SMED improvement on the three most frequent changeovers.', p: 'High' },
-        { s: 'Start a root-cause investigation (8D) on family B dimensional defects.', p: 'Medium' },
-        { s: 'Restore daily maintenance logging before measuring results.', p: 'Medium' },
-      ],
-    },
-    msme: {
-      title: 'Sample B — Fictional MSME fabrication unit: rework and paper records',
-      context: 'Business context (fictional): a 40-person fabrication unit sees frequent rework and keeps inspection records on paper. Objective: reduce rework and decide whether to digitise records.',
-      sources: ['inspection_register_scans.pdf (fictional)', 'job_card_summary.xlsx (fictional)'],
-      synopsis: 'The sample evidence shows rework concentrated in welding, mostly from fit-up gaps. Many inspection pages are scanned images without a text layer, so they could not be read and are reported as gaps. Digitising the inspection register would make the defect pattern measurable.',
-      metrics: [
-        ['Jobs with rework', '18%', 'job card summary, 310 jobs'],
-        ['Rework in welding', '62%', 'of rework jobs'],
-        ['Unreadable register pages', '14 of 40', 'scanned images, no text layer'],
-      ],
-      findings: [
-        { s: 'Most rework originates in the welding stage.', basis: 'evidence', c: 0.82, q: 'Rework stage: Welding — 35 of 56', src: 'job_card_summary.xlsx, sheet "Rework"' },
-        { s: 'Fit-up gap is the most frequently recorded welding defect.', basis: 'evidence', c: 0.7, q: 'Fit-up gap > spec', src: 'inspection_register_scans.pdf, p. 3' },
-      ],
-      risks: [{ s: 'Decisions based on the paper register may miss defects recorded on unreadable pages.', basis: 'inference', c: 0.66 }],
-      opportunities: [{ s: 'A simple fixture and standard work at fit-up could address the main rework source.', basis: 'inference', c: 0.55 }],
-      unknowns: [{ s: 'Rework cost per job is not recorded in the sources provided.', basis: 'evidence', c: 0.92 }],
-      actions: [
-        { s: 'Digitise the inspection register using a structured form.', p: 'High' },
-        { s: 'Introduce a fit-up check and fixture trial on the highest-volume job type.', p: 'High' },
-        { s: 'Start recording rework hours per job to size the cost of poor quality.', p: 'Medium' },
-      ],
-    },
-  };
+      [
+        "Time to find guidance",
+        "Measure first",
+        "Agree a useful measure with the team"
+      ]
+    ],
+    "findings": [
+      {
+        "s": "Guidance ownership is unclear in the fictional example.",
+        "basis": "fictional example",
+        "q": "Knowledge owner: not assigned",
+        "src": "support_workflow_notes.txt (fictional)"
+      }
+    ],
+    "risks": [
+      {
+        "s": "Unreviewed guidance could produce inconsistent responses.",
+        "basis": "illustrative reasoning"
+      }
+    ],
+    "opportunities": [
+      {
+        "s": "A maintained knowledge source and clearer request routing could support more consistent service.",
+        "basis": "illustrative reasoning"
+      }
+    ],
+    "unknowns": [
+      {
+        "s": "No technical integration, model performance or client result has been verified.",
+        "basis": "fictional example"
+      }
+    ],
+    "actions": [
+      {
+        "s": "Review repeated request types and confirm knowledge owners.",
+        "p": "First"
+      },
+      {
+        "s": "Pilot a clearer workflow before considering AI assistance.",
+        "p": "Next"
+      }
+    ]
+  }
+};
 
   const el = (tag, text, cls) => { const n = document.createElement(tag); if (text) n.textContent = text; if (cls) n.className = cls; return n; };
   const items = (heading, list) => {

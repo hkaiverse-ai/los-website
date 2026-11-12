@@ -55,7 +55,7 @@ for name, page in pages.items():
     require(any(t == 'a' and a.get('href') == '#main' for t, a in page.attrs), 'missing skip link')
 
 # Guard the agreed product structure and enquiry routes.
-expected_capabilities = ['Lean Manufacturing', 'Lean Six Sigma', 'Operational Excellence', 'Productivity Improvement', 'Quality &amp; Process Excellence', 'Digitalisation &amp; Automation']
+expected_capabilities = ['Lean IT', 'Lean Six Sigma', 'Operational Excellence', 'Team Productivity', 'Quality &amp; Process Excellence', 'Digitalisation &amp; Automation']
 home_text = (ROOT / 'index.html').read_text(encoding='utf-8')
 capabilities = [text.strip() for text in re.findall(r'<article class="card capability">.*?<h3>(.*?)</h3>', home_text, re.S)]
 if capabilities != expected_capabilities:
@@ -159,10 +159,10 @@ for legal_page in ['privacy-policy.html', 'terms.html']:
         errors.append(f'{legal_page}: legal page or sitemap entry missing')
 if 'google.com/maps?q=' in (ROOT / 'contact.html').read_text(encoding='utf-8'):
     errors.append('contact.html: automatic map embed must not return without privacy review')
-for required_page in ['factory-records-digitisation.html', 'quality-process-excellence.html', 'articles.html']:
+for required_page in ['workflow-digitisation.html', 'quality-process-excellence.html', 'articles.html']:
     if required_page not in pages:
         errors.append(f'{required_page}: dedicated page missing')
-if 'Lean Manufacturing &amp; Operational Excellence' not in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
+if 'Operational Excellence &amp; AI Solutions' not in home_text.split('<h1', 1)[1].split('</h1>', 1)[0]:
     errors.append('index.html: agreed homepage heading changed')
 # Both general enquiry CTAs expose the same three-way choice rather than preselecting it.
 for name in pages:
@@ -176,6 +176,17 @@ if 'in India' in re.search(r'<h1[^>]*>(.*?)</h1>', home_text, re.S).group(1):
     errors.append('index.html: location restriction returned to headline')
 if len(re.findall(r'<li>', asf_text.split('aria-label="The nine ASF pillars">', 1)[1].split('</ol>',1)[0])) != 9:
     errors.append('asf.html: expected the documented nine pillars')
+# IT positioning must cover every active page and its metadata, not only the homepage.
+for name in pages:
+    raw = (ROOT / name).read_text(encoding='utf-8')
+    if 'http-equiv="refresh"' in raw:
+        continue
+    visible = re.sub('<[^>]+>', ' ', re.sub(r'<script\b.*?</script>', '', raw, flags=re.S))
+    if re.search(r'\b(factory|factories|manufactur\w*|plant|shop.floor|fabrication)\b', visible, re.I):
+        errors.append(f'{name}: manufacturing positioning remains in visible content')
+    for t, a in pages[name].attrs:
+        if t == 'meta' and re.search(r'factory|manufactur|plant', a.get('content', ''), re.I):
+            errors.append(f'{name}: manufacturing positioning remains in metadata')
 if errors:
     raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(pages)} pages, {link_count} local links/assets/anchors, unique IDs, landmarks, metadata and sitemap XML.')

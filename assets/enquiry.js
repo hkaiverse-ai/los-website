@@ -9,12 +9,14 @@
   };
   const services = {
     operations: ['operations', 'Operational Excellence'],
-    lean: ['operations', 'Lean Transformation'],
+    lean: ['operations', 'Lean IT'],
+    'six-sigma': ['operations', 'Lean Six Sigma'],
     productivity: ['operations', 'Productivity Improvement'],
     quality: ['operations', 'Quality & Process Excellence'],
-    'supply-chain': ['operations', 'Supply Chain & Operational Flow'],
-    training: ['operations', 'Capability Development'],
-    digital: ['digital-ai', 'Digital Transformation'],
+    'supply-chain': ['operations', 'Cross-team Workflow'],
+    training: ['operations', 'IT Process Improvement Training'],
+    digital: ['digital-ai', 'Workflow Digitisation'],
+    'growing-it': ['operations', 'Improvement for Growing IT Businesses'],
     ai: ['digital-ai', 'AI-Enabled Operations'],
     agents: ['digital-ai', 'AI Agents & Agentic Systems'],
     'multi-agent': ['digital-ai', 'Multi-Agent Systems & Orchestration'],
@@ -96,7 +98,7 @@
       values.phone ? `Phone: ${values.phone}` : '',
       values.company ? `Company: ${values.company}` : '',
       values.industry ? `Industry: ${values.industry}` : '',
-      values.location ? `Plant location: ${values.location}` : '',
+      values.location ? `Office / team location: ${values.location}` : '',
     ].filter(Boolean).join('\r\n');
     // RFC 6068 mailto bodies use CRLF; preserve the visitor's multiline message.
     const body = `${headers}\r\n\r\nRequirement / business challenge:\r\n${values.challenge.replace(/\r\n|\r|\n/g, '\r\n')}`;
