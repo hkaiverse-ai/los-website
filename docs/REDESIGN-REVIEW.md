@@ -31,7 +31,7 @@ Unique titles/descriptions, one H1 per page, heading hierarchy, canonical URLs, 
 | Check | Result |
 | --- | --- |
 | HTML inventory, metadata, legal details, IDs, image alt text, form labels | PASS across 12 pages |
-| Internal links, fragments and asset references | PASS: 284 checked |
+| Internal links, fragments and asset references | PASS: 308 checked |
 | XML sitemap parsing | PASS |
 | JavaScript syntax | PASS: `node --check assets/site.js` |
 | Browser layout | PASS: all 12 pages at 390 × 844, 768 × 1024 and 1440 × 960; no horizontal overflow |
@@ -61,3 +61,7 @@ Run the static checks from this repository using `python docs/check_redesign.py`
 5. Commercial-readiness confirmation before changing AI capability status labels.
 
 Publication of the incomplete-form design review is awaiting the owner's choice. A distinct unpublished Site was registered for this purpose; existing review links were not reused.
+
+## Logo follow-up
+
+Added the original repository asset `assets/leanova-logo.png` to the header and footer on all 12 pages. Preserved its aspect ratio and added meaningful alt text. Browser verification confirmed both instances load and no horizontal overflow occurs at desktop and mobile widths.
