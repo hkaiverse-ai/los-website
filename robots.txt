@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Isolated review preview. Enable indexing only for an approved production release.
