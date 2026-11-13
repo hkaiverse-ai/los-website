@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASF&trade; Analysis (dev) &mdash; Leanova OPEX Solutions</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.png">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .app { max-width: 760px; margin: 2rem auto; padding: 0 1rem; }
+  .app h1 { margin-bottom: .25rem; }
+  .card { border: 1px solid #d8dde3; border-radius: 10px; padding: 1.25rem; margin: 1rem 0; }
+  .row { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
+  .app label { display: block; font-weight: 600; margin: .75rem 0 .35rem; }
+  .app textarea, .app input[type=file] { width: 100%; }
+  .app textarea { min-height: 90px; padding: .5rem; font: inherit; }
+  .app button { padding: .55rem 1.1rem; border-radius: 6px; border: 0; background: #0b5cad; color: #fff; font-weight: 600; cursor: pointer; }
+  .app button.secondary { background: #e8edf2; color: #1a2733; }
+  .app button:disabled { opacity: .5; cursor: default; }
+  .muted { color: #5b6773; font-size: .92rem; }
+  .status { margin-top: .75rem; white-space: pre-wrap; }
+  .error { color: #b3261e; }
+  #report { white-space: pre-wrap; background: #f6f8fa; border-radius: 8px; padding: 1rem; font-size: .92rem; overflow-x: auto; }
+</style>
+</head>
+<body>
+<main class="app" id="main">
+  <p><a href="asf.html">&larr; About ASF</a></p>
+  <h1>ASF&trade; Analysis</h1>
+  <p class="muted">Development preview. Sign in, upload a document, and get an operational analysis.</p>
+
+  <div class="card">
+    <div class="row">
+      <button id="signin">Sign in or create an account</button>
+      <button id="signout" class="secondary" hidden>Sign out</button>
+      <span id="who" class="muted"></span>
+    </div>
+  </div>
+
+  <div class="card" id="work" hidden>
+    <label for="file">Document (PDF, Word, Excel, CSV or text)</label>
+    <input id="file" type="file">
+    <label for="ctx">What should ASF focus on?</label>
+    <textarea id="ctx">Act as an operations executive. Summarize the biggest operational problems and what to fix first.</textarea>
+    <div class="row" style="margin-top:.75rem">
+      <button id="run">Upload and analyse</button>
+    </div>
+    <div id="status" class="status muted" aria-live="polite"></div>
+  </div>
+
+  <div class="card" id="out" hidden>
+    <div class="row"><strong>Report</strong> <button id="dl" class="secondary">Download (.md)</button></div>
+    <div id="report"></div>
+  </div>
+</main>
+
+<script src="https://alcdn.msauth.net/browser/2.38.3/js/msal-browser.min.js" crossorigin="anonymous"></script>
+<script>
+(() => {
+  // Public, non-secret configuration (single-page app: no client secret exists).
+  const TENANT_ID = 'dd74dd90-f3cc-466a-b118-231e63c4a4d3';
+  const CLIENT_ID = '5b7d950b-679b-405f-9e67-fdfe2e443161';           // asf-web
+  const SCOPE = 'api://25671e0b-b40e-43c5-8c3c-1658d420dfbf/asf.access'; // asf-api
+  const API = 'https://apim-leanova-asf-dev-sin-6a46c.azure-api.net/asf';
+  const REDIRECT = location.hostname === 'localhost' ? 'http://localhost:5173' : 'https://leanovaopexsolutions.com';
+
+  const $ = id => document.getElementById(id);
+  const say = (msg, isError) => { $('status').textContent = msg; $('status').className = 'status ' + (isError ? 'error' : 'muted'); };
+
+  const msalApp = new msal.PublicClientApplication({
+    auth: {
+      clientId: CLIENT_ID,
+      authority: `https://leanovaasf.ciamlogin.com/${TENANT_ID}`,
+      knownAuthorities: ['leanovaasf.ciamlogin.com'],
+      redirectUri: REDIRECT,
+    },
+    cache: { cacheLocation: 'sessionStorage' },
+  });
+
+  let account = null;
+  const show = () => {
+    const on = !!account;
+    $('signin').hidden = on; $('signout').hidden = !on; $('work').hidden = !on;
+    $('who').textContent = on ? `Signed in as ${account.username || account.name || 'you'}` : '';
+  };
+
+  async function token() {
+    const req = { scopes: [SCOPE], account };
+    try { return (await msalApp.acquireTokenSilent(req)).accessToken; }
+    catch { return (await msalApp.acquireTokenPopup(req)).accessToken; }
+  }
+
+  async function call(path, opts = {}) {
+    const res = await fetch(API + path, { ...opts, headers: { ...(opts.headers || {}), Authorization: 'Bearer ' + await token() } });
+    const text = await res.text();
+    let body; try { body = JSON.parse(text); } catch { body = text; }
+    if (!res.ok) {
+      const msg = (body && body.error && body.error.message) || (body && body.message) || text || res.statusText;
+      throw new Error(`${res.status}: ${msg}`);
+    }
+    return body;
+  }
+
+  $('signin').onclick = async () => {
+    try {
+      const r = await msalApp.loginPopup({ scopes: [SCOPE, 'openid', 'offline_access'] });
+      account = r.account; show();
+    } catch (e) { $('who').textContent = 'Sign-in did not complete: ' + e.message; }
+  };
+  $('signout').onclick = async () => { await msalApp.logoutPopup({ account }).catch(() => {}); account = null; show(); };
+
+  let lastReport = '';
+  $('run').onclick = async () => {
+    const f = $('file').files[0];
+    if (!f) return say('Choose a document first.', true);
+    $('run').disabled = true; $('out').hidden = true;
+    try {
+      say('Uploading…');
+      const form = new FormData(); form.append('file', f, f.name);
+      const src = await call('/sources', { method: 'POST', body: form });
+      if (src.status === 'failed') throw new Error('The document could not be read: ' + (src.detail || src.state));
+      say('Analysing… this usually takes one to three minutes.');
+      const job = await call('/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ business_context: $('ctx').value, source_ids: [src.source_id] }) });
+      const id = job.analysis_id;
+      for (let i = 0; i < 120; i++) {
+        await new Promise(r => setTimeout(r, 5000));
+        const a = await call(`/analysis/${encodeURIComponent(id)}`);
+        if (a.status === 'complete') break;
+        if (a.status === 'failed') throw new Error('The analysis failed: ' + ((a.error && a.error.message) || 'see logs'));
+        say(`Analysing… (${a.status || 'running'}, ${(i + 1) * 5}s)`);
+        if (i === 119) throw new Error('Timed out waiting for the analysis.');
+      }
+      lastReport = await call(`/analysis/${encodeURIComponent(id)}/report.md`);
+      $('report').textContent = typeof lastReport === 'string' ? lastReport : JSON.stringify(lastReport, null, 2);
+      $('out').hidden = false; say('Done.');
+    } catch (e) { say(e.message, true); }
+    finally { $('run').disabled = false; }
+  };
+  $('dl').onclick = () => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([$('report').textContent], { type: 'text/markdown' }));
+    a.download = 'asf-report.md'; a.click();
+  };
+
+  msalApp.initialize().then(() => {
+    const accts = msalApp.getAllAccounts();
+    account = accts[0] || null; show();
+  });
+})();
+</script>
+</body>
+</html>
