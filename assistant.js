@@ -21,7 +21,7 @@
   /* ---------- What the assistant knows (from the site's own pages) ---------- */
   var KB = [
     'Leanova Opex Solutions Private Limited, Hyderabad, India: an operational excellence and technology company. One team for automation & AI, websites & software, and operations & people improvement. Principle: process first, technology second; never automate a broken process; people stay in control (important steps wait for a person to approve).',
-    'Founder: Vijay Sekhar Danaboyina, Founder & Principal Consultant. 30+ years in Lean, Six Sigma, Industrial Engineering and Operational Excellence across 6 manufacturing organisations. Lean Six Sigma Master Black Belt / Black Belt, ISO 9001/14001/45001 Lead Auditor, MSME ZED Consultant, IATF 16949 Internal Auditor, M.Tech Industrial Engineering & Management. Page: founder.html',
+    'Founder: Vijay Sekhar Danaboyina, Founder and Director. 30+ years in Lean, Six Sigma, Industrial Engineering and Operational Excellence across 6 manufacturing organisations. Lean Six Sigma Master Black Belt / Black Belt, ISO 9001/14001/45001 Lead Auditor, MSME ZED Consultant, IATF 16949 Internal Auditor, M.Tech Industrial Engineering & Management. Page: founder.html',
     'Automation & AI services (services.html#automation): workflow & business process automation (approvals, reminders, hand-offs); CRM systems & integrations; document processing (data from invoices, forms, PDFs, checked against records, exceptions flagged to a person); dashboards & reporting; AI agents & assistants (chat and voice, support reply drafting, knowledge assistants for your documents); AI-enabled operations (demand/downtime forecasting, quality prediction).',
     'Websites & software (services.html#websites): website development, website maintenance & support, custom business software, online payments & bookings, cloud setup & hosting, AI-generated video (explainer, training, marketing clips).',
     'Operations & people (services.html#operations): digital transformation, Lean transformation, operational excellence, productivity improvement, quality excellence, training & capability development. Tools: VSM, 5S, Kaizen, Kanban, TPM, SMED, OEE, line balancing, Six Sigma DMAIC, SPC, Poka-Yoke, root cause analysis.',
@@ -40,32 +40,82 @@
     'Write plain text (short "- " bullets are fine). At the very end you may add up to two lines in the exact form "LINK: page.html#anchor | Label" pointing to the most useful pages from the facts.';
 
   /* ---------- Offline answers (used on the live site, where there is no AI backend) ---------- */
+  /* Each answer lists whole-word patterns. A question scores the summed length
+     of the patterns it contains, and the highest score wins; ties go to the
+     earlier entry, so more specific entries sit above broader ones. Answers say
+     only what this website already says. */
   var FAQ = [
-    { k: ['price', 'cost', 'quote', 'charge', 'fee', 'budget', 'how much'], a: 'It depends on scope. After a short conversation we send a written scope and quote before any work begins, with no obligation.', l: [['contact.html#project', 'Discuss your project']] },
-    { k: ['service', 'offer', 'what do you do', 'help with'], a: 'One team covers three areas:\n- Automation & AI: workflows, CRM, document processing, dashboards, AI agents\n- Websites & software: websites, maintenance, custom software, payments, hosting, AI video\n- Operations & people: Lean, quality, productivity and training\nYou can start with one service and add others as you grow.', l: [['services.html', 'See all services']] },
-    { k: ['automat', 'workflow', 'repetitive', 'manual', 'approval'], a: 'We map the process first, remove the waste, then automate the routine steps (approvals, reminders, hand-offs and reports) with a person approving anything important.', l: [['services.html#automation', 'Automation & AI']] },
-    { k: ['document', 'invoice', 'pdf', 'paper', 'form'], a: 'We read details from invoices, forms and PDFs, check them against your orders and records, and flag exceptions for a person instead of guessing.', l: [['services.html#automation', 'Document processing']] },
-    { k: ['crm', 'lead', 'follow'], a: 'We set up or connect your CRM so leads, customers and follow-ups live in one place, with connections to email and forms and automatic reminders.', l: [['contact.html#project', 'Discuss your CRM']] },
-    { k: ['dashboard', 'report', 'kpi', 'oee'], a: 'We build reports and dashboards that pull from one source of truth and send themselves on schedule, including live performance and OEE views.', l: [['services.html#automation', 'Dashboards & reporting']] },
-    { k: ['agent', 'chatbot', 'voice', 'assistant', 'ai'], a: 'We build chat and voice agents that answer, draft and route work within clear limits, with a person approving what matters. Our team designs and runs its own agents first, in the HKAIVERSE Capability Studio.', l: [['work.html#built', 'Systems we have built'], ['services.html#agents', 'AI agents & assistants']] },
-    { k: ['website', 'web site', 'site', 'hosting', 'payment', 'booking'], a: 'We plan and build business websites around your customers, with enquiry forms to your inbox or CRM, online payments and bookings, hosting, and ongoing maintenance with one contact for every change.', l: [['services.html#websites', 'Websites & software']] },
-    { k: ['video'], a: 'We make AI-generated explainer, training and marketing videos, scoped per project. The two films on our home page are examples.', l: [['services.html#video', 'AI-generated video']] },
-    { k: ['lean', 'six sigma', 'quality', 'productivity', 'kaizen', '5s', 'tpm', 'iso', 'zed', 'training'], a: 'This is where Leanova began: Lean transformation, quality excellence, productivity improvement and training, led by a founder with 30+ years on the shop floor and ISO Lead Auditor credentials.', l: [['services.html#operations', 'Operations & people']] },
-    { k: ['asf', 'analysis', 'framework'], a: 'ASF™ is our Adaptive Systems Framework. The ASF™ Analysis Workspace (pilot) reads your documents and website together and returns an evidence-backed report as PDF, PowerPoint, CSV or Markdown.', l: [['asf.html#demo', 'Try the walkthrough'], ['contact.html#asf', 'Request pilot access']] },
-    { k: ['founder', 'founded', 'vijay', 'who ', 'experience', 'team', 'owner', 'started'], a: 'Leanova was founded by Vijay Sekhar Danaboyina: 30+ years in Lean, Six Sigma and industrial engineering, Lean Six Sigma Master Black Belt and ISO 9001/14001/45001 Lead Auditor. Improvement consultants and engineers work as one team.', l: [['founder.html', 'Meet our founder']] },
-    { k: ['industr', 'manufactur', 'factory', 'logistic', 'healthcare', 'retail'], a: 'We work across manufacturing, logistics & supply chain, healthcare, education, retail, finance and technology.', l: [['industries.html', 'Industries']] },
-    { k: ['replace', 'staff', 'job'], a: 'No. The aim is to take repetitive work off your people so they can focus on customers and decisions. Important steps always wait for a person to approve them.', l: [] },
-    { k: ['outside india', 'international', 'remote', 'abroad', 'country'], a: 'Yes. We work with clients internationally; most engagements run remotely, with on-site visits where needed.', l: [['contact.html#experts', 'Talk to our experts']] },
-    { k: ['contact', 'call', 'phone', 'email', 'whatsapp', 'address', 'where', 'location', 'office', 'talk'], a: 'Email ' + EMAIL + ' or call/WhatsApp ' + PHONE + '. Our office is in Ameenpur, Hyderabad, Telangana. We usually reply within one working day.', l: [['contact.html#experts', 'Talk to our experts']] }
+    { p: ['price of (a |the )?website', 'website (cost|price)', 'how much', 'price', 'pricing', 'cost', 'quote', 'quotation', 'charge', 'fees?', 'budget', 'rate card'],
+      a: 'It depends on scope. After a short conversation we send a written scope and quote before any work begins, with no obligation.', l: [['contact.html#project', 'Discuss your project']] },
+    { p: ['how long', 'timeline', 'time ?frame', 'duration', 'how (soon|quickly|fast)', 'when can (you|we) start', 'deadline'],
+      a: 'It depends on the scope. Timing is agreed in writing before work starts, so you know what is delivered and when.', l: [['contact.html#project', 'Discuss your project']] },
+    { p: ['case stud(y|ies)', 'clients?', 'customers?( list)?', 'references?', 'testimonials?', 'portfolio', 'past (work|projects)', 'who have you worked'],
+      a: 'We share client results only when the client has approved them, so ask us during a consultation about examples close to your situation. The process examples on our home page are illustrative, not results from a named client.', l: [['contact.html#experts', 'Talk to our experts'], ['work.html', 'Our work']] },
+    { p: ['founder', 'founded', 'director', 'owner', 'vijay', 'who (runs|leads|started)', 'experience of (the )?team'],
+      a: 'Leanova is led by Vijay Sekhar Danaboyina, Founder and Director: 30+ years in Lean, Six Sigma and industrial engineering across six manufacturing organisations, a Lean Six Sigma Master Black Belt and an ISO 9001, 14001 and 45001 Lead Auditor.', l: [['founder.html', 'Meet our founder']] },
+    { p: ['what is leanova', 'about (leanova|you|your company)', 'who are you', 'tell me about (leanova|yourselves|your company)', 'what do you do'],
+      a: 'Leanova Opex Solutions is an operational excellence and technology company in Hyderabad. One team fixes how the work flows, takes repetitive steps off your people with automation and AI, and builds the websites and software that keep it running. Process first, technology second.', l: [['about.html', 'About us'], ['services.html', 'Our services']] },
+    { p: ['services', 'what (do you|can you) (offer|do)', 'help (us )?with', 'offerings?', 'solutions'],
+      a: 'One team covers three areas:\n- Automation & AI: workflows, CRM, document processing, dashboards, AI agents\n- Websites & software: websites, maintenance, custom software, payments, hosting, AI video\n- Operations & people: Lean, quality, productivity and training\nYou can start with one service and add others as you grow.', l: [['services.html', 'See all services']] },
+    { p: ['paperwork', 'paper', 'documents?', 'invoices?', 'pdfs?', 'forms', 'data entry', 'retyp\\w*'],
+      a: 'We read details from invoices, forms and PDFs, check them against your orders and records, and flag exceptions to a person instead of guessing. We fix the process first, then automate what repeats.', l: [['services.html#automation', 'Document processing']] },
+    { p: ['automat\\w*', 'workflows?', 'repetitive', 'manual work', 'approvals?', 'reminders?', 'rpa'],
+      a: 'We map the process first, remove the waste, then automate the routine steps (approvals, reminders, hand-offs and reports), with a person approving anything important.', l: [['services.html#automation', 'Automation & AI']] },
+    { p: ['crm', 'leads?', 'follow[- ]?ups?', 'sales pipeline'],
+      a: 'We set up or connect your CRM so leads, customers and follow-ups live in one place, with connections to email and forms, data migration and automatic follow-up reminders.', l: [['services.html#automation', 'CRM systems & integrations']] },
+    { p: ['sap', 'erp', 'tally', 'oracle', 'integrat\\w*', 'connect (to|with)', 'existing (software|systems?)', 'api'],
+      a: 'We connect the systems you already use, and usually there is no need to change your existing software. Which systems and how they connect is confirmed during scoping.', l: [['services.html#automation', 'Integrations'], ['contact.html#project', 'Discuss your project']] },
+    { p: ['dashboards?', 'reports?', 'reporting', 'kpis?', 'mis', 'power ?bi'],
+      a: 'We build dashboards and reports that pull from one source of truth and are sent automatically on schedule, so managers see problems as they happen.', l: [['services.html#automation', 'Dashboards & reporting']] },
+    { p: ['downtime', 'breakdowns?', 'oee', 'tpm', 'stoppages?', 'machine (losses|availability)', 'utili[sz]ation'],
+      a: 'We tackle downtime from both sides: OEE and loss analysis, TPM and focused improvement on the shop floor, plus downtime dashboards and, where good data exists, downtime forecasting.', l: [['services.html#operations', 'Operations & people'], ['services.html#automation', 'Dashboards & AI']] },
+    { p: ['chat ?bots?', 'voice (agents?|bots?|ai)', 'ai agents?', 'agents?', 'assistants?', 'llm', 'gpt'],
+      a: 'We build chat and voice agents that answer, draft and route work within clear limits, with a person approving what matters. The voice and chat assistant on this website is one example.', l: [['work.html#built', 'Systems we have built'], ['services.html#automation', 'AI agents & assistants']] },
+    { p: ['maintenance', 'maintain', 'care plan', 'updates?', 'backups?', 'support for (my|our) (site|website)'],
+      a: 'Our website care plans keep your site current, secure and working: content and page updates, software and security updates, backups, form, link and speed checks, and fixes, with one contact for every change. What a plan covers and costs is agreed in writing.', l: [['services.html#websites', 'Website maintenance & support']] },
+    { p: ['websites?', 'web ?sites?', 'web design', 'landing page', 'hosting', 'domain', 'payments?', 'bookings?', 'e-?commerce'],
+      a: 'We plan and build business websites around your customers, with enquiry forms to your inbox or CRM, online payments and bookings, cloud hosting, and ongoing care plans.', l: [['services.html#websites', 'Websites & software']] },
+    { p: ['custom software', 'software', 'apps?', 'application', 'internal tools?', 'portal'],
+      a: 'We build custom business software when off-the-shelf tools do not fit: web apps and internal tools, connected to your systems, tested and handed over as agreed.', l: [['services.html#websites', 'Websites & software']] },
+    { p: ['(see|watch|show me|have) (a |an |your )?(company |intro |introduction )?(videos?|films?)( about (leanova|you|your company))?', '(videos?|films?) (about|of|on) (leanova|you|your company)', 'intro(duction)? (video|film)'],
+      a: 'There is no company video on this website at the moment. Our About page explains who we are and how we work. We also make AI-generated explainer, training and marketing videos for clients.', l: [['about.html', 'About us'], ['services.html#websites', 'AI-generated video']] },
+    { p: ['videos?', 'films?', 'animation', 'explainer', '(training|marketing|explainer|product|promo\\w*) videos?', 'make (a |an )?videos?'],
+      a: 'We make AI-generated explainer, training and marketing videos, scoped per project.', l: [['services.html#websites', 'AI-generated video']] },
+    { p: ['iso', 'iatf', '9001', '14001', '45001', 'certification', 'audit\\w*', 'zed'],
+      a: 'We help set up and improve ISO and IATF quality systems and prepare for ZED. Our founder is an ISO 9001, 14001 and 45001 Lead Auditor. The certificate itself is issued by an accredited certification body.', l: [['services.html#operations', 'Quality excellence'], ['founder.html', 'Our founder']] },
+    { p: ['lean', 'six sigma', 'kaizen', '5s', 'smed', 'vsm', 'value stream', 'quality', 'productivity', 'defects?', 'training', 'operational excellence'],
+      a: 'This is where Leanova began: Lean transformation, quality excellence, productivity improvement and practical training, led by a founder with 30+ years on the shop floor.', l: [['services.html#operations', 'Operations & people']] },
+    { p: ['asf', 'adaptive systems', 'analysis workspace', 'framework'],
+      a: 'ASF™ is our Adaptive Systems Framework. The ASF™ Analysis Workspace (pilot) reads your documents and website together and returns an evidence-backed report as PDF, PowerPoint, CSV or Markdown.', l: [['asf.html#demo', 'Try the walkthrough'], ['contact.html#asf', 'Request pilot access']] },
+    { p: ['pharma\\w*', 'pharmaceuticals?', 'gmp', 'capa', 'deviations?'],
+      a: 'Our founder\'s industry experience includes pharmaceuticals, and we work across manufacturing and healthcare, for example shortening the time from a deviation being found to its CAPA being closed.', l: [['industries.html', 'Industries'], ['contact.html#experts', 'Talk to our experts']] },
+    { p: ['industr(y|ies)', 'sectors?', 'manufactur\\w*', 'factory', 'factories', 'plants?', 'logistics', 'healthcare', 'hospitals?', 'retail', 'finance', 'education'],
+      a: 'We work across manufacturing, logistics & supply chain, healthcare, education, retail, finance and technology.', l: [['industries.html', 'Industries']] },
+    { p: ['replace (my |our )?(staff|people|team|employees|jobs?)', 'job losses', 'layoffs?', 'redundan\\w*'],
+      a: 'No. The aim is to take repetitive work off your people so they can focus on customers and decisions. Important steps always wait for a person to approve them.', l: [] },
+    { p: ['data', 'privacy', 'secure', 'security', 'confidential\\w*', 'safe', 'gdpr', 'nda'],
+      a: 'We only use what we need for the work and agree access before we start. Enquiry details are handled as set out in our privacy policy, and ASF™ is built for confidential company material. Ask us if you need an NDA.', l: [['privacy.html', 'Privacy policy']] },
+    { p: ['outside india', 'international\\w*', 'abroad', 'overseas', 'other countr\\w*', 'remote\\w*', 'usa', 'uk', 'europe', 'dubai', 'uae'],
+      a: 'Yes. We work with clients internationally; most engagements run remotely, with on-site visits where needed.', l: [['contact.html#experts', 'Talk to our experts']] },
+    { p: ['jobs?', 'careers?', 'intern\\w*', 'hiring', 'vacanc\\w*', 'work (at|for) leanova', 'join (you|leanova|your team)'],
+      a: 'We do not list openings on this website. You are welcome to write to info@leanovaopexsolutions.com with your details.', l: [] },
+    { p: ['where are you', 'located', 'location', 'address', 'office', 'hyderabad', 'visit you'],
+      a: 'Our registered office is in Ameenpur, Hyderabad, Telangana. Full address: H.No. 5-12/424 B, Road No. 2, Near Sai Baba Temple, Ameenpur, Hyderabad 502032.', l: [['contact.html', 'Contact us']] },
+    { p: ['contact', 'email', 'call', 'phone', 'whats ?app', 'talk to (someone|a person|a human|an expert)', 'speak to', 'reach you', 'get in touch'],
+      a: 'Email ' + EMAIL + ' or call/WhatsApp ' + PHONE + '. We usually reply within one working day. You can also use the form on our contact page.', l: [['contact.html#experts', 'Talk to our experts']] }
   ];
+  var FAQ_RX = FAQ.map(function (f) { return f.p.map(function (x) { return new RegExp('(^|[^a-z0-9])(' + x + ')(?![a-z0-9])', 'i'); }); });
   function faqAnswer(q) {
-    var s = ' ' + q.toLowerCase().replace(/leanova|opex/g, ' ') + ' ', best = null, score = 0;
-    FAQ.forEach(function (f) {
-      var n = 0; f.k.forEach(function (k) { if (s.indexOf(k) > -1) n += k.length; });
-      if (n > score) { score = n; best = f; }
+    var s = ' ' + String(q).toLowerCase().replace(/[’']/g, '').replace(/leanova opex( solutions)?/g, 'leanova') + ' ';
+    var best = -1, score = 0;
+    FAQ_RX.forEach(function (rxs, i) {
+      var n = 0;
+      var seen = {};
+      rxs.forEach(function (rx) { var m = rx.exec(s); if (m && !seen[m[2]]) { seen[m[2]] = 1; n += m[2].length; } });
+      if (n > score) { score = n; best = i; }
     });
-    if (!best) return { text: 'I can help with our services, how we work, pricing, the ASF™ workspace and how to reach us. For anything specific to your business, our team can answer directly.', links: [['contact.html#experts', 'Talk to our experts']] };
-    return { text: best.a, links: best.l };
+    if (best < 0) return { text: 'I can help with our services, how we work, pricing, the ASF™ workspace and how to reach us. For anything specific to your business, our team can answer directly.', links: [['contact.html#experts', 'Talk to our experts']] };
+    return { text: FAQ[best].a, links: FAQ[best].l };
   }
 
   /* ---------- Styles ---------- */
@@ -93,7 +143,8 @@
     '.la-form{display:flex;gap:8px;padding:10px 14px 14px;border-top:1px solid #2a2c31}' +
     '.la-form input{flex:1;min-width:0;background:#17181c;border:1px solid #383b42;color:#fff;border-radius:10px;padding:10px 12px;font:400 15px system-ui}' +
     '.la-form button{background:#d6b064;color:#1b1407;border:0;border-radius:10px;padding:0 14px;font:600 14px system-ui;cursor:pointer}.la-form button:disabled{opacity:.5;cursor:default}' +
-    '.la-foot{font-size:11.5px;color:#9a9da4;padding:0 14px 10px;margin-top:-6px}' +
+    '.la-foot{font-size:12px;color:#9a9da4;padding:0 14px 10px;margin-top:-6px}.la-foot a,.la-privacy a{color:#ecca86}' +
+    '.la-privacy{margin:0;font-size:12px;line-height:1.5;color:#9a9da4;max-width:320px;text-align:left;border-top:1px solid #2a2c31;padding-top:10px}' +
     '.la-voice{flex:1;display:flex;flex-direction:column;align-items:center;gap:14px;padding:22px 18px;text-align:center;overflow-y:auto}' +
     '.la-orb{width:132px;height:132px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 35% 30%,#f4dfae,#d6b064 45%,#6d5320 100%);box-shadow:0 0 0 0 rgba(214,176,100,.4);transition:transform .2s}' +
     '.la-orb.live{animation:laPulse 1.6s ease-out infinite}.la-orb.speaking{transform:scale(1.08)}' +
@@ -125,7 +176,7 @@
     '<div class="la-log" id="la-log" aria-live="polite"></div>' +
     '<div class="la-chips" id="la-chips"></div>' +
     '<form class="la-form" id="la-form"><label class="la-sr" for="la-in">Your question</label><input id="la-in" autocomplete="off" maxlength="600" placeholder="Ask about services, pricing, ASF™…"><button type="submit" id="la-send">Send</button></form>' +
-    '<div class="la-foot">Answers are automated and may be incomplete. For anything specific, our team will confirm.</div></div>';
+    '<div class="la-foot">Automated answers that may be incomplete; our team will confirm anything specific. Please do not share sensitive personal information. <a href="privacy.html#assistant">Privacy</a></div></div>';
 
   var voicePanel = document.createElement('section');
   voicePanel.className = 'la-panel la-panel-voice'; voicePanel.id = 'la-p-voice'; voicePanel.hidden = true; voicePanel.setAttribute('role', 'dialog'); voicePanel.setAttribute('aria-label', 'Leanova voice agent');
@@ -137,6 +188,7 @@
     '<button type="button" class="la-vbtn" id="la-vbtn">' + ic('mic') + 'Start voice call</button>' +
     '<div id="la-vnote"></div>' +
     '<div class="la-tx" id="la-tx" aria-live="polite"></div>' +
+    '<p class="la-privacy">Voice calls are handled by our provider, ElevenLabs. The call audio and a transcript are processed and stored so the assistant can answer you, and Leanova may review them. Your microphone is used only while a call is on. Please do not share sensitive personal information. <a href="privacy.html#assistant">Privacy policy</a></p>' +
     '<p class="la-sub">Prefer a person? Call or WhatsApp <b style="color:#f3f1ec">' + PHONE + '</b>.</p>' +
     '</div></div>';
   document.body.appendChild(dock); document.body.appendChild(chatPanel); document.body.appendChild(voicePanel);
@@ -148,13 +200,17 @@
 
   function openPanel(which) {
     which = which === 'voice' ? 'voice' : 'chat';
-    if (openWhich && openWhich !== which) panels[openWhich].hidden = true;
+    if (openWhich && openWhich !== which) {
+      if (openWhich === 'voice' && typeof stopVoice === 'function') stopVoice();
+      panels[openWhich].hidden = true;
+    }
     panels[which].hidden = false; dock.hidden = true; openWhich = which;
     fabs[which].setAttribute('aria-expanded', 'true');
     setTimeout(function () { if (which === 'chat') inp.focus(); else $('la-vbtn').focus(); }, 30);
   }
   function closePanel() {
     if (!openWhich) return;
+    if (openWhich === 'voice' && typeof stopVoice === 'function') stopVoice();
     var w = openWhich; panels[w].hidden = true; dock.hidden = false; openWhich = null;
     fabs[w].setAttribute('aria-expanded', 'false'); fabs[w].focus();
   }
@@ -255,32 +311,50 @@
     return import('https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.36.1/+esm').then(function (m) { return m.Conversation; });
   }
 
+  /* Each call attempt gets an id. Closing the panel (or the page) bumps the id,
+     so an attempt still waiting on the microphone, the SDK or ElevenLabs is
+     abandoned at whatever step it has reached, and a session that connects
+     after the visitor left is ended immediately instead of running unseen. */
+  var attempt = 0;
+  function stopSession(c) { if (c) { try { c.endSession(); } catch (e) {} } }
+
   function startVoice() {
     if (!ELEVENLABS_AGENT_ID) { note('Voice agent not connected yet. Please use chat, or call ' + esc(PHONE) + '.'); return; }
-    if (connecting) return;
-    connecting = true; vbtn.disabled = true; vstatus.textContent = 'Connecting…'; note('');
+    if (connecting || convo) return;
+    var id = ++attempt;
+    var current = function () { return id === attempt; };
+    connecting = true; vstatus.textContent = 'Connecting\u2026'; note('');
+    vbtn.className = 'la-vbtn end'; vbtn.innerHTML = 'Cancel'; vbtn.disabled = false;
     var mic = (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) ? navigator.mediaDevices.getUserMedia({ audio: true }) : Promise.reject(new Error('nomic'));
     mic.then(function (stream) {
       stream.getTracks().forEach(function (t) { t.stop(); });
+      if (!current()) throw { cancelled: true };
       return loadSdk();
     }).then(function (Conversation) {
+      if (!current()) throw { cancelled: true };
       return Conversation.startSession({
         agentId: ELEVENLABS_AGENT_ID,
         onConnect: function () {
-          connecting = false; orb.className = 'la-orb live'; vstatus.textContent = 'Listening…';
+          if (!current()) return;
+          connecting = false; orb.className = 'la-orb live'; vstatus.textContent = 'Listening\u2026';
           vsub.textContent = 'Speak naturally. You can interrupt at any time.';
           vbtn.className = 'la-vbtn end'; vbtn.innerHTML = 'End call'; vbtn.disabled = false;
         },
-        onDisconnect: function () { convo = null; connecting = false; setIdle('Call ended', 'Start again any time, or switch to chat.'); },
+        onDisconnect: function () { if (!current()) return; convo = null; connecting = false; setIdle('Call ended', 'Start again any time, or switch to chat.'); },
         onModeChange: function (m) {
+          if (!current()) return;
           var speaking = m && m.mode === 'speaking';
           orb.className = 'la-orb live' + (speaking ? ' speaking' : '');
-          vstatus.textContent = speaking ? 'Leanova is speaking…' : 'Listening…';
+          vstatus.textContent = speaking ? 'Leanova is speaking\u2026' : 'Listening\u2026';
         },
-        onMessage: function (m) { if (m) addTx((m.role || m.source) === 'user' ? 'user' : 'ai', m.message); },
+        onMessage: function (m) { if (m && current()) addTx((m.role || m.source) === 'user' ? 'user' : 'ai', m.message); },
         onError: function (e) { console.warn('[Leanova voice]', e); }
       });
-    }).then(function (c) { convo = c; }, function (err) {
+    }).then(function (c) {
+      if (!current()) { stopSession(c); return; }
+      convo = c;
+    }, function (err) {
+      if (!current() || (err && err.cancelled)) return;
       connecting = false; console.warn('[Leanova voice]', err);
       var denied = err && (err.name === 'NotAllowedError' || err.name === 'SecurityError' || err.message === 'nomic');
       setIdle('Voice call unavailable', denied
@@ -289,9 +363,16 @@
       if (inPreview) note('This preview blocks microphone access, so the voice call runs only on the live site (leanovaopexsolutions.com).');
     });
   }
-  function endVoice() { if (convo) { try { convo.endSession(); } catch (e) {} } convo = null; setIdle('Call ended', 'Start again any time, or switch to chat.'); }
-  vbtn.addEventListener('click', function () { if (convo) endVoice(); else startVoice(); });
-  window.addEventListener('pagehide', function () { if (convo) { try { convo.endSession(); } catch (e) {} } });
+  /* Ends an active call and cancels one still connecting. */
+  function stopVoice(msg) {
+    var hadCall = !!convo || connecting;
+    attempt++;
+    var c = convo; convo = null; connecting = false;
+    stopSession(c);
+    if (hadCall) setIdle(msg || 'Call ended', 'Start again any time, or switch to chat.');
+  }
+  vbtn.addEventListener('click', function () { if (convo || connecting) stopVoice(connecting && !convo ? 'Call cancelled' : 'Call ended'); else startVoice(); });
+  window.addEventListener('pagehide', function () { stopVoice(); });
 
   /* Any element with data-open-assistant="chat|voice" opens the panel. */
   document.querySelectorAll('[data-open-assistant]').forEach(function (el) {

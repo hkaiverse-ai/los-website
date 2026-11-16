@@ -39,7 +39,7 @@
   function services() {
     return Array.prototype.map.call(form.querySelectorAll('input[name=service]:checked'), function (x) { return x.value; });
   }
-  function showForm() { form.hidden = false; $('result').hidden = true; }
+  function showForm() { form.hidden = false; $('result').hidden = true; var o = $('send-ok'); if (o) o.hidden = true; }
   function sendError(text) { var e = $('send-err'); e.textContent = text; e.hidden = !text; }
   form.addEventListener('change', function (e) {
     if (e.target.name === 'service' && services().length) bad(null, 'services-err', false);
@@ -50,6 +50,7 @@
     e.preventDefault();
     if (sending) return;
     sendError('');
+    var okNote = $('send-ok'); if (okNote) okNote.hidden = true;
     var first = null, any = false;
     function check(input, errId, cond) { if (bad(input, errId, cond)) { any = true; first = first || input; } }
     check(form.querySelector('input[name=service]'), 'services-err', !services().length);
@@ -83,24 +84,59 @@
 
     sending = true;
     var btn = $('submit-btn');
-    btn.disabled = true; btn.textContent = 'Sending…';
+    btn.disabled = true; btn.textContent = 'Sending\u2026';
+
+    /* Remember exactly what was sent. If the visitor edits the form while the
+       request is in flight, a late reply must not wipe those edits. */
+    var fields = Array.prototype.slice.call(form.querySelectorAll('input:not([type=checkbox]):not([type=radio]), textarea, select'));
+    var boxes = Array.prototype.slice.call(form.querySelectorAll('input[type=checkbox], input[type=radio]'));
+    var sent = fields.map(function (f) { return f.value; }).concat(boxes.map(function (b) { return b.checked; }));
+    var sentMode = mode;
+    function editedSinceSend() {
+      if (mode !== sentMode) return true;
+      var now = fields.map(function (f) { return f.value; }).concat(boxes.map(function (b) { return b.checked; }));
+      return now.some(function (v, i) { return v !== sent[i]; });
+    }
+
+    var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
     fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(data)
-    }).then(function (r) { return r.json().catch(function () { return { success: false }; }); })
-      .then(function (res) {
-        if (!res || String(res.success) !== 'true') throw new Error((res && res.message) || 'failed');
-        $('done-name').textContent = ', ' + name.split(' ')[0];
-        form.reset(); setMode(mode);
-        form.hidden = true;
-        $('result').hidden = false;
-        $('result').focus();
-      })
-      .catch(function () {
-        sendError('Sorry, your message could not be sent. Please try again in a moment, or call +91 94918 87419.');
-      })
-      .then(function () { sending = false; btn.disabled = false; btn.textContent = btnLabel[mode]; });
+      body: JSON.stringify(data),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (res) {
+        /* Success only when the HTTP status is OK AND FormSubmit confirms it.
+           FormSubmit answers 200 with success:"false" for problems such as an
+           inbox that has not been activated yet, so the status alone is not enough. */
+        if (!r.ok || !res || String(res.success) !== 'true') throw new Error((res && res.message) || ('HTTP ' + r.status));
+        return res;
+      });
+    }).then(function () {
+      $('done-name').textContent = ', ' + name.split(' ')[0];
+      if (editedSinceSend()) {
+        /* Sent, but keep what the visitor has typed since. */
+        sendError('');
+        var ok = $('send-ok');
+        ok.textContent = 'Your message was sent. You have changed the form since sending; send it again if you want us to have those changes too.';
+        ok.hidden = false;
+        return;
+      }
+      form.reset(); setMode(mode);
+      form.hidden = true;
+      $('result').hidden = false;
+      $('result').focus();
+    }).catch(function (err) {
+      console.warn('[Leanova contact]', err);
+      var timedOut = err && err.name === 'AbortError';
+      sendError(timedOut
+        ? 'This is taking too long, so we stopped waiting. Your message may not have been sent. Please try again, or call +91 94918 87419.'
+        : 'Sorry, your message could not be sent. Your details are still in the form. Please try again in a moment, or call +91 94918 87419.');
+    }).then(function () {
+      clearTimeout(timer);
+      sending = false; btn.disabled = false; btn.textContent = btnLabel[mode];
+    });
   });
 
   $('again').addEventListener('click', function () { showForm(); $('msg').focus(); });

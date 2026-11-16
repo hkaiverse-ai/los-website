@@ -75,8 +75,8 @@ a:hover{color:var(--gold-lit)}
 .narrow{max-width:48rem}
 
 .cols{display:grid;gap:clamp(1rem,2vw,1.5rem)}
-.cols--2{grid-template-columns:repeat(auto-fit,minmax(19rem,1fr))}
-.cols--3{grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
+.cols--2{grid-template-columns:repeat(auto-fit,minmax(min(19rem,100%),1fr))}
+.cols--3{grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr))}
 .cols--split{grid-template-columns:minmax(0,19rem) minmax(0,1fr);gap:clamp(1.75rem,4vw,3.5rem);align-items:start}
 .cols--media{grid-template-columns:minmax(0,1fr) minmax(0,25rem);gap:clamp(2rem,4vw,3.5rem);align-items:center}
 @media(max-width:58rem){.cols--split,.cols--media{grid-template-columns:1fr}}
@@ -127,6 +127,14 @@ a:hover{color:var(--gold-lit)}
 @media(max-width:34rem){
   .brand__logo{height:2.7rem}
   .brand__name{font-size:.85rem;letter-spacing:.15em}
+}
+/* Smallest phones (320px): the uppercase wordmark is wider than the room
+   beside the logo, so shrink it further and let it wrap rather than push the
+   page sideways. */
+@media(max-width:24rem){
+  .brand{min-width:0;max-width:100%}
+  .brand__logo{height:2.3rem}
+  .brand__name{font-size:.74rem;letter-spacing:.1em;white-space:normal}
   .brand__tag{font-size:.55rem;letter-spacing:.1em;white-space:normal}
 }
 /* Narrow viewports only: the strapline is wider than the room left for it, so
