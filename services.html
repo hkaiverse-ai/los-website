@@ -1,209 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Services &mdash; Leanova OPEX Solutions</title>
-<meta name="description" content="Lean Transformation, Productivity Improvement, Quality Excellence, Supply Chain and Operational Flow, Digital Transformation and AI-enabled Operational Excellence.">
-<link rel="icon" href="assets/favicon.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Services &mdash; Leanova OPEX Solutions">
-<meta property="og:description" content="Lean Transformation, Productivity Improvement, Quality Excellence, Supply Chain and Operational Flow, Digital Transformation and AI-enabled Operational Excellence.">
-<meta property="og:image" content="https://leanovaopexsolutions.com/assets/og-image.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/site.css">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Leanova Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=31">
 </head>
 <body>
-<a class="skip" href="#main">Skip to main content</a>
+<div id="site-header"></div>
+<main id="main" data-page="services">
 
-<header class="top">
-  <div class="wrap">
-    <div class="brand">
-      <img class="brand__logo" src="assets/leanova-mark.jpeg" alt="" width="1024" height="626">
-      <span class="brand__rule" aria-hidden="true"></span>
-      <a class="brand__text" href="index.html">
-        <span class="brand__name">Leanova <span>OPEX</span> Solutions</span>
-        <span class="brand__tag">Transforming Operations. Enabling Excellence. Accelerating Growth.</span>
-      </a>
-    </div>
-    <nav class="main">
-      <a href="about.html">About Us</a>
-      <a href="services.html" aria-current="page">Services</a>
-      <a href="asf.html">ASF&trade;</a>
-      <a href="industries.html">Industries</a>
-      <a href="training.html">Training</a>
-      <a class="btn" href="contact.html">Contact Us</a>
-    </nav>
-  </div>
-</header>
-
-<main id="main">
-
-  <section class="band" id="services">
+  <section class="page-hero">
     <div class="wrap">
-      <div class="narrow">
-        <div class="kick">Our Services</div>
-        <h1 style="margin-top:.9rem">Operational Excellence Services</h1>
+      <span class="eyebrow">Services</span>
+      <h1>Everything we do, in one place.</h1>
+      <p class="lead">Automation, AI, websites, software and operations improvement from one team. Start with one service and add others as you grow.</p>
+      <nav class="sg-tabs" aria-label="Service groups">
+        <a class="sg-tab" href="#automation">Automation &amp; AI</a>
+        <a class="sg-tab" href="#websites">Websites &amp; software</a>
+        <a class="sg-tab" href="#operations">Operations &amp; people</a>
+        <a class="sg-tab" href="#asf-framework">ASF&trade; framework</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- GROUP 1 -->
+  <section class="sgroup" id="automation" style="border-top:0">
+    <div class="wrap">
+      <div class="sgroup-head">
+        <div class="item" style="gap:12px">
+          <span class="num">Group 1</span>
+          <h2>Automation &amp; AI</h2>
+          <p class="lead">Take repetitive work off your team and connect the systems you already use.</p>
+        </div>
+        <div class="media"><img src="img/gen/automation.jpg" alt="Illustration: documents and emails flowing automatically through an AI hub with a human approval step" width="1000" height="753" loading="lazy"></div>
+      </div>
+      <div class="sg-cards">
+        <article class="card svc" id="workflow"><span class="ic-box" data-icon="flow"></span><h3>Workflow &amp; business process automation <span class="core">Core</span></h3>
+          <p class="small">Routine work moves on its own between your tools, with a person approving anything important.</p>
+          <ul class="ticks small"><li>Approvals, reminders and status updates</li><li>Hand-offs between teams and systems</li><li>Automation of repetitive business tasks</li></ul>
+          <a class="link" href="contact.html#project">Tell us what to automate &rarr;</a></article>
+        <article class="card svc" id="crm"><span class="ic-box" data-icon="people"></span><h3>CRM systems &amp; integrations</h3>
+          <p class="small">Set up or connect your CRM so leads, customers and follow-ups live in one place.</p>
+          <ul class="ticks small"><li>CRM setup and data migration</li><li>Connections to email, forms and accounts</li><li>Automatic follow-up reminders</li></ul>
+          <a class="link" href="contact.html#project">Discuss your CRM &rarr;</a></article>
+        <article class="card svc" id="documents"><span class="ic-box" data-icon="doc"></span><h3>Document processing</h3>
+          <p class="small">Read details from invoices, forms and PDFs and put them where they belong.</p>
+          <ul class="ticks small"><li>Data captured from PDFs and forms</li><li>Checks against orders and records</li><li>Exceptions flagged for a person</li></ul>
+          <a class="link" href="contact.html#project">Discuss documents &rarr;</a></article>
+        <article class="card svc" id="reporting"><span class="ic-box" data-icon="gauge"></span><h3>Dashboards &amp; reporting</h3>
+          <p class="small">Reports that build and send themselves from one source of truth.</p>
+          <ul class="ticks small"><li>Data combined from several systems</li><li>Scheduled reports by email</li><li>Live performance dashboards</li></ul>
+          <a class="link" href="contact.html#project">Discuss reporting &rarr;</a></article>
+        <article class="card svc" id="agents"><span class="ic-box" data-icon="agent"></span><h3>AI agents &amp; assistants</h3>
+          <p class="small">Chat and voice assistants that answer, draft and route work, with clear limits and human approval. <a class="link" href="work.html#built" style="font-size:inherit">See agents we built</a></p>
+          <ul class="ticks small"><li>Support reply drafting</li><li>Voice interviews and practice sessions</li><li>Knowledge assistants for your documents</li></ul>
+          <a class="link" href="contact.html#project">Discuss an AI agent &rarr;</a></article>
+        <article class="card svc" id="ai-ops"><span class="ic-box" data-icon="spark"></span><h3>AI-enabled operations</h3>
+          <p class="small">Use your operational data for forecasting, quality prediction and better decisions.</p>
+          <ul class="ticks small"><li>Demand and downtime forecasting</li><li>Quality prediction</li><li>Decision support where good data exists</li></ul>
+          <a class="link" href="contact.html#project">Discuss AI for operations &rarr;</a></article>
       </div>
     </div>
   </section>
 
-  <section class="band" id="lean" style="padding-top:0">
+  <!-- GROUP 2 -->
+  <section class="sgroup section alt" id="websites" style="padding-block:clamp(40px,6vw,72px)">
     <div class="wrap">
-      <div class="cols cols--split">
-        <div>
-          <div class="kick">01</div>
-          <h2 style="margin-top:.8rem">Lean Transformation</h2>
+      <div class="sgroup-head">
+        <div class="item" style="gap:12px">
+          <span class="num">Group 2</span>
+          <h2>Websites &amp; software</h2>
+          <p class="lead">A clear online presence and software built around how your business works.</p>
         </div>
-        <div>
-          <p class="lede">Transform traditional operations into Lean, Flow-oriented and Customer-focused systems.</p>
-          <p style="margin-top:1.1rem">Services include:</p>
-          <div class="pills"><span class="pill">Lean assessment</span><span class="pill">Value Stream Mapping</span><span class="pill">Waste elimination</span><span class="pill">5S / 6S</span><span class="pill">Kaizen</span><span class="pill">Standardized Work</span><span class="pill">Visual Management</span><span class="pill">Kanban</span><span class="pill">Line Balancing</span><span class="pill">SMED</span><span class="pill">Poka-Yoke</span><span class="pill">TPM</span><span class="pill">OEE improvement</span><span class="pill">Production system development</span></div>
+        <div class="media"><img src="img/gen/websites.jpg" alt="Illustration: a business website on laptop, tablet and phone with booking, payment and cloud hosting" width="1000" height="753" loading="lazy"></div>
+      </div>
+      <div class="sg-cards">
+        <article class="card svc" id="website"><span class="ic-box" data-icon="monitor"></span><h3>Website development <span class="core">Core</span></h3>
+          <p class="small">A business website planned around your customers, your content and what the site needs to do.</p>
+          <ul class="ticks small"><li>Works on phone, tablet and desktop</li><li>Enquiry forms that reach your inbox or CRM</li><li>Built, tested and handed over as agreed</li></ul>
+          <a class="link" href="contact.html#project">Plan a website &rarr;</a></article>
+        <article class="card svc" id="maintenance"><span class="ic-box" data-icon="shield"></span><h3>Website maintenance &amp; support <span class="core">Core</span></h3>
+          <p class="small">Keep your website current, secure and working, with one contact for every change.</p>
+          <ul class="ticks small"><li>Content updates and page changes</li><li>Software updates and backups</li><li>Fixes and technical support</li></ul>
+          <a class="link" href="contact.html#project">Ask about maintenance &rarr;</a></article>
+        <article class="card svc" id="software"><span class="ic-box" data-icon="code"></span><h3>Custom business software</h3>
+          <p class="small">Software built for a specific process when off-the-shelf tools do not fit.</p>
+          <ul class="ticks small"><li>Web apps and internal tools</li><li>Integrations with your systems</li><li>Testing and handover</li></ul>
+          <a class="link" href="contact.html#project">Discuss software &rarr;</a></article>
+        <article class="card svc" id="payments"><span class="ic-box" data-icon="cart"></span><h3>Online payments &amp; bookings</h3>
+          <p class="small">Let customers book and pay online, with orders that recover cleanly if a payment is interrupted.</p>
+          <ul class="ticks small"><li>Payment gateway integration</li><li>Booking and order records</li><li>Confirmation emails</li></ul>
+          <a class="link" href="contact.html#project">Discuss payments &rarr;</a></article>
+        <article class="card svc" id="cloud"><span class="ic-box" data-icon="layers"></span><h3>Cloud setup &amp; hosting</h3>
+          <p class="small">A secure, monitored home for your applications, with a clear handover.</p>
+          <ul class="ticks small"><li>Infrastructure and deployment</li><li>Monitoring and backups</li><li>Runbooks for your team</li></ul>
+          <a class="link" href="contact.html#project">Discuss cloud setup &rarr;</a></article>
+        <article class="card svc" id="video"><span class="ic-box" data-icon="megaphone"></span><h3>AI-generated video</h3>
+          <p class="small">Explainer, training and marketing videos made with AI, scoped per project. <a class="link" href="index.html#film-h" style="font-size:inherit">See our intro video</a></p>
+          <ul class="ticks small"><li>Narrated explainer videos</li><li>Training and lesson videos</li><li>Short marketing clips</li></ul>
+          <a class="link" href="contact.html#project">Discuss a video &rarr;</a></article>
+      </div>
+
+      <div class="grid g2" style="gap:40px;margin-top:56px;align-items:start">
+        <div class="item" style="gap:16px">
+          <span class="eyebrow">What a Leanova business website includes</span>
+          <div class="site-anatomy">
+            <div><b>Clear headline</b><span>What you do, for whom, in one line</span></div>
+            <div><b>Services</b><span>One section each</span></div>
+            <div><b>Proof</b><span>Credentials &amp; work</span></div>
+            <div><b>About</b><span>Who is behind it</span></div>
+            <div><b>Enquiry form</b><span>&rarr; your inbox or CRM</span></div>
+          </div>
+        </div>
+        <div class="item" style="gap:16px">
+          <span class="eyebrow">What a website care plan can cover</span>
+          <table class="tbl-simple">
+            <thead><tr><th>Included</th><th>Task</th><th>Frequency</th></tr></thead>
+            <tbody>
+              <tr><td>&#10003;</td><td>Content and page updates</td><td>On request</td></tr>
+              <tr><td>&#10003;</td><td>Software and security updates</td><td>Agreed in plan</td></tr>
+              <tr><td>&#10003;</td><td>Backups</td><td>Agreed in plan</td></tr>
+              <tr><td>&#10003;</td><td>Form, link and speed checks</td><td>Agreed in plan</td></tr>
+              <tr><td>&#10003;</td><td>Fixes and technical support</td><td>As needed</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="band" id="productivity" style="padding-top:0">
+  <!-- GROUP 3 -->
+  <section class="sgroup" id="operations">
     <div class="wrap">
-      <div class="cols cols--split">
-        <div>
-          <div class="kick">02</div>
-          <h2 style="margin-top:.8rem">Productivity Improvement</h2>
+      <div class="sgroup-head">
+        <div class="item" style="gap:12px">
+          <span class="num">Group 3</span>
+          <h2>Operations &amp; people</h2>
+          <p class="lead">Where Leanova began: improving how work flows, and building teams that keep improving.</p>
         </div>
-        <div>
-          <p class="lede">Improve output and resource utilization without proportionately increasing resources.</p>
-          <p style="margin-top:1.1rem">We help organizations improve:</p>
-          <div class="pills"><span class="pill">Labour productivity</span><span class="pill">Machine productivity</span><span class="pill">Overall Equipment Effectiveness</span><span class="pill">Capacity utilization</span><span class="pill">Throughput</span><span class="pill">Cycle time</span><span class="pill">Takt time</span><span class="pill">Line balancing</span><span class="pill">Workforce utilization</span><span class="pill">Material flow</span></div>
-        </div>
+        <div class="media"><img src="img/gen/operations.jpg" alt="Illustration: a lean production line with kanban board, rising efficiency gauge and a team at a visual board" width="1000" height="753" loading="lazy"></div>
       </div>
+      <div class="sg-cards">
+        <article class="card svc" id="digital"><span class="ic-box" data-icon="monitor"></span><h3>Digital transformation</h3>
+          <p class="small">Move paper and manual processes to connected digital systems, one process at a time.</p>
+          <ul class="ticks small"><li>Digital maturity review</li><li>Paper records digitised</li><li>Technology selection</li></ul>
+          <a class="link" href="contact.html#project">Discuss digital transformation &rarr;</a></article>
+        <article class="card svc" id="lean"><span class="ic-box" data-icon="lean"></span><h3>Lean transformation</h3>
+          <p class="small">Remove waste and improve how work flows to the customer.</p>
+          <ul class="ticks small"><li>Value stream mapping</li><li>5S, Kaizen and standard work</li><li>Kanban and pull systems</li></ul>
+          <a class="link" href="contact.html#project">Discuss Lean &rarr;</a></article>
+        <article class="card svc" id="opex"><span class="ic-box" data-icon="target"></span><h3>Operational excellence</h3>
+          <p class="small">Daily management and improvement routines that make results last.</p>
+          <ul class="ticks small"><li>Performance reviews and KPIs</li><li>Visual management</li><li>Continuous improvement culture</li></ul>
+          <a class="link" href="contact.html#project">Discuss operational excellence &rarr;</a></article>
+        <article class="card svc" id="productivity"><span class="ic-box" data-icon="gauge"></span><h3>Productivity improvement</h3>
+          <p class="small">Get more output from the same people, machines and space.</p>
+          <ul class="ticks small"><li>Line balancing and cycle time</li><li>OEE and changeover (SMED)</li><li>Capacity and layout review</li></ul>
+          <a class="link" href="contact.html#project">Discuss productivity &rarr;</a></article>
+        <article class="card svc" id="quality"><span class="ic-box" data-icon="shield"></span><h3>Quality excellence</h3>
+          <p class="small">Find the root causes of defects and stop them coming back.</p>
+          <ul class="ticks small"><li>Root cause analysis and 8D</li><li>SPC, FMEA and Poka-Yoke</li><li>ISO and IATF quality systems</li></ul>
+          <a class="link" href="contact.html#project">Discuss quality &rarr;</a></article>
+        <article class="card svc" id="training"><span class="ic-box" data-icon="cap"></span><h3>Training &amp; capability development</h3>
+          <p class="small">Practical training that helps teams and leaders sustain improvement.</p>
+          <ul class="ticks small"><li>Lean and Six Sigma</li><li>Quality and manufacturing excellence</li><li>Digital and AI for business</li></ul>
+          <a class="link" href="contact.html#project">Discuss training &rarr;</a></article>
+        <article class="card svc" id="asf-card" style="border-color:var(--gold)"><span class="ic-box" data-icon="lean"></span><h3>ASF&trade; framework</h3>
+          <p class="small">Our method for understanding the whole business and choosing what to improve or automate first.</p>
+          <ul class="ticks small"><li>Seven-stage improvement cycle</li><li>Priorities by value and effort</li><li>Measured and adapted over time</li></ul>
+          <a class="link" href="#asf-framework">Learn about ASF&trade; &rarr;</a></article>
+      </div>
+      <p class="small muted" style="margin-top:18px">Supply chain and operational flow work (inventory, planning and logistics) is part of Lean transformation and operational excellence.</p>
     </div>
   </section>
 
-  <section class="band" id="quality" style="padding-top:0">
+  <!-- ASF FRAMEWORK -->
+  <section class="section alt" id="asf-framework" style="scroll-margin-top:120px">
     <div class="wrap">
-      <div class="cols cols--split">
-        <div>
-          <div class="kick">03</div>
-          <h2 style="margin-top:.8rem">Quality Excellence</h2>
-        </div>
-        <div>
-          <p class="lede">Build robust processes capable of delivering consistent quality.</p>
-          <p style="margin-top:1.1rem">Our solutions include:</p>
-          <div class="pills"><span class="pill">Quality management systems</span><span class="pill">Root Cause Analysis</span><span class="pill">Problem Solving</span><span class="pill">8D</span><span class="pill">DMAIC</span><span class="pill">SPC</span><span class="pill">Process capability</span><span class="pill">FMEA</span><span class="pill">Poka-Yoke</span><span class="pill">Defect reduction</span><span class="pill">Customer complaint reduction</span><span class="pill">Cost of Poor Quality reduction</span></div>
+      <div class="loop-grid">
+        <div class="media" style="border:0;background:transparent"><img src="img/gen/asf-loop.jpg" alt="Diagram: six connected stages in a loop (observe, decide, execute, feedback, learn, adapt) with the execute stage glowing as the bottleneck" width="900" height="900" loading="lazy"></div>
+        <div class="item" style="gap:18px">
+          <span class="eyebrow">ASF&trade; &middot; Adaptive Systems Framework</span>
+          <h2>Find where the loop is stuck, then help people out of it.</h2>
+          <p>ASF&trade; treats any person, team or organisation as a feedback loop. Every result depends on how fast that loop closes:</p>
+          <div class="loop-flow" aria-label="Observe, then decide, execute, feedback, learn and adapt">
+            <span>Observe</span><i>&rarr;</i><span>Decide</span><i>&rarr;</i><span>Execute</span><i>&rarr;</i><span>Feedback</span><i>&rarr;</i><span>Learn</span><i>&rarr;</i><span>Adapt</span>
+          </div>
+          <p>We measure six inputs that set the speed of the loop:</p>
+          <div class="inputs6">
+            <div><b>Observation latency</b>How long until a problem is seen</div>
+            <div><b>Decision latency</b>How long until someone decides</div>
+            <div><b>Execution latency</b>How long until the decision is acted on</div>
+            <div><b>Feedback delay</b>How long until results come back</div>
+            <div><b>Learning velocity</b>How fast lessons change behaviour</div>
+            <div><b>Dependency</b>How much the loop waits on others</div>
+          </div>
         </div>
       </div>
+
+      <div class="sec-head" style="margin:56px 0 22px"><span class="eyebrow">What ASF&trade; gives you</span><h2>The gap, the reason, and the next step</h2></div>
+      <div class="out-row">
+        <div><b>ALS</b><p class="small">The <strong>Adaptation Latency Score</strong>: one number for how fast the whole loop closes.</p></div>
+        <div><b>Primary bottleneck</b><p class="small">The stage where the loop is stuck, so effort goes where it counts first.</p></div>
+        <div><b>CRT</b><p class="small">For organisations, <strong>Capability Realization Time</strong>: how long until target capability is reached, using the nine-pillar architecture.</p></div>
+      </div>
+      <div class="grid g3" style="margin-top:36px">
+        <div class="card"><span class="ic-box" data-icon="cap"></span><h3>A learner</h3><p class="small">Is the student slow to notice mistakes, or slow to change after feedback? ASF shows which, and what to practise next.</p></div>
+        <div class="card"><span class="ic-box" data-icon="target"></span><h3>A cricket batter</h3><p class="small">Reading the ball, choosing the shot, or adjusting after getting out: ASF finds the slowest link in the loop.</p></div>
+        <div class="card"><span class="ic-box" data-icon="factory"></span><h3>A pharma plant</h3><p class="small">From deviation detected to CAPA closed, ASF measures each delay and maps the gap to target capability.</p></div>
+      </div>
+      <p style="margin-top:24px">So ASF&trade; finds the gap between target and current capability, shows <em>why</em> someone is stuck in the loop, and what to do next. In every engagement it decides what we improve or automate first, using our seven-stage cycle: understand, diagnose, prioritise, design, implement, measure, adapt.</p>
+      <div class="btns" style="margin-top:22px"><a class="btn btn-gold" href="contact.html#experts">Run an ASF&trade; review</a><a class="btn btn-line" href="about.html#approach">See the seven-stage cycle</a></div>
+      <p class="small muted" style="margin-top:14px">The ASF&trade; framework is our improvement method. The <a class="link" href="asf.html" style="font-size:inherit">ASF&trade; Universal Analysis Engine</a> is a separate software tool.</p>
     </div>
   </section>
 
-  <section class="band" id="supply-chain" style="padding-top:0">
+  <section class="cta-band">
     <div class="wrap">
-      <div class="cols cols--split">
-        <div>
-          <div class="kick">04</div>
-          <h2 style="margin-top:.8rem">Supply Chain &amp; Operational Flow</h2>
-        </div>
-        <div>
-          <p class="lede">Improve the movement of materials, information and products across the value chain.</p>
-          <p style="margin-top:1.1rem">We address:</p>
-          <div class="pills"><span class="pill">Inventory reduction</span><span class="pill">Supplier performance</span><span class="pill">Material flow</span><span class="pill">Logistics optimization</span><span class="pill">Warehouse improvement</span><span class="pill">Kanban systems</span><span class="pill">Pull systems</span><span class="pill">Demand&ndash;capacity alignment</span><span class="pill">Lead-time reduction</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="digital" style="padding-top:0">
-    <div class="wrap">
-      <div class="cols cols--split">
-        <div>
-          <div class="kick">05</div>
-          <h2 style="margin-top:.8rem">Digital Transformation</h2>
-        </div>
-        <div>
-          <p class="lede">Digital transformation should solve business problems&mdash;not simply introduce technology.</p>
-          <p style="margin-top:1.1rem">Leanova helps organizations identify:</p>
-        </div>
-      </div>
-      <div class="cols cols--2" style="margin-top:1.5rem">
-        <div class="stat"><span class="stat__n">What should be digitized?</span></div>
-        <div class="stat"><span class="stat__n">Why should it be digitized?</span></div>
-        <div class="stat"><span class="stat__n">How should it be digitized?</span></div>
-        <div class="stat"><span class="stat__n">What business value will it create?</span></div>
-      </div>
-      <p style="margin-top:2rem">Services include:</p>
-      <div class="pills"><span class="pill">Digital maturity assessment</span><span class="pill">Process digitization</span><span class="pill">Workflow automation</span><span class="pill">Data visualization</span><span class="pill">Dashboard development</span><span class="pill">Digital performance management</span><span class="pill">Technology selection</span><span class="pill">Digital Lean transformation</span></div>
-    </div>
-  </section>
-
-  <section class="band" id="ai" style="padding-top:0">
-    <div class="wrap">
-      <div class="kick">AI-Enabled Operational Excellence</div>
-      <h2 style="margin-top:.8rem">AI for Smarter Operations</h2>
-      <p class="lede" style="margin-top:.85rem;max-width:44rem">
-        Artificial Intelligence is transforming how organizations analyze information,
-        predict problems and make decisions.
-      </p>
-      <p style="max-width:44rem">
-        Leanova helps organizations explore practical applications of AI across business operations.
-      </p>
-      <h3 style="margin-top:2rem">AI Applications</h3>
-      <div class="pills"><span class="pill">AI-enabled decision support</span><span class="pill">Predictive analytics</span><span class="pill">Demand forecasting</span><span class="pill">Predictive maintenance</span><span class="pill">Quality prediction</span><span class="pill">Production planning</span><span class="pill">Intelligent dashboards</span><span class="pill">Process analytics</span><span class="pill">Knowledge management</span><span class="pill">Automated reporting</span><span class="pill">AI-assisted problem solving</span><span class="pill">Management decision support</span></div>
-      <h3 style="margin-top:2.5rem">Our Principle</h3>
-      <div class="note note--signal" style="margin-top:1rem">
-        <p><strong>&ldquo;First improve the process. Then digitize it. Then automate it. Then make it intelligent.&rdquo;</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="technology" style="padding-top:0">
-    <div class="wrap">
-      <div class="kick">Technology &amp; AI</div>
-      <h2 style="margin-top:.8rem">Technology with Purpose</h2>
-      <p class="lede" style="margin-top:.85rem;max-width:44rem">
-        Technology should enable business strategy&mdash;not become a strategy by itself.
-      </p>
-      <p style="margin-top:1rem">Leanova evaluates technology investments based on:</p>
-      <div class="note note--signal">
-        <p><strong>Business Need &rarr; Process Need &rarr; Data &rarr; Technology &rarr; ROI</strong></p>
-      </div>
-      <p style="margin-top:1.75rem">We help organizations determine where technologies such as:</p>
-      <div class="pills"><span class="pill">Artificial Intelligence</span><span class="pill">Machine Learning</span><span class="pill">Data Analytics</span><span class="pill">IoT</span><span class="pill">Automation</span><span class="pill">Digital Workflows</span><span class="pill">Cloud Platforms</span><span class="pill">Business Intelligence</span></div>
-      <p style="margin-top:1.75rem">can create measurable operational value.</p>
-    </div>
-  </section>
-
-  <section class="band" style="padding-top:0">
-    <div class="wrap">
-      <div class="close">
-        <p style="margin-top:1.75rem"><a class="btn btn--lg" href="contact.html">Contact Us</a></p>
-      </div>
+      <div><h2>Not sure which service fits?</h2><p style="margin-top:10px">Describe the problem. We will suggest the right starting point.</p></div>
+      <div class="btns"><a class="btn btn-gold" href="contact.html#experts">Talk to our experts</a><a class="btn btn-line" href="contact.html#project">Discuss your project</a></div>
     </div>
   </section>
 
 </main>
-
-<footer class="foot">
-  <div class="wrap">
-    <div class="cols cols--3">
-      <div>
-        <h4>Services</h4>
-        <ul><li><a href="services.html#lean">Lean Transformation</a></li><li><a href="services.html">Operational Excellence</a></li><li><a href="services.html#productivity">Productivity Improvement</a></li><li><a href="services.html#quality">Quality Excellence</a></li><li><a href="services.html#digital">Digital Transformation</a></li><li><a href="services.html#ai">AI-enabled Operations</a></li><li><a href="training.html">Training &amp; Capability Development</a></li><li><a href="asf.html">ASF&trade;</a></li></ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul><li><a href="about.html">About Us</a></li><li><a href="asf.html#approach">Our Approach</a></li><li><a href="industries.html">Industries</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="insights.html">Knowledge Centre</a></li><li><a href="contact.html#faq">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul>
-      </div>
-      <div>
-        <h4>Connect With Us</h4>
-        <ul><li>5-12/424, Road No. 02, Narendranagar Colony,<br>Ameenpur, Sangareddy District,<br>Hyderabad, Telangana 502032, India</li><li><a href="tel:+919491887419">+91 94918 87419</a></li><li><a href="mailto:info@leanovaopexsolutions.com">info@leanovaopexsolutions.com</a></li></ul>
-      </div>
-    </div>
-  </div>
-  <div class="foot__base">
-    <span>Leanova OPEX Solutions — Transforming Operations. Enabling Excellence. Accelerating Growth.</span>
-    <span>&copy; 2026 Leanova OPEX Solutions. All Rights Reserved.</span>
-  </div>
-</footer>
-
+<div id="site-footer"></div>
+<script src="site.js?v=28"></script>
 </body>
 </html>
