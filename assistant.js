@@ -318,6 +318,20 @@
   var attempt = 0;
   function stopSession(c) { if (c) { try { c.endSession(); } catch (e) {} } }
 
+  /* Silence hang-up: while the agent is listening, if the visitor says nothing
+     for SILENCE_MS the call is ended, so an abandoned call stops using credits.
+     The timer pauses while the agent speaks and restarts whenever the
+     visitor's voice is detected. */
+  var SILENCE_MS = 10000, silenceTimer = null;
+  function clearSilence() { if (silenceTimer) { clearTimeout(silenceTimer); silenceTimer = null; } }
+  function armSilence() {
+    clearSilence();
+    silenceTimer = setTimeout(function () {
+      silenceTimer = null;
+      if (convo || connecting) stopVoice('Call ended after 10 seconds of silence');
+    }, SILENCE_MS);
+  }
+
   function startVoice() {
     if (!ELEVENLABS_AGENT_ID) { note('Voice agent not connected yet. Please use chat, or call ' + esc(PHONE) + '.'); return; }
     if (connecting || convo) return;
@@ -337,17 +351,25 @@
         onConnect: function () {
           if (!current()) return;
           connecting = false; orb.className = 'la-orb live'; vstatus.textContent = 'Listening\u2026';
-          vsub.textContent = 'Speak naturally. You can interrupt at any time.';
+          vsub.textContent = 'Speak naturally. The call ends after 10 seconds of silence.';
           vbtn.className = 'la-vbtn end'; vbtn.innerHTML = 'End call'; vbtn.disabled = false;
+          armSilence();
         },
-        onDisconnect: function () { if (!current()) return; convo = null; connecting = false; setIdle('Call ended', 'Start again any time, or switch to chat.'); },
+        onDisconnect: function () { if (!current()) return; clearSilence(); convo = null; connecting = false; setIdle('Call ended', 'Start again any time, or switch to chat.'); },
         onModeChange: function (m) {
           if (!current()) return;
           var speaking = m && m.mode === 'speaking';
           orb.className = 'la-orb live' + (speaking ? ' speaking' : '');
           vstatus.textContent = speaking ? 'Leanova is speaking\u2026' : 'Listening\u2026';
+          if (speaking) clearSilence(); else armSilence();
         },
-        onMessage: function (m) { if (m && current()) addTx((m.role || m.source) === 'user' ? 'user' : 'ai', m.message); },
+        onVadScore: function (v) { if (current() && v && v.vadScore > 0.5 && silenceTimer) armSilence(); },
+        onMessage: function (m) {
+          if (!m || !current()) return;
+          var user = (m.role || m.source) === 'user';
+          if (user && silenceTimer) armSilence();
+          addTx(user ? 'user' : 'ai', m.message);
+        },
         onError: function (e) { console.warn('[Leanova voice]', e); }
       });
     }).then(function (c) {
@@ -366,6 +388,7 @@
   /* Ends an active call and cancels one still connecting. */
   function stopVoice(msg) {
     var hadCall = !!convo || connecting;
+    clearSilence();
     attempt++;
     var c = convo; convo = null; connecting = false;
     stopSession(c);
