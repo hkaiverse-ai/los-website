@@ -296,7 +296,11 @@
     vbtn.className = 'la-vbtn'; vbtn.innerHTML = ic('mic') + 'Start voice call'; vbtn.disabled = false;
   }
   function addTx(who, text) {
-    if (!text) return;
+    /* The agent's text carries delivery cues for the voice, such as [gentle] or
+       [friendly]. They are for the speech engine, not the visitor, so drop them.
+       A transcript of silence arrives as "..."; skip it. */
+    text = String(text || '').replace(/\[[a-z][a-z ,'-]{0,30}\]\s*/gi, '').trim();
+    if (!text || /^[.\u2026\s]+$/.test(text)) return;
     var d = document.createElement('div'); d.className = 'la-msg ' + (who === 'user' ? 'me' : 'bot'); d.textContent = text;
     tx.appendChild(d); while (tx.children.length > 8) tx.removeChild(tx.firstChild);
   }
