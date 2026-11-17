@@ -348,6 +348,10 @@
       if (!current()) throw { cancelled: true };
       return Conversation.startSession({
         agentId: ELEVENLABS_AGENT_ID,
+        /* Use the WebSocket connection. The SDK's default (WebRTC) does not carry the
+           page's origin, so the agent's allowed-domains check rejects it and the call
+           drops the moment it connects. The WebSocket handshake carries the origin. */
+        connectionType: 'websocket',
         onConnect: function () {
           if (!current()) return;
           connecting = false; orb.className = 'la-orb live'; vstatus.textContent = 'Listening\u2026';
