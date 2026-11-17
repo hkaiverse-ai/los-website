@@ -122,5 +122,5 @@
   });
 
   /* Site assistant: chat + ElevenLabs voice agent (see assistant.js). */
-  var as = document.createElement('script'); as.src = 'assistant.js?v=6'; as.defer = true; document.body.appendChild(as);
+  var as = document.createElement('script'); as.src = 'assistant.js?v=7'; as.defer = true; document.body.appendChild(as);
 })();
