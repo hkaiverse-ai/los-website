@@ -1,149 +1,258 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Leanova OPEX Solutions &mdash; Operational Excellence for the Next Generation of Business</title>
-<meta name="description" content="Leanova OPEX Solutions helps organizations improve Productivity, Quality, Delivery, Cost and Operational Agility through Lean Management, Operational Excellence, Digital Transformation and AI-enabled decision support.">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Leanova Opex Solutions</title>
 <link rel="icon" href="assets/favicon.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leanova OPEX Solutions &mdash; Operational Excellence for the Next Generation of Business">
-<meta property="og:description" content="Leanova OPEX Solutions helps organizations improve Productivity, Quality, Delivery, Cost and Operational Agility through Lean Management, Operational Excellence, Digital Transformation and AI-enabled decision support.">
-<meta property="og:image" content="https://leanovaopexsolutions.com/assets/og-image.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="assets/site.css">
+<meta name="description" content="Leanova Opex Solutions: automation, AI, websites, software and operations improvement from one team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=33">
 </head>
 <body>
-<a class="skip" href="#main">Skip to main content</a>
 
-<header class="top">
-  <div class="wrap">
-    <div class="brand">
-      <img class="brand__logo" src="assets/leanova-mark.jpeg" alt="" width="1024" height="626">
-      <span class="brand__rule" aria-hidden="true"></span>
-      <a class="brand__text" href="index.html">
-        <span class="brand__name">Leanova <span>OPEX</span> Solutions</span>
-        <span class="brand__tag">Transforming Operations. Enabling Excellence. Accelerating Growth.</span>
+<div id="site-header"></div>
+
+<main id="main" data-page="home">
+
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"><video src="img/gen/hero-loop.mp4" autoplay muted loop playsinline preload="metadata" tabindex="-1"></video></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">Automation &middot; AI &middot; Websites &middot; Operations</span>
+        <h1>Make your <span class="rot" aria-hidden="true"><span class="rot-word" id="rot">operations</span></span><span class="sr">operations, workflows, factory, website and team</span><br>leaner, faster and <span class="gold">smarter</span>.</h1>
+        <p class="lead">One team for automation, AI, websites, software and operations improvement. We fix how the work flows, take the repetitive steps off your people, and build the digital tools that keep it running. Start with one service and add others as you grow.</p>
+        <div class="btns">
+          <a class="btn btn-gold" href="contact.html#experts">Talk to our experts</a>
+          <a class="btn btn-line" href="#action">See it in action</a>
+        </div>
+      </div>
+      <div aria-label="How Leanova works, in three steps">
+        <div class="ladder-mark" data-mark="hero-mark"></div>
+        <div class="ladder" id="ladder">
+          <div class="rung"><span class="n">1</span><div><h3>Improve the process</h3><p>Lean, quality and productivity methods remove waste and delay.</p></div></div>
+          <div class="rung"><span class="n">2</span><div><h3>Automate the routine</h3><p>Repetitive steps, hand-offs and reports run on their own.</p></div></div>
+          <div class="rung"><span class="n">3</span><div><h3>Add AI where it helps</h3><p>Agents read, draft, speak and decide within clear limits.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts" aria-label="Key facts">
+    <div class="wrap">
+      <div class="fact"><b>30+ years</b><span>founder experience in industrial engineering and operational excellence</span></div>
+      <div class="fact"><b>One team</b><span>automation, AI, websites and operations under one roof</span></div>
+      <div class="fact"><b>ISO</b><span>Lead Auditor for ISO 9001, 14001 and 45001</span></div>
+      <div class="fact"><b>In-house AI</b><span>voice and multi-agent systems built by our own team</span></div>
+    </div>
+  </div>
+
+  <!-- FILMS SECTION: hidden until the film files are added to img/gen/ (see PR #7). Remove this comment wrapper to restore.
+<section class="section" aria-labelledby="film-h">
+    <div class="wrap">
+      <div class="sec-head" style="text-align:center;margin-inline:auto">
+        <span class="eyebrow">Watch Leanova</span>
+        <h2 id="film-h">See how we help businesses run better.</h2>
+        <p style="margin-inline:auto">From paperwork and retyping to work that flows on its own. Turn the sound on for the full story.</p>
+      </div>
+      <div class="vid-pair">
+        <figure class="vid-card">
+          <div class="video-wrap">
+            <video id="film" src="img/gen/leanova-story.mp4?v=2" poster="img/gen/leanova-story-poster.jpg" muted playsinline controls preload="metadata" aria-label="Leanova story video"></video>
+            <button type="button" class="sound-btn" id="film-sound" aria-pressed="false">&#128264; Sound on</button>
+          </div>
+          <figcaption><b>Our story</b><span>33 sec &middot; From paperwork to work that flows on its own</span></figcaption>
+        </figure>
+        <figure class="vid-card">
+          <div class="video-wrap">
+            <video id="film2" src="img/gen/leanova-film-v2.mp4" poster="img/gen/leanova-poster.jpg" muted playsinline controls preload="metadata" aria-label="Leanova in 50 seconds"></video>
+            <button type="button" class="sound-btn" id="film2-sound" aria-pressed="false">&#128264; Sound on</button>
+          </div>
+          <figcaption><b>Leanova in 50 seconds</b><span>50 sec &middot; Process first, technology second</span></figcaption>
+        </figure>
+      </div>
+      <script>
+      (function(){var v=document.getElementById('film2'),b=document.getElementById('film2-sound'),f=document.getElementById('film');if(!v||!b)return;
+        function sync(){b.setAttribute('aria-pressed',v.muted?'false':'true');b.innerHTML=v.muted?'&#128264; Sound on':'&#128263; Mute';}
+        b.addEventListener('click',function(){v.muted=!v.muted;if(!v.muted){if(f&&!f.muted){f.muted=true;}if(v.ended)v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){});}sync();});
+        v.addEventListener('volumechange',sync);
+        if(f)f.addEventListener('volumechange',function(){if(!f.muted&&!v.muted)v.muted=true;});
+        if('IntersectionObserver' in window)new IntersectionObserver(function(es){es.forEach(function(e){if(!v.muted)return;if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else v.pause();});},{threshold:.5}).observe(v);
+      })();
+      </script>
+      <div class="video-cap small muted"><span>Want a video like this for your business?</span><a class="link" href="services.html#video" style="font-size:14px">AI-generated video service &rarr;</a></div>
+    </div>
+  </section>
+-->
+
+  <section class="section alt" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Services</span>
+        <h2 id="svc-h">Everything we do, in one place.</h2>
+        <p>Automation, AI, websites, software and operations improvement from one team. Start with one service and add others as you grow.</p>
+      </div>
+      <div class="home-groups">
+        <a class="card hg" href="services.html#automation">
+          <img src="img/gen/automation.jpg" alt="Illustration: documents and emails flowing automatically through an AI hub with a human approval step" width="1000" height="753" loading="lazy">
+          <div class="hg-body">
+            <span class="eyebrow">Group 1</span>
+            <h3>Automation &amp; AI</h3>
+            <p class="small">Take repetitive work off your team and connect the systems you already use.</p>
+            <ul class="ticks small"><li>Workflow &amp; business process automation</li><li>CRM systems &amp; integrations</li><li>Document processing</li><li>Dashboards &amp; reporting</li><li>AI agents &amp; assistants</li><li>AI-enabled operations</li></ul>
+            <span class="link">Explore Automation &amp; AI &rarr;</span>
+          </div>
+        </a>
+        <a class="card hg" href="services.html#websites">
+          <img src="img/gen/websites.jpg" alt="Illustration: a business website on laptop, tablet and phone with booking, payment and cloud hosting" width="1000" height="753" loading="lazy">
+          <div class="hg-body">
+            <span class="eyebrow">Group 2</span>
+            <h3>Websites &amp; software</h3>
+            <p class="small">A clear online presence and software built around how your business works.</p>
+            <ul class="ticks small"><li>Website development</li><li>Website maintenance &amp; support</li><li>Custom business software</li><li>Online payments &amp; bookings</li><li>Cloud setup &amp; hosting</li><li>AI-generated video</li></ul>
+            <span class="link">Explore Websites &amp; software &rarr;</span>
+          </div>
+        </a>
+        <a class="card hg" href="services.html#operations">
+          <img src="img/gen/operations.jpg" alt="Illustration: a lean production line with kanban board, rising efficiency gauge and a team at a visual board" width="1000" height="753" loading="lazy">
+          <div class="hg-body">
+            <span class="eyebrow">Group 3</span>
+            <h3>Operations &amp; people</h3>
+            <p class="small">Where Leanova began: improving how work flows, and building teams that keep improving.</p>
+            <ul class="ticks small"><li>Digital transformation</li><li>Lean transformation</li><li>Operational excellence</li><li>Productivity improvement</li><li>Quality excellence</li><li>Training &amp; capability development</li></ul>
+            <span class="link">Explore Operations &amp; people &rarr;</span>
+          </div>
+        </a>
+      </div>
+      <p style="margin-top:22px"><a class="link" href="services.html">See every service in detail &rarr;</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="action" aria-labelledby="action-h" style="scroll-margin-top:120px">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">See it in action</span>
+        <h2 id="action-h">Watch manual work become automatic.</h2>
+        <p>Pick a process, then switch between how it runs today and how it runs once Leanova improves it.</p>
+      </div>
+      <div class="demo2" id="demo2">
+        <div class="d-picks" role="group" aria-label="Choose a process" id="d-picks"></div>
+        <div class="d-head">
+          <div><span class="eyebrow" id="d-kind">Example &middot; Automation</span><h3 id="d-title">Enquiry to CRM to reply</h3></div>
+          <div class="d-mode" role="group" aria-label="Show the process">
+            <button type="button" id="d-today" aria-pressed="true">Today</button>
+            <button type="button" id="d-with" aria-pressed="false">With Leanova</button>
+          </div>
+        </div>
+        <p class="d-intro" id="d-intro" aria-live="polite"></p>
+        <ol class="d-steps" id="d-steps"></ol>
+        <div class="d-meter">
+          <div class="row1"><span>Steps done by hand</span><b id="d-count">6 of 6</b></div>
+          <div class="bar"><i id="d-bar" style="width:100%"></i></div>
+          <p class="small muted" id="d-hint">Switch to &ldquo;With Leanova&rdquo; to see what changes.</p>
+        </div>
+        <div class="d-legend">
+          <span><i class="pill p-manual">Manual</i> done by your team</span>
+          <span><i class="pill p-auto">Automatic</i> happens on its own</span>
+          <span><i class="pill p-call">Your call</i> a person decides</span>
+          <span><i class="pill p-we">We handle</i> done by Leanova</span>
+        </div>
+        <p class="small muted">Illustrative examples of typical projects, not results from a named client.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt asf-band" aria-labelledby="asf-h">
+    <div class="wrap asf-grid">
+      <div class="hero-copy" style="gap:18px">
+        <span class="eyebrow">Featured &middot; ASF&trade; Analysis Workspace &middot; Pilot</span>
+        <h2 id="asf-h">Turn your documents into a clear business analysis.</h2>
+        <p class="lead">Sign in, upload your company documents, add your website and ask your business questions. ASF&trade; returns an evidence-backed report you can download as PDF, PowerPoint, CSV or Markdown. No API key needed.</p>
+        <div class="btns">
+          <a class="btn btn-gold" href="asf.html#demo">Try the walkthrough</a>
+          <a class="btn btn-line" href="contact.html#asf">Request pilot access</a>
+        </div>
+      </div>
+      <a class="asf-mock asf-link" href="asf.html#demo" aria-label="Open the ASF workspace walkthrough">
+        <div class="mock-bar"><span></span><span></span><span></span><b>ASF&trade; &middot; Analysis workspace</b></div>
+        <div class="mock-body">
+          <div class="mock-sec"><small>1 &middot; Sources</small>
+            <div class="mock-file" data-icon="box">Ops_Report_FY2025-26.xlsx</div>
+            <div class="mock-file" data-icon="monitor">https://yourcompany.com/about</div>
+          </div>
+          <div class="mock-sec"><small>2 &middot; Business context</small><div class="mock-input">Why did operating margin fall in Q3, and is the recovery sustainable?</div></div>
+          <div class="mock-foot"><span class="mock-btn">Analyze</span><span class="tag">PDF</span><span class="tag">PPT</span><span class="tag">CSV</span><span class="tag">MD</span></div>
+        </div>
+        <div class="mock-cta">See how the workspace works &rarr;</div>
       </a>
     </div>
-    <nav class="main">
-      <a href="about.html">About Us</a>
-      <a href="services.html">Services</a>
-      <a href="asf.html">ASF&trade;</a>
-      <a href="industries.html">Industries</a>
-      <a href="training.html">Training</a>
-      <a class="btn" href="contact.html">Contact Us</a>
-    </nav>
-  </div>
-</header>
+  </section>
 
-<main id="main">
-
-  <section class="band" style="padding-block:clamp(2.75rem,5.5vw,4.5rem)">
+  <section class="section" aria-labelledby="work-h">
     <div class="wrap">
-      <div class="narrow">
-        <div class="kick">Lean &rarr; Excellence &rarr; Digital &rarr; AI &rarr; Adaptive Organization</div>
-        <h1 style="margin-top:.9rem">Operational Excellence for the Next Generation of Business</h1>
-        <p class="lede" style="margin-top:1.1rem">
-          <strong>Leanova OPEX Solutions</strong> helps organizations improve
-          <strong>Productivity, Quality, Delivery, Cost and Operational Agility</strong>
-          through Lean Management, Operational Excellence, Digital Transformation
-          and AI-enabled decision support.
-        </p>
-        <p style="margin-top:1rem">
-          We help leadership teams identify execution bottlenecks, eliminate
-          operational waste, strengthen processes and build systems that deliver
-          <strong>sustainable, measurable business performance</strong>.
-        </p>
-        <p style="margin-top:1.9rem">
-          <a class="btn btn--lg" href="services.html">Explore Our Services</a>
-          <a class="btn btn--lg btn--quiet" href="contact.html" style="margin-left:.6rem">Talk to Our Experts</a>
-        </p>
+      <div class="sec-head">
+        <span class="eyebrow">Our work</span>
+        <h2 id="work-h">What we build, what we have built, and where it lives.</h2>
+        <p>Our capabilities, the AI systems we run today, and the ventures they power tell one story: a team that builds and operates its own technology before it builds yours.</p>
+      </div>
+      <div class="grid g3">
+        <a class="card" href="work.html#capabilities"><span class="ic-box" data-icon="network"></span><h3>Capabilities</h3><p class="small">AI agents, multi-agent systems, voice AI, LLM solutions, workflow and intelligent process automation.</p><span class="link">See what we can build &rarr;</span></a>
+        <a class="card" href="work.html#built"><span class="ic-box" data-icon="mic"></span><h3>Systems we have built</h3><p class="small">14 agents in our register, from live voice interviewers to support-reply drafters, each labelled live, built or prototype.</p><span class="link">See our work &rarr;</span></a>
+        <a class="card" href="work.html#ventures"><span class="ic-box" data-icon="flask"></span><h3>Ventures</h3><p class="small">HK AIverse, an AI learning platform with the HKAIVERSE Capability Studio, and the ASF&trade; Universal Analysis Engine.</p><span class="link">See our ventures &rarr;</span></a>
       </div>
     </div>
   </section>
 
-  <section class="band" style="padding-top:0">
+  <section class="section alt">
     <div class="wrap">
-      <div class="kick">What We Do</div>
-      <h2 style="margin-top:.8rem">From Operational Challenges to Measurable Business Results</h2>
-      <p class="lede" style="margin-top:.85rem;max-width:44rem">
-        Organizations often know <em>what</em> they want to achieve&mdash;but struggle
-        with <em>how to execute it consistently</em>.
-      </p>
-      <p style="max-width:44rem">
-        Leanova brings together <strong>Lean Thinking, Systems Thinking, Data
-        Analytics, Digital Technologies and AI</strong> to bridge the gap between
-        strategy and execution.
-      </p>
-      <h3 style="margin-top:2.25rem">Our Core Capabilities</h3>
-      <div class="cols cols--3" style="margin-top:1.25rem">
-        <article class="card card--hover">
-          <h3>Lean Transformation</h3>
-          <p>Build lean, efficient and responsive processes that eliminate waste and improve flow.</p>
-          <a class="card__link" href="services.html#lean">Learn more</a>
-        </article>
-        <article class="card card--hover">
-          <h3>Operational Excellence</h3>
-          <p>Develop systems that consistently improve productivity, quality, delivery and cost.</p>
-          <a class="card__link" href="services.html">Learn more</a>
-        </article>
-        <article class="card card--hover">
-          <h3>Digital Transformation</h3>
-          <p>Identify and implement appropriate digital solutions to simplify, connect and optimize operations.</p>
-          <a class="card__link" href="services.html#digital">Learn more</a>
-        </article>
-        <article class="card card--hover">
-          <h3>AI-Enabled Operations</h3>
-          <p>Use AI and intelligent analytics to support faster, smarter and data-driven decisions.</p>
-          <a class="card__link" href="services.html#ai">Learn more</a>
-        </article>
-        <article class="card card--hover">
-          <h3>Process Excellence</h3>
-          <p>Redesign processes to remove bottlenecks, reduce variation and improve customer value.</p>
-          <a class="card__link" href="services.html#quality">Learn more</a>
-        </article>
-        <article class="card card--hover">
-          <h3>Capability Development</h3>
-          <p>Develop people and leadership capabilities required to sustain operational transformation.</p>
-          <a class="card__link" href="training.html">Learn more</a>
-        </article>
+      <div class="sec-head">
+        <span class="eyebrow">Industries</span>
+        <h2>Where we work</h2>
+      </div>
+      <div class="chips">
+        <a class="chip" href="industries.html#manufacturing" data-icon="factory">Manufacturing</a>
+        <a class="chip" href="industries.html#logistics" data-icon="box">Logistics &amp; supply chain</a>
+        <a class="chip" href="industries.html#healthcare" data-icon="health">Healthcare</a>
+        <a class="chip" href="industries.html#education" data-icon="cap">Education</a>
+        <a class="chip" href="industries.html#retail" data-icon="cart">Retail</a>
+        <a class="chip" href="industries.html#finance" data-icon="bank">Finance</a>
+        <a class="chip" href="industries.html#technology" data-icon="code">Technology</a>
       </div>
     </div>
   </section>
 
-  <section class="band" style="padding-top:0">
+  <section class="section">
     <div class="wrap">
-      <div class="close">
-        <p style="margin-top:1.75rem"><a class="btn btn--lg" href="contact.html">Contact Us</a></p>
+      <div class="sec-head">
+        <span class="eyebrow">Why Leanova</span>
+        <h2>Process first, technology second</h2>
+      </div>
+      <div class="grid g4">
+        <div class="item"><span class="ic-box" data-icon="target"></span><h3>We fix the process first</h3><p class="small">Automating a broken process only makes it fail faster.</p></div>
+        <div class="item"><span class="ic-box" data-icon="layers"></span><h3>Operations and AI in one team</h3><p class="small">Improvement experts and engineers work on the same problem.</p></div>
+        <div class="item"><span class="ic-box" data-icon="check"></span><h3>People stay in control</h3><p class="small">Important decisions wait for a person to approve them.</p></div>
+        <div class="item"><span class="ic-box" data-icon="doc"></span><h3>Scope agreed in writing</h3><p class="small">You know what is delivered, and when, before work starts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <div><h2>Tell us what slows your business down.</h2><p style="margin-top:10px">A short conversation is enough to suggest where to start.</p></div>
+      <div class="btns">
+        <a class="btn btn-gold" href="contact.html#experts">Talk to our experts</a>
+        <a class="btn btn-line" href="contact.html#project">Discuss your project</a>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="foot">
-  <div class="wrap">
-    <div class="cols cols--3">
-      <div>
-        <h4>Services</h4>
-        <ul><li><a href="services.html#lean">Lean Transformation</a></li><li><a href="services.html">Operational Excellence</a></li><li><a href="services.html#productivity">Productivity Improvement</a></li><li><a href="services.html#quality">Quality Excellence</a></li><li><a href="services.html#digital">Digital Transformation</a></li><li><a href="services.html#ai">AI-enabled Operations</a></li><li><a href="training.html">Training &amp; Capability Development</a></li><li><a href="asf.html">ASF&trade;</a></li></ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul><li><a href="about.html">About Us</a></li><li><a href="asf.html#approach">Our Approach</a></li><li><a href="industries.html">Industries</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="insights.html">Knowledge Centre</a></li><li><a href="contact.html#faq">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul>
-      </div>
-      <div>
-        <h4>Connect With Us</h4>
-        <ul><li>5-12/424, Road No. 02, Narendranagar Colony,<br>Ameenpur, Sangareddy District,<br>Hyderabad, Telangana 502032, India</li><li><a href="tel:+919491887419">+91 94918 87419</a></li><li><a href="mailto:info@leanovaopexsolutions.com">info@leanovaopexsolutions.com</a></li></ul>
-      </div>
-    </div>
-  </div>
-  <div class="foot__base">
-    <span>Leanova OPEX Solutions — Transforming Operations. Enabling Excellence. Accelerating Growth.</span>
-    <span>&copy; 2026 Leanova OPEX Solutions. All Rights Reserved.</span>
-  </div>
-</footer>
+<div id="site-footer"></div>
+<script src="site.js?v=30"></script>
+<script src="home.js?v=31"></script>
 
-</body>
-</html>
+</body></html>
