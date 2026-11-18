@@ -188,7 +188,7 @@
     '<button type="button" class="la-vbtn" id="la-vbtn">' + ic('mic') + 'Start voice call</button>' +
     '<div id="la-vnote"></div>' +
     '<div class="la-tx" id="la-tx" aria-live="polite"></div>' +
-    '<p class="la-privacy">Voice calls are handled by our provider, ElevenLabs. The call audio and a transcript are processed and stored so the assistant can answer you, and Leanova may review them. Your microphone is used only while a call is on. Please do not share sensitive personal information. <a href="privacy.html#assistant">Privacy policy</a></p>' +
+    '<p class="la-privacy">Voice calls are handled by our voice service provider. The call audio and a transcript are processed and stored so the assistant can answer you, and Leanova may review them. Your microphone is used only while a call is on. Please do not share sensitive personal information. <a href="privacy.html#assistant">Privacy policy</a></p>' +
     '<p class="la-sub">Prefer a person? Call or WhatsApp <b style="color:#f3f1ec">' + PHONE + '</b>.</p>' +
     '</div></div>';
   document.body.appendChild(dock); document.body.appendChild(chatPanel); document.body.appendChild(voicePanel);
@@ -306,7 +306,7 @@
   }
 
   if (!ELEVENLABS_AGENT_ID) {
-    note('Voice agent not connected yet. Add the ElevenLabs agent ID at the top of <b>assistant.js</b> to switch it on.');
+    note('Voice agent not connected yet. Please use chat, or call us.');
   } else if (inPreview) {
     note('This preview blocks microphone access, so the voice call runs only on the live site (leanovaopexsolutions.com).');
   }
