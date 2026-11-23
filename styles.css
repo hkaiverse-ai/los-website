@@ -551,9 +551,6 @@ ul.ev li i{grid-column:2;font-style:normal;font-size:12.5px;color:var(--muted)}
 }
 
 /* ---------- AI agents on Microsoft Foundry: ai-agents-microsoft-foundry.html and the home teaser ---------- */
-.hero-note{display:flex;flex-wrap:wrap;align-items:center;gap:4px 14px;padding:12px 16px;border:1px solid rgba(214,176,100,.55);background:var(--note-bg);border-radius:var(--r);text-decoration:none;color:var(--text);font-size:15px;max-width:62ch}
-.hero-note b{color:var(--gold-2);font-weight:600}
-.hero-note:hover{border-color:var(--gold-2)}
 .ag-hero{border-bottom:1px solid var(--line)}
 .ag-hero h1{font-size:clamp(32px,4.6vw,52px)}
 .ag-under{font-size:14px;color:var(--muted)}
@@ -593,13 +590,6 @@ ul.ev li i{grid-column:2;font-style:normal;font-size:12.5px;color:var(--muted)}
 .ag-status{display:grid;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .ag-status>div{display:flex;align-items:center;justify-content:space-between;gap:8px 14px;flex-wrap:wrap;padding:14px 18px;border-top:1px solid var(--line);background:var(--card);font-size:15px;color:var(--text)}
 .ag-status>div:first-child{border-top:0}
-.ag-faq{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:0 20px;max-width:860px}
-.ag-faq+.ag-faq{margin-top:10px}
-.ag-faq summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;font:600 16.5px/1.35 var(--head);color:var(--text);position:relative}
-.ag-faq summary::-webkit-details-marker{display:none}
-.ag-faq summary::after{content:"+";position:absolute;right:0;top:12px;font:400 26px/1 var(--sans);color:var(--gold)}
-.ag-faq[open] summary::after{content:"\2212"}
-.ag-faq p{padding:0 0 18px;max-width:70ch}
 .ag-tm{font-size:13px;color:var(--muted);max-width:80ch;margin-top:28px}
 .ag-picks{display:grid;gap:10px}
 .ag-pick{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);text-decoration:none;color:var(--text)}
