@@ -582,9 +582,9 @@ ul.ev li i{grid-column:2;font-style:normal;font-size:12.5px;color:var(--muted)}
 .ag-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:34px}
 .ag-node{position:relative;border:1px solid var(--line-2);border-radius:var(--r);background:var(--card);padding:16px;display:grid;gap:6px;align-content:start}
 .ag-node b{font:600 15.5px var(--head);color:var(--text)}
-.ag-node span{font-size:13.5px;line-height:1.45;color:var(--muted)}
+.ag-node small{font-size:13.5px;line-height:1.45;color:var(--muted)}
 .ag-node.key{border-color:var(--gold);background:var(--note-bg)}
-.ag-node.key span{color:var(--note-fg)}
+.ag-node.key small{color:var(--note-fg)}
 .ag-flow .ag-node+.ag-node::before{content:"";position:absolute;left:-28px;top:calc(50% - 1px);width:22px;height:2px;background:var(--line-2)}
 .ag-flow .ag-node+.ag-node::after{content:"";position:absolute;left:-14px;top:calc(50% - 5px);width:8px;height:8px;border-top:2px solid var(--line-2);border-right:2px solid var(--line-2);transform:rotate(45deg)}
 .ag-foundry{margin-top:34px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:34px}
@@ -680,3 +680,34 @@ ul.ev li i{grid-column:2;font-style:normal;font-size:12.5px;color:var(--muted)}
   .show-stage{border-left:0;border-top:1px solid var(--line)}
 }
 @media (max-width:480px){.show-facts{grid-template-columns:1fr}.vi-live time{display:none}}
+
+/* second pass: hero backdrop, scorecard summary, architecture panel, principle cards, built cards */
+.ag-hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 70% at 78% 32%,rgba(214,176,100,.16),transparent 66%),linear-gradient(var(--line) 1px,transparent 1px) 0 0/100% 56px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/56px 100%;-webkit-mask-image:radial-gradient(75% 85% at 72% 35%,#000 20%,transparent 78%);mask-image:radial-gradient(75% 85% at 72% 35%,#000 20%,transparent 78%)}
+.ag-score{box-shadow:0 40px 80px -40px rgba(0,0,0,.85),0 0 0 1px rgba(214,176,100,.12)}
+.ag-sum{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;margin-top:4px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.ag-sum b{color:var(--text);font-variant-numeric:tabular-nums}
+.ag-arch{position:relative;border:1px solid var(--line);border-radius:16px;padding:clamp(40px,4vw,48px) clamp(16px,2.6vw,28px) clamp(20px,2.6vw,28px);background:radial-gradient(90% 120% at 50% 0%,rgba(214,176,100,.07),transparent 60%),var(--bg-2)}
+.ag-arch-lab{position:absolute;left:clamp(16px,2.6vw,28px);top:14px;font:600 11.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ag-ic{display:grid;place-items:center;width:36px;height:36px;border-radius:9px;border:1px solid var(--line-2);background:var(--bg);margin-bottom:4px}
+.ag-ic .ic{width:19px;height:19px}
+.ag-node.key .ag-ic{border-color:rgba(214,176,100,.6);background:rgba(214,176,100,.14)}
+.ag-node.key{box-shadow:0 0 0 4px rgba(214,176,100,.10),0 24px 44px -30px rgba(214,176,100,.6)}
+.ag-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.ag-badges em{font:600 11px var(--sans);font-style:normal;color:var(--gold-ink);background:var(--gold);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.ag-flow .ag-node+.ag-node::before{background:rgba(214,176,100,.55)}
+.ag-flow .ag-node+.ag-node::after{border-color:rgba(214,176,100,.8)}
+.ag-foundry .ag-node::before{background:rgba(214,176,100,.55)}
+.ag-prin{gap:10px;transition:border-color .2s,transform .2s}
+.ag-prin:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.card.built{position:relative;overflow:hidden;gap:14px;padding-top:28px;transition:transform .2s,border-color .2s}
+.card.built::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--ok)}
+.card.built.mixed::before{background:linear-gradient(90deg,var(--ok) 50%,var(--info) 50%)}
+.card.built:hover{transform:translateY(-3px);border-color:var(--line-2)}
+.card.built h3{font-size:21px}
+.card.built .kv{grid-template-columns:1fr;gap:3px}
+.card.built .kv dt{font:600 11.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;margin-top:10px}
+.card.built .kv dt:first-child{margin-top:0}
+.card.built .kv dd{font-size:14.5px;line-height:1.55}
+.built-tags{display:flex;flex-wrap:wrap;gap:6px;padding-top:3px}
+.built-tags .tag{color:var(--body)}
+@media (max-width:900px){.ag-flow .ag-node+.ag-node::before,.ag-foundry .ag-node::before{background:rgba(214,176,100,.55)}}
