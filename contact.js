@@ -25,6 +25,7 @@
   function fromHash() {
     var h = (location.hash || '').slice(1);
     if (h === 'project' || h === 'experts') { setMode(h); showForm(); }
+    if (h === 'review') { setMode('project'); showForm(); var ca = $('svc-agents'); if (ca) ca.checked = true; if (!$('msg').value) $('msg').value = 'I would like to book the one-week agent readiness review. The agent or pilot we want reviewed: '; }
     if (h === 'asf') { setMode('project'); showForm(); var cb = $('svc-asf'); if (cb) cb.checked = true; if (!$('msg').value) $('msg').value = 'I would like pilot access to the ASF Analysis Workspace. Our company and what we want to analyse: '; }
   }
   window.addEventListener('hashchange', fromHash);
