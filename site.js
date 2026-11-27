@@ -51,10 +51,11 @@
   var main = document.getElementById('main');
   var page = main ? main.getAttribute('data-page') : '';
   var NAV = [
-    ['home', 'index.html', 'Home'],
+    ['home', './', 'Home'],
     ['founder', 'founder.html', 'Founder'],
     ['about', 'about.html', 'About us'],
     ['services', 'services.html', 'Services'],
+    ['lean', 'lean-consultants-hyderabad.html', 'Lean consulting'],
     ['agents', 'ai-agents-microsoft-foundry.html', 'AI agents'],
     ['asf', 'asf.html', 'ASF\u2122'],
     ['work', 'work.html', 'Our work'],
@@ -67,7 +68,7 @@
     head.outerHTML =
       '<a class="skip" href="#main">Skip to main content</a>' +
       '<header class="top"><div class="wrap top-row">' +
-      '<a class="brand" href="index.html" aria-label="Leanova Opex Solutions Private Limited, home">' + mark('brand-mark') +
+      '<a class="brand" href="./" aria-label="Leanova Opex Solutions Private Limited, home">' + mark('brand-mark') +
       '<span class="brand-text"><b>LEANOVA OPEX SOLUTIONS</b><small>Private Limited</small></span></a>' +
       '<a class="btn btn-gold btn-sm top-cta" href="contact.html#experts">Talk to our experts</a>' +
       '<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button></div>' +
@@ -83,12 +84,12 @@
   if (foot) {
     foot.outerHTML =
       '<footer class="foot"><div class="wrap"><div class="foot-grid">' +
-      '<div><a class="foot-brand" href="index.html" aria-label="Leanova Opex Solutions Private Limited, home"><img class="foot-logo" src="img/logo-full.png" alt="Leanova Opex: Optimize. Perform. Excel. Xperience." width="889" height="493"></a>' +
+      '<div><a class="foot-brand" href="./" aria-label="Leanova Opex Solutions Private Limited, home"><img class="foot-logo" src="img/logo-full.png" alt="Leanova Opex: Optimize. Perform. Excel. Xperience." width="889" height="493"></a>' +
       '<p class="small"><b style="color:var(--text)">Leanova Opex Solutions Private Limited.</b> Automation, AI, websites, software and operations improvement from one team.</p>' +
       '<div class="social"><a href="' + LI + '" target="_blank" rel="noopener" aria-label="Leanova on LinkedIn (opens in a new tab)">' + icon('linkedin') + '</a>' +
       '<a href="' + IG + '" target="_blank" rel="noopener" aria-label="Leanova on Instagram (opens in a new tab)">' + icon('instagram') + '</a></div></div>' +
-      '<div><h2>Company</h2><ul><li><a href="index.html">Home</a></li><li><a href="founder.html">Founder</a></li><li><a href="about.html">About us</a></li><li><a href="work.html#capabilities">Capabilities</a></li><li><a href="asf.html">ASF\u2122 Analysis Engine</a></li><li><a href="work.html">Our work</a></li><li><a href="work.html#studio">HKAIVERSE Capability Studio</a></li><li><a href="industries.html">Industries</a></li><li><a href="work.html#ventures">Related ventures</a></li><li><a href="contact.html">Contact</a></li></ul></div>' +
-      '<div><h2>Services</h2><ul><li><a href="services.html#automation">Automation &amp; AI</a></li><li><a href="services.html#workflow">Workflow automation</a></li><li><a href="services.html#agents">AI agents &amp; assistants</a></li><li><a href="ai-agents-microsoft-foundry.html">AI agents on Microsoft Foundry</a></li><li><a href="services.html#websites">Websites &amp; software</a></li><li><a href="services.html#website">Website development</a></li><li><a href="services.html#operations">Operations &amp; people</a></li><li><a href="services.html#lean">Lean transformation</a></li><li><a href="services.html#asf-framework">ASF™ framework</a></li></ul></div>' +
+      '<div><h2>Company</h2><ul><li><a href="./">Home</a></li><li><a href="founder.html">Founder</a></li><li><a href="about.html">About us</a></li><li><a href="work.html#capabilities">Capabilities</a></li><li><a href="asf.html">ASF\u2122 Analysis Engine</a></li><li><a href="work.html">Our work</a></li><li><a href="work.html#studio">HKAIVERSE Capability Studio</a></li><li><a href="industries.html">Industries</a></li><li><a href="work.html#ventures">Related ventures</a></li><li><a href="contact.html">Contact</a></li></ul></div>' +
+      '<div><h2>Services</h2><ul><li><a href="services.html#automation">Automation &amp; AI</a></li><li><a href="services.html#workflow">Workflow automation</a></li><li><a href="services.html#agents">AI agents &amp; assistants</a></li><li><a href="ai-agents-microsoft-foundry.html">AI agents on Microsoft Foundry</a></li><li><a href="services.html#websites">Websites &amp; software</a></li><li><a href="services.html#website">Website development</a></li><li><a href="services.html#operations">Operations &amp; people</a></li><li><a href="lean-consultants-hyderabad.html">Lean consulting</a></li><li><a href="services.html#asf-framework">ASF™ framework</a></li></ul></div>' +
       '<div><h2>Contact</h2><address><b>LEANOVA OPEX SOLUTIONS PRIVATE LIMITED</b><br>Registered office: H.No. 5-12/424 B, Road No. 2, Near Sai Baba Temple, Ameenpur, Hyderabad \u2013 502032, Telangana, India.<br>CIN: U62099TS2026PTC221079</address>' +
       '<ul style="margin-top:12px"><li><a href="mailto:' + EMAIL + '">' + EMAIL + '</a></li><li><a href="tel:' + TEL + '">' + PHONE + '</a></li></ul></div>' +
       '</div><div class="foot-base"><span>\u00a9 ' + new Date().getFullYear() + ' Leanova Opex Solutions Private Limited. All rights reserved.</span>' +
